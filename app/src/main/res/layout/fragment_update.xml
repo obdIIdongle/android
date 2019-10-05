@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+               android:background="#EFE8E1">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ImageView
+                android:src="@color/buttoncolor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:id="@+id/imageView60" android:layout_marginTop="30dp"/>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView72"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/obdii" />
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_alignTop="@id/imageView72"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@id/imageView72"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1.2"
+                android:text="USB TPMS 1.01\nOrange Electronic\n25.1MB" />
+
+            <TextView
+                android:id="@+id/textView76"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView72"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/For_developer_information" />
+        </RelativeLayout>
+        <ImageView
+                android:src="@color/buttoncolor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:id="@+id/imageView64"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp" android:layout_marginLeft="36dp">
+
+            <TextView
+                    android:text="@string/Check_for_updates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView77"
+                    android:layout_centerVertical="true" android:textSize="20dp"/>
+        </RelativeLayout>
+        <ImageView
+                android:src="@color/buttoncolor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:id="@+id/imageView69" android:layout_marginTop="0dp"/>
+
+        <TextView
+                android:text="@string/USB_TPMS_APP_will_automatically_install_updates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView79" android:layout_marginTop="13dp"
+                android:gravity="center"/>
+    </LinearLayout>
+
+</RelativeLayout>

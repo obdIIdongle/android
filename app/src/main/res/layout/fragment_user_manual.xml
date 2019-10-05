@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroung"
+    tools:context="com.example.obd.UserManual.UserManual">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:src="@mipmap/obdimage" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/imageView23"
+        android:gravity="center"
+        android:text="OBDII DONGLE 操作步驟說明"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView29"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.2"
+        android:text="欲使用本應用程式，\n請先購買相關產品(Orange OD20)，\n註冊後，即可登入使用" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/textView30"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:background="@mipmap/button"
+        android:text="OBDII relearn"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="52dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="18dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.2"
+        android:text="※注意：請確認新的發射器已裝入輪胎內， 並將本公司產品OD-20插入車內的OBD插孔。"
+        android:textColor="@color/colorPrimary" />
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroung"
+    tools:context="com.example.obd.UserManual.Page.F3">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginBottom="14dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="步驟3-1. 進入後有三種取得車輛資訊(MMY)的方式， 點選其中一種方式來選擇車輛。"
+        android:textColor="@android:color/black" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textView34">
+
+        <ImageView
+            android:id="@+id/imageView29"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="30dp"
+            android:src="@mipmap/step3_1" />
+    </RelativeLayout>
+
+</RelativeLayout>

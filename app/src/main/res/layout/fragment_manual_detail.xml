@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroung">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/li" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/buttoncolor"
+        android:text="@string/Users_manual"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/li"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@id/button11"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal"></LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroung"
+    tools:context="com.example.obd.UserManual.Page.F1">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginBottom="14dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="步驟1. 進入APP後，請先選擇使用的地區與語系。 (注意：選擇的使用地區將影響APP車輛資訊(MMY) 的數據，如欲更改請進入設定頁面修正)"
+        android:textColor="@android:color/black" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textView32">
+
+        <ImageView
+            android:id="@+id/imageView27"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:padding="30dp"
+            android:src="@mipmap/step1" />
+    </RelativeLayout>
+
+</RelativeLayout>

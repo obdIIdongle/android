@@ -1,0 +1,109 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroung"
+    tools:context="com.example.obd.MainActivity.AddFavorite">
+
+    <TextView
+        android:id="@+id/toper"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/buttoncolor"
+        android:gravity="center"
+        android:text="Add new vehicle"
+        android:textColor="@color/white"
+        android:textSize="18sp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toper"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/Select_CAR_Make"
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/make"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/textView24"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@mipmap/img_dropdown" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/make"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/Select_CAR_Model"
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/model"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/textView25"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:background="@mipmap/img_dropdown" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/model"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/Select_Year"
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/year"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/textView28"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:background="@mipmap/img_dropdown" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/year"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:background="@mipmap/button"
+            android:text="@string/cancel"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            android:background="@mipmap/button"
+            android:text="@string/Yes"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

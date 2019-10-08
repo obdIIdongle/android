@@ -7,14 +7,15 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class Fuction {
     public static boolean ResetPassword(String admin){
         try{
-            String wsdl = "http://demo1.cinet.tw:8360/App_Asmx/ToolApp.asmx";
+            String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
             int timeout = 10000;
-            StringBuffer sb = new StringBuffer("");
+            StringBuffer sb = new StringBuffer();
             sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                     "<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n" +
                     "  <soap12:Body>\n" +
@@ -37,10 +38,10 @@ public class Fuction {
             conn.setReadTimeout(timeout);
 
             DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-            dos.write(sb.toString().getBytes("utf-8"));
+            dos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
             dos.flush();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
             String line = null;
             StringBuffer strBuf = new StringBuffer();
             while ((line = reader.readLine()) != null) {
@@ -55,9 +56,9 @@ public class Fuction {
     }
     public static boolean ValidateUser(String admin,String password){
         try{
-            String wsdl = "http://demo1.cinet.tw:8360/App_Asmx/ToolApp.asmx";
+            String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
             int timeout = 10000;
-            StringBuffer sb = new StringBuffer("");
+            StringBuffer sb = new StringBuffer();
             sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                     "<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n" +
                     "  <soap12:Body>\n" +
@@ -81,10 +82,10 @@ public class Fuction {
             conn.setReadTimeout(timeout);
 
             DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-            dos.write(sb.toString().getBytes("utf-8"));
+            dos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
             dos.flush();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
             String line = null;
             StringBuffer strBuf = new StringBuffer();
             while ((line = reader.readLine()) != null) {
@@ -93,18 +94,14 @@ public class Fuction {
             dos.close();
             reader.close();
             System.out.println(strBuf.toString());
-            if(strBuf.toString().substring(strBuf.toString().indexOf("<ValidateUserResult>")+20,strBuf.toString().indexOf("</ValidateUserResult>")).equals("true")){
-                return true;
-            }else{
-                return false;
-            }
+            return strBuf.toString().substring(strBuf.toString().indexOf("<ValidateUserResult>") + 20, strBuf.toString().indexOf("</ValidateUserResult>")).equals("true");
         }catch(Exception e){e.printStackTrace();return false;}
     }
     public static int Register(String admin,String password,String SerialNum,String storetype,String companyname,String firstname,String lastname,String phone,String State,String city,String streat,String zp){
         try{
-            String wsdl = "http://demo1.cinet.tw:8360/App_Asmx/ToolApp.asmx";
+            String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
             int timeout = 10000;
-            StringBuffer sb = new StringBuffer("");
+            StringBuffer sb = new StringBuffer();
             sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                     "<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n" +
                     "  <soap12:Body>\n" +
@@ -156,10 +153,10 @@ public class Fuction {
             conn.setReadTimeout(timeout);
 
             DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-            dos.write(sb.toString().getBytes("utf-8"));
+            dos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
             dos.flush();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
             String line = null;
             StringBuffer strBuf = new StringBuffer();
             while ((line = reader.readLine()) != null) {
@@ -179,9 +176,9 @@ public class Fuction {
     }
     public static void Upload_ProgramRecord(String make, String model, String year, String startime, String Endtime, String SreialNum, String Devicetype, String Mode, int SensorCount, String position
             , ArrayList<SensorRecord> idrecord){try{
-        String wsdl = "http://demo1.cinet.tw:8360/App_Asmx/ToolApp.asmx";
+        String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
         int timeout = 10000;
-        StringBuffer sb = new StringBuffer("");
+        StringBuffer sb = new StringBuffer();
         sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n" +
                 "  <soap12:Body>\n" +
@@ -251,9 +248,9 @@ public class Fuction {
         conn.setConnectTimeout(timeout);
         conn.setReadTimeout(timeout);
         DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-        dos.write(sb.toString().getBytes("utf-8"));
+        dos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
         dos.flush();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
         String line = null;
         StringBuffer strBuf = new StringBuffer();
         while ((line = reader.readLine()) != null) {
@@ -265,9 +262,9 @@ public class Fuction {
     }catch(Exception e){  Log.d("upload",e.getMessage());}}
     public static void Upload_IDCopyRecord(String make,String model,String year,String startime,String Endtime,String SreialNum,String Devicetype,String Mode,int SensorCount,String position
             ,ArrayList<SensorRecord> idrecord){try{
-        String wsdl = "http://demo1.cinet.tw:8360/App_Asmx/ToolApp.asmx";
+        String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
         int timeout = 10000;
-        StringBuffer sb = new StringBuffer("");
+        StringBuffer sb = new StringBuffer();
         sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n" +
                 "  <soap12:Body>\n" +
@@ -336,9 +333,9 @@ public class Fuction {
         conn.setConnectTimeout(timeout);
         conn.setReadTimeout(timeout);
         DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-        dos.write(sb.toString().getBytes("utf-8"));
+        dos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
         dos.flush();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
         String line = null;
         StringBuffer strBuf = new StringBuffer();
         while ((line = reader.readLine()) != null) {

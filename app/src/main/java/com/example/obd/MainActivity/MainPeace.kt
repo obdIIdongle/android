@@ -27,6 +27,7 @@ import com.example.obd.tool.Command
 import com.example.obd.tool.FtpManager
 import com.example.obd.tool.LanguageUtil
 import com.orange.blelibrary.blelibrary.BleActivity
+import com.orange.etalkinglibrary.E_talking.TalkingActivity
 import com.orango.electronic.orangetxusb.SettingPagr.PrivaryPolicy
 import com.orango.electronic.orangetxusb.SettingPagr.Set_Languages
 import com.orango.electronic.orangetxusb.mmySql.ItemDAO
@@ -132,6 +133,9 @@ fun DonloadMMy(){
                 startActivity(intent)}
             R.id.imageView13->{
                 goback()
+            }
+            R.id.imageView40->{
+                startActivity(Intent(this,TalkingActivity::class.java))
             }
         } }
 }

@@ -1,2 +1,2 @@
-include ':app', ':languagesetting' ,':BleLibrary'
+include ':app', ':languagesetting' ,':BleLibrary',':Etalking-master'
 

@@ -22,14 +22,11 @@ import android.widget.*
 import com.airbnb.lottie.LottieAnimationView
 import com.example.obd.FunctionPage.Key_ID
 import com.example.obd.Myapp
-import com.example.obd.blelibrary.BleActivity
 import com.orange.obd.R
-import com.example.obd.blelibrary.EventBus.*
-import com.example.obd.blelibrary.Server.BleServiceControl
-import com.example.obd.blelibrary.tool.FormatConvert
 import com.example.obd.tool.Command
 import com.example.obd.tool.FtpManager
 import com.example.obd.tool.LanguageUtil
+import com.orange.blelibrary.blelibrary.BleActivity
 import com.orango.electronic.orangetxusb.SettingPagr.PrivaryPolicy
 import com.orango.electronic.orangetxusb.SettingPagr.Set_Languages
 import com.orango.electronic.orangetxusb.mmySql.ItemDAO

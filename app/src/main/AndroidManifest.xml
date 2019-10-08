@@ -29,7 +29,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name="com.example.obd.MainActivity.TakeOut"
             android:theme="@style/SwipTheme" />
-        <activity android:name="com.example.obd.blelibrary.BleActivity" />
         <activity
             android:name="com.example.obd.FunctionPage.ReProgram"
             android:theme="@style/SwipTheme" />
@@ -41,27 +40,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.obd.Demo.SelectAction"
-            android:theme="@style/SwipTheme" />
-        <activity
-            android:name="com.example.obd.Demo.ScanBle"
-            android:theme="@style/SwipTheme" />
-        <activity
             android:name="com.example.obd.MainActivity.Logout"
             android:theme="@style/SwipTheme" />
         <activity
             android:name="com.example.obd.MainActivity.MainPeace"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.example.obd.blelibrary.ScanBle"
-            android:theme="@style/SwipTheme" />
-
-        <service
-            android:name="com.example.obd.Demo.blelibrary.Server.BluetoothLeService"
-            android:enabled="true" />
-        <service
-            android:name="com.example.obd.blelibrary.Server.BluetoothLeService"
-            android:enabled="true" />
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.example.obd.MainActivity.MainPeace;
-import com.example.obd.blelibrary.BleActivity;
+import com.orange.blelibrary.blelibrary.BleActivity;
 import com.orange.obd.R;
 
 import java.io.BufferedReader;
@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import static com.example.obd.Demo.blelibrary.tool.FormatConvert.StringHexToByte;
+import static com.orange.blelibrary.blelibrary.tool.FormatConvert.StringHexToByte;
 
 public  class Command {
     public static String WRITE_SUCCESS="F502000300F40A";

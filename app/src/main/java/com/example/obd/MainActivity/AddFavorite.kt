@@ -14,7 +14,6 @@ import android.widget.Toast
 import com.orange.obd.R
 import kotlinx.android.synthetic.main.fragment_add_favorite.view.*
 import java.util.ArrayList
-import com.example.obd.Demo.MainActivity
 
 
 

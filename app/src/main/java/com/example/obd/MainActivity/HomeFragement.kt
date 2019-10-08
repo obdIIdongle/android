@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.obd.UserManual.UserManual
-import com.example.obd.blelibrary.ScanBle
 
 import com.orange.obd.R
 import com.orango.electronic.orangetxusb.SettingPagr.Setting

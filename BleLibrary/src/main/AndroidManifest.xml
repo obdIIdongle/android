@@ -15,7 +15,9 @@
     <application>
     <activity android:name=".blelibrary.BleActivity" />
         <activity android:name=".blelibrary.ScanBle"
-            android:theme="@style/SwipTheme" />
+                  android:theme="@style/SwipTheme"/>
+        <service android:name=".blelibrary.Server.BluetoothLeService"
+        android:enabled="true"/>
     </application>
 
 </manifest>

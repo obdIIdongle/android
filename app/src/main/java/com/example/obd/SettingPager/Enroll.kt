@@ -94,7 +94,7 @@ rootview.cancel.setOnClickListener {
             if(isrunn){
                 return@setOnClickListener
             }
-            act.LoadBleUI("Data Loading")
+            act.LoadingUI("Data Loading")
             var email=email.text.toString()
             var password=password.text.toString()
             var repeatpassword=repeatpassword.text.toString()

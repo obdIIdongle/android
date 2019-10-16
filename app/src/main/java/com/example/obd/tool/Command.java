@@ -95,7 +95,7 @@ if(b>=255){b=b-255;}
                             act.getHandler().post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    act.LoadBleUI(act.getResources().getString(R.string.Programming)+"..."+"100%");
+                                    act.LoadingUI(act.getResources().getString(R.string.Programming)+"..."+"100%");
                                 }
                             });
                             return true;
@@ -111,7 +111,7 @@ if(b>=255){b=b-255;}
                             act.getHandler().post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    act.LoadBleUI(act.getResources().getString(R.string.Programming)+"..."+(int)(finalI / finalLong*100)+"%");
+                                    act.LoadingUI(act.getResources().getString(R.string.Programming)+"..."+(int)(finalI / finalLong*100)+"%");
                                 }
                             });
                         }

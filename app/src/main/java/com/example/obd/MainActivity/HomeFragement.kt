@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.obd.TestFragement
 import com.example.obd.UserManual.UserManual
 
 import com.orange.obd.R
@@ -55,7 +56,7 @@ class HomeFragement : Fragment() {
 //                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
 //                        .addToBackStack(null)
 //                        .commit()
-          act.GoScanner(Selection(),10,R.id.frage)
+          act.GoScanner(TestFragement(),10,R.id.frage,"Test")
           act.back.visibility=View.VISIBLE
         }
         rootView.imageView6.setOnClickListener {

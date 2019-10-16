@@ -111,7 +111,7 @@ public class BleServiceControl {
             gattCharacteristicData.add(gattCharacteristicGroupData);
         }
     }
-    private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+    public final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
@@ -140,7 +140,20 @@ Log.w("s","連線");
             }
         }
     }
-
+    public boolean WriteCmd(byte[] write,int check){
+        act.setRXDATA("");
+        for(BluetoothGattCharacteristic a:mGattCharacteristics){
+            if(TXUUID.equals(a.getUuid())){
+                mBluetoothLeService.check=check;
+                mBluetoothLeService.tmp="";
+                mNotifyCharacteristic=a;
+                mNotifyCharacteristic.setValue(write);
+                mBluetoothLeService.writeCharacteristic(mNotifyCharacteristic);
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean WriteCmd(String write,int check){
         act.setRXDATA("");
 for(BluetoothGattCharacteristic a:mGattCharacteristics){

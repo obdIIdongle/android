@@ -33,7 +33,7 @@ class FavAdapter(private val name: ArrayList<String>, val act: Activity, private
             (act as MainPeace).SelectYear=name[position].split("☆")[2]
             act.SelectModel=name[position].split("☆")[1]
             act.SelectMake=name[position].split("☆")[0]
-            act.GoScanner(OBDII_relearn(),10,R.id.frage)
+            act.GoScanner(OBDII_relearn(),10,R.id.frage,"OBDII_relearn")
         }
         holder.delete.setOnClickListener {
             name.removeAt(position)

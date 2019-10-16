@@ -47,7 +47,7 @@ class ResetPass : Fragment() {
             if(run){
                 return@setOnClickListener
             }
-            act.LoadBleUI("Data Loading")
+            act.LoadingUI("Data Loading")
             var email=edit.text.toString()
             Thread{
                 var isok= ResetPassword(email)

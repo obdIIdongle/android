@@ -45,7 +45,7 @@ class Sign_in : Fragment() {
             run=true
             val admin=admin.text.toString()
             val password=password.text.toString()
-            act.LoadBleUI("Data Loading")
+            act.LoadingUI("Data Loading")
             Thread{
                 val a= Fuction.ValidateUser(admin,password)
                 run=false

@@ -161,7 +161,7 @@ class Key_ID : Fragment() {
             if (rootView.lrt3.getText().length >= 6 && rootView.lrt3.getText().length <= need) {
                 write.add(rootView.lrt3.getText().toString())
             }
-            act.LoadBleUI(resources.getString(R.string.Programming))
+            act.LoadingUI(resources.getString(R.string.Programming))
             Thread{
                 val iscuss=act.command.setTireId(write)
                 handler.post {
@@ -183,7 +183,7 @@ class Key_ID : Fragment() {
             }.start()
         }
         rootView.scaner.setOnClickListener{
-            act.LoadBleUI(resources.getString(R.string.Data_Loading))
+            act.LoadingUI(resources.getString(R.string.Data_Loading))
             Downs19()
             rootView.Select_Key.visibility=View.GONE
             scanner.Scan_For=scanner.ID
@@ -216,7 +216,7 @@ class Key_ID : Fragment() {
                 RequestPermission() }
             SCAN_OR_KEY=0
         }
-        rootView.keyin.setOnClickListener {     act.LoadBleUI(resources.getString(R.string.Data_Loading))
+        rootView.keyin.setOnClickListener {     act.LoadingUI(resources.getString(R.string.Data_Loading))
             Downs19()
             rootView.Select_Key.visibility=View.GONE}
         updateui(WAIT)

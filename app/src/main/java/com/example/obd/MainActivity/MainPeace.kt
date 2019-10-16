@@ -22,6 +22,7 @@ import android.widget.*
 import com.airbnb.lottie.LottieAnimationView
 import com.example.obd.FunctionPage.Key_ID
 import com.example.obd.Myapp
+import com.example.obd.TestFragement
 import com.orange.obd.R
 import com.example.obd.tool.Command
 import com.example.obd.tool.FtpManager
@@ -31,6 +32,7 @@ import com.orange.etalkinglibrary.E_talking.TalkingActivity
 import com.orango.electronic.orangetxusb.SettingPagr.PrivaryPolicy
 import com.orango.electronic.orangetxusb.SettingPagr.Set_Languages
 import com.orango.electronic.orangetxusb.mmySql.ItemDAO
+import kotlinx.android.synthetic.main.fragment_test_fragement.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -73,7 +75,7 @@ lateinit var load:RelativeLayout
         savedState = savedInstanceState
         if(savedState != null) onBackStackChanged()
         command.act=this
-        LoadBleUI(resources.getString(R.string.Data_Loading))
+        LoadingUI(resources.getString(R.string.Data_Loading))
         DonloadMMy()
         val profilePreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE)
         val handler = Handler()
@@ -120,7 +122,25 @@ fun DonloadMMy(){
             startActivity(Intent(this,TakeOut::class.java))
         }
     }
-    override fun LoadBleUI(a:String){   textView.text=a
+
+    override fun TX(a: String) {
+        handler.post {
+            if(supportFragmentManager.fragments.get(supportFragmentManager.fragments.size-1).tag!=null&&supportFragmentManager.fragments.get(supportFragmentManager.fragments.size-1).tag=="Test"){
+                var fragment=supportFragmentManager.fragments.get(supportFragmentManager.fragments.size-1) as TestFragement
+                fragment.rootview.teststring.append("\nTX:"+a)
+            }
+        }
+
+    }
+    override fun RX(a: String) {
+        handler.post {
+            if(supportFragmentManager.fragments.get(supportFragmentManager.fragments.size-1).tag!=null&&supportFragmentManager.fragments.get(supportFragmentManager.fragments.size-1).tag=="Test"){
+                var fragment=supportFragmentManager.fragments.get(supportFragmentManager.fragments.size-1) as TestFragement
+                fragment.rootview.teststring.append("\nRX:"+a)
+            }
+        }
+    }
+    override fun LoadingUI(a:String){   textView.text=a
         load.visibility= View.VISIBLE
         anim.visibility=View.VISIBLE}
     override fun LoadingSuccessUI(){

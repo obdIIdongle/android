@@ -29,8 +29,8 @@ open class BleActivity : AppCompatActivity(), FragmentManager.OnBackStackChanged
     lateinit var Translation:Fragment
     var ConnectDelay=10
     var bleServiceControl = BleServiceControl()
-     var timer=Timer()
     var id=0
+    var tag=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -59,7 +59,10 @@ open class BleActivity : AppCompatActivity(), FragmentManager.OnBackStackChanged
     }
      var handler= Handler()
 
-    open fun LoadBleUI(a:String){
+    open fun LoadingUI(a:String,pass:Int){
+
+    }
+    open fun LoadingUI(a:String){
 
     }
     open fun LoadingSuccessUI(){
@@ -68,7 +71,7 @@ open class BleActivity : AppCompatActivity(), FragmentManager.OnBackStackChanged
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun Event(a: ConnectBle) {
-        LoadBleUI(resources.getString(R.string.paired_with_your_device))
+        LoadingUI(resources.getString(R.string.paired_with_your_device),0)
         bleServiceControl.connect(a.reback)
         Thread{
             var fal=0
@@ -80,7 +83,7 @@ open class BleActivity : AppCompatActivity(), FragmentManager.OnBackStackChanged
             handler.post {LoadingSuccessUI()
                 if(bleServiceControl.isconnect){
                     val transaction = supportFragmentManager!!.beginTransaction()
-                    transaction.replace(id, Translation)
+                    transaction.replace(id, Translation,tag)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
                             .addToBackStack(null)
                             .commit()
@@ -113,18 +116,32 @@ open class BleActivity : AppCompatActivity(), FragmentManager.OnBackStackChanged
             Log.w("error", e.message)
         }
     }
-    open fun GoScanner(Translation:Fragment,DelayTime:Int,id:Int){
+    open fun GoScanner(Translation:Fragment,DelayTime:Int,id:Int,tag:String){
+        this.tag=tag
         ConnectDelay=DelayTime
         this.Translation=Translation
         this.id=id
         if(bleServiceControl.isconnect){
             val transaction = supportFragmentManager!!.beginTransaction()
-            transaction.replace(id, Translation)
+            transaction.replace(id, Translation,tag)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
                     .addToBackStack(null)
                     .commit()
         }else{
             startActivity(Intent(this, ScanBle::class.java))
         }
+    }
+    open fun ChangePage(Translation:Fragment,id:Int,tag:String,goback:Boolean){
+        if(goback){
+            val transaction = supportFragmentManager!!.beginTransaction()
+            transaction.replace(id, Translation,tag)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
+                .addToBackStack(tag)
+                .commit()
+        }else{  val transaction = supportFragmentManager!!.beginTransaction()
+            transaction.replace(id, Translation,tag)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
+                .commit()}
+
     }
 }

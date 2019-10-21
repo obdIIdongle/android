@@ -71,10 +71,10 @@ class AddFavorite : Fragment() {
             if(rootview.year.selectedItem==null){ return@setOnClickListener }
             if(!data.contains("${rootview.make.selectedItem}☆${rootview.model.selectedItem}☆${rootview.year.selectedItem}")){ data.add("${rootview.make.selectedItem}☆${rootview.model.selectedItem}☆${rootview.year.selectedItem}")}
             SetFav()
-            act.goback()
+            act.GoBack()
         }
         rootview.button3.setOnClickListener {
-            act.goback()
+            act.GoBack()
         }
         return rootview
     }

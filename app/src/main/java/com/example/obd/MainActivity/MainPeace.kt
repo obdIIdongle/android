@@ -32,6 +32,7 @@ import com.orange.etalkinglibrary.E_talking.TalkingActivity
 import com.orango.electronic.orangetxusb.SettingPagr.PrivaryPolicy
 import com.orango.electronic.orangetxusb.SettingPagr.Set_Languages
 import com.orango.electronic.orangetxusb.mmySql.ItemDAO
+import kotlinx.android.synthetic.main.activity_re_program.view.*
 import kotlinx.android.synthetic.main.fragment_test_fragement.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -41,10 +42,10 @@ import kotlin.concurrent.schedule
 
 open class MainPeace : BleActivity() {
     val itemDAO: ItemDAO by lazy { ItemDAO(applicationContext) }
-    override fun onBackStackChanged() {
-        if(supportFragmentManager.fragments.get(supportFragmentManager.fragments.size-1).tag!=null&&supportFragmentManager.fragments.get(supportFragmentManager.fragments.size-1).tag=="Home"){
-            val tname=supportFragmentManager.fragments.get(supportFragmentManager.fragments.size-1).tag!!
-        Log.d("name",tname)
+
+    override fun ChangePageListener(tag:String){
+        if(tag=="Home"){
+            Log.d("name",tag)
             back.visibility=View.GONE
         }else{
             back.visibility=View.VISIBLE
@@ -66,7 +67,6 @@ lateinit var load:RelativeLayout
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_peace)
         (application as Myapp).act=this
-        init()
         back=findViewById(R.id.imageView13)
         feage=findViewById(R.id.frage)
         load=findViewById(R.id.load)
@@ -75,24 +75,17 @@ lateinit var load:RelativeLayout
         savedState = savedInstanceState
         if(savedState != null) onBackStackChanged()
         command.act=this
-        LoadingUI(resources.getString(R.string.Data_Loading))
+        LoadingUI(resources.getString(R.string.Data_Loading),0)
         DonloadMMy()
         val profilePreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE)
-        val handler = Handler()
         if(profilePreferences.getString("admin","nodata").equals("nodata")){
             Set_Languages.place=0
             PrivaryPolicy.place=0
                 feage.setBackgroundColor(resources.getColor(R.color.backgroung))
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frage, Set_Languages())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                        .commit()
+            ChangePage(Set_Languages(),R.id.frage,"Set_Languages",false)
         }else{
                 feage.setBackgroundColor(R.color.backgroung)
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frage, HomeFragement(),"Home")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                        .commit()
+             ChangePage(HomeFragement(),R.id.frage,"Home",false)
         }
     }
 fun DonloadMMy(){
@@ -108,19 +101,17 @@ fun DonloadMMy(){
     }.start()
 }
     override fun ConnectSituation(boolean: Boolean){
-        if (boolean) {
+        handler.post {    if (boolean) {
             Log.d("連線","連線ok")
         } else {
             Log.d("連線","Bluetooth is disconnected")
             LoadingSuccessUI()
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frage, HomeFragement(),"Home")
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .commit()
+            ChangePage(HomeFragement(),R.id.frage,"HomeFragement",false)
             Key_ID.s19=""
             TakeOut.DS_OR_CO=0
             startActivity(Intent(this,TakeOut::class.java))
-        }
+        } }
+
     }
 
     override fun TX(a: String) {
@@ -130,7 +121,7 @@ fun DonloadMMy(){
                 fragment.rootview.teststring.append("\nTX:"+a)
             }
         }
-
+        Log.d("TX",a)
     }
     override fun RX(a: String) {
         handler.post {
@@ -139,23 +130,37 @@ fun DonloadMMy(){
                 fragment.rootview.teststring.append("\nRX:"+a)
             }
         }
+        Log.d("RX",a)
     }
-    override fun LoadingUI(a:String){   textView.text=a
+    override fun LoadingUI(a:String,pass:Int){
+        if(pass==0){  textView.text=a}else{  textView.text=a+"...$pass%"}
+
         load.visibility= View.VISIBLE
-        anim.visibility=View.VISIBLE}
+        anim.visibility=View.VISIBLE
+
+    }
     override fun LoadingSuccessUI(){
         load.visibility= View.GONE
         anim.visibility=View.GONE
     }
+    var GoMenu=true;
     fun onclick(view: View){
         when(view.id){
             R.id.imageView3->{     var intent=Intent(this,Logout::class.java)
                 startActivity(intent)}
             R.id.imageView13->{
-                goback()
+                if(GoMenu){ ChangePage(HomeFragement(),R.id.frage,"Home",false)
+                    GoMenu=false
+                back.setImageResource(R.mipmap.btn_back_normal)
+                }else{
+                    GoBack()
+                }
             }
             R.id.imageView40->{
                 startActivity(Intent(this,TalkingActivity::class.java))
+            }
+            R.id.button10->{
+                GoScanner(TestFragement(),10,R.id.frage,"Test")
             }
         } }
 }

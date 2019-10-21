@@ -45,7 +45,7 @@ class Sign_in : Fragment() {
             run=true
             val admin=admin.text.toString()
             val password=password.text.toString()
-            act.LoadingUI("Data Loading")
+            act.LoadingUI("Data Loading",0)
             Thread{
                 val a= Fuction.ValidateUser(admin,password)
                 run=false
@@ -54,10 +54,7 @@ class Sign_in : Fragment() {
                     if(a){
                         val profilePreferences = act.getSharedPreferences("Setting", Context.MODE_PRIVATE)
                         profilePreferences.edit().putString("admin",admin).putString("password",password).commit()
-                        val transaction = fragmentManager!!.beginTransaction()
-                        transaction.replace(R.id.frage, HomeFragement(),"Home")
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                                .commit()
+                        (activity as MainPeace).ChangePage(HomeFragement(),R.id.frage,"Home",false)
                     }else{
                        Toast.makeText(act,R.string.signfall, Toast.LENGTH_SHORT).show()
                     }
@@ -65,25 +62,13 @@ class Sign_in : Fragment() {
             }.start()
         }
         (rootview.findViewById(R.id.button2) as Button).setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, Enroll())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            (activity as MainPeace).ChangePage(Enroll(),R.id.frage,"Enroll",true)
         }
         (rootview.findViewById(R.id.textView26) as TextView).setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, ResetPass())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            (activity as MainPeace).ChangePage(ResetPass(),R.id.frage,"ResetPass",true)
         }
         (rootview.findViewById(R.id.imageView22) as ImageView).setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, ResetPass())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            (activity as MainPeace).ChangePage(ResetPass(),R.id.frage,"ResetPass",true)
         }
         return rootview
     }

@@ -161,7 +161,7 @@ class Key_ID : Fragment() {
             if (rootView.lrt3.getText().length >= 6 && rootView.lrt3.getText().length <= need) {
                 write.add(rootView.lrt3.getText().toString())
             }
-            act.LoadingUI(resources.getString(R.string.Programming))
+            act.LoadingUI(resources.getString(R.string.Programming),0)
             Thread{
                 val iscuss=act.command.setTireId(write)
                 handler.post {
@@ -175,15 +175,19 @@ class Key_ID : Fragment() {
                         ScanLr=Lrt.text.toString()
                         ScanSp=lrt3.text.toString()
                         TakeOut.DS_OR_CO=1
+                        act.GoMenu=true
+                        act.back.setImageResource(R.mipmap.btn_menu)
                         act.startActivity(Intent(act,TakeOut::class.java))
                     }else{
+                        act.GoMenu=true
+                        act.back.setImageResource(R.mipmap.btn_menu)
                         updateui(FAIL)
                     }
                 }
             }.start()
         }
         rootView.scaner.setOnClickListener{
-            act.LoadingUI(resources.getString(R.string.Data_Loading))
+            act.LoadingUI(resources.getString(R.string.Data_Loading),0)
             Downs19()
             rootView.Select_Key.visibility=View.GONE
             scanner.Scan_For=scanner.ID
@@ -216,7 +220,7 @@ class Key_ID : Fragment() {
                 RequestPermission() }
             SCAN_OR_KEY=0
         }
-        rootView.keyin.setOnClickListener {     act.LoadingUI(resources.getString(R.string.Data_Loading))
+        rootView.keyin.setOnClickListener {     act.LoadingUI(resources.getString(R.string.Data_Loading),0)
             Downs19()
             rootView.Select_Key.visibility=View.GONE}
         updateui(WAIT)
@@ -227,12 +231,8 @@ class Key_ID : Fragment() {
         rootView.lrt3.setText(ScanSp)
         if(act.itemDAO.IsFiveTire(directfit)){rootView.lrt3.visibility=View.VISIBLE}else{rootView.lrt3.visibility=View.GONE}
         rootView.repr.setOnClickListener {
-           act.supportFragmentManager.popBackStack()
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage,Key_ID() )
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+           act.GoBack()
+            act.ChangePage(Key_ID(),R.id.frage,"Key_ID",true)
         }
         return rootView
     }
@@ -244,7 +244,6 @@ class Key_ID : Fragment() {
         Thread{
            val a= DownS19(directfit,act)
                 if(a){
-
                     if(!act.command.HandShake()){
                         act.command.Reboot()
                     }
@@ -275,6 +274,7 @@ class Key_ID : Fragment() {
 var handler=Handler()
     fun updateui(condition:Int){
         rootView.repr.visibility=View.GONE
+        rootView.program.visibility=View.GONE
         when(condition){
             SUCCESS->{
                 rootView.condition.text=resources.getString(R.string.Programming_completed)
@@ -288,6 +288,7 @@ var handler=Handler()
                 rootView.Lr.setBackgroundResource(R.mipmap.icon_tire_ok)
                 rootView.Rr.setBackgroundResource(R.mipmap.icon_tire_ok)
                 rootView.repr.visibility=View.VISIBLE
+
             }
             FAIL->{
                 rootView.condition.text=resources.getString(R.string.Programming_failed)
@@ -312,6 +313,7 @@ var handler=Handler()
                 rootView.Rf.setBackgroundResource(R.mipmap.icon_tire_normal)
                 rootView.Lr.setBackgroundResource(R.mipmap.icon_tire_normal)
                 rootView.Rr.setBackgroundResource(R.mipmap.icon_tire_normal)
+                rootView.program.visibility=View.VISIBLE
             }
         }
     }
@@ -341,12 +343,8 @@ var handler=Handler()
             }
         }else{
             first=false
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, scanner, "Scanner")
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack("Scanner")
-                    // 提交事務
-                    .commit()}
+            act.ChangePage(scanner,R.id.frage,"Scanner",true)
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -361,13 +359,7 @@ var handler=Handler()
                     for (i in grantResults.indices) {
                         if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                             first=false
-                            val transaction = fragmentManager!!.beginTransaction()
-                            transaction.replace(R.id.frage, scanner, "Scanner")
-                                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                                    .addToBackStack("Scanner")
-                                    // 提交事務
-                                    .commit()
-
+                            act.ChangePage(scanner,R.id.frage,"Scanner",true)
                         }
                     }
                 }

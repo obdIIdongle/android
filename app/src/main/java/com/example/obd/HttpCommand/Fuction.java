@@ -11,9 +11,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class Fuction {
+   static String wsdl="http://bento2.orange-electronic.com/App_Asmx/ToolApp.asmx";
     public static boolean ResetPassword(String admin){
         try{
-            String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
             int timeout = 10000;
             StringBuffer sb = new StringBuffer();
             sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
@@ -56,7 +56,7 @@ public class Fuction {
     }
     public static boolean ValidateUser(String admin,String password){
         try{
-            String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
+
             int timeout = 10000;
             StringBuffer sb = new StringBuffer();
             sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
@@ -99,7 +99,7 @@ public class Fuction {
     }
     public static int Register(String admin,String password,String SerialNum,String storetype,String companyname,String firstname,String lastname,String phone,String State,String city,String streat,String zp){
         try{
-            String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
+
             int timeout = 10000;
             StringBuffer sb = new StringBuffer();
             sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
@@ -176,7 +176,7 @@ public class Fuction {
     }
     public static void Upload_ProgramRecord(String make, String model, String year, String startime, String Endtime, String SreialNum, String Devicetype, String Mode, int SensorCount, String position
             , ArrayList<SensorRecord> idrecord){try{
-        String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
+
         int timeout = 10000;
         StringBuffer sb = new StringBuffer();
         sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
@@ -262,7 +262,7 @@ public class Fuction {
     }catch(Exception e){  Log.d("upload",e.getMessage());}}
     public static void Upload_IDCopyRecord(String make,String model,String year,String startime,String Endtime,String SreialNum,String Devicetype,String Mode,int SensorCount,String position
             ,ArrayList<SensorRecord> idrecord){try{
-        String wsdl = "http://35.240.51.141/App_Asmx/ToolApp.asmx";
+
         int timeout = 10000;
         StringBuffer sb = new StringBuffer();
         sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +

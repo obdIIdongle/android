@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.obd.MainActivity.MainPeace
+import com.example.obd.tool.Command.GetXOR
 import com.orange.blelibrary.blelibrary.BleActivity
 
 import com.orange.obd.R
@@ -27,10 +28,13 @@ lateinit var rootview:View
                               savedInstanceState: Bundle?): View? {
         rootview=inflater.inflate(R.layout.fragment_test_fragement, container, false)
         rootview.button.setOnClickListener {
-            (activity!! as MainPeace).bleServiceControl.WriteCmd(Myapp.GetCrc("0ADF000100FFF5"),0)
+            (activity!! as MainPeace).bleServiceControl.WriteCmd(GetXOR("0ADF000100FFF5"),0)
         }
         rootview.button9.setOnClickListener {
-            (activity!! as MainPeace).bleServiceControl.WriteCmd(Myapp.GetCrc("60BF000100FF0A"),0)
+            (activity!! as MainPeace).bleServiceControl.WriteCmd(GetXOR("60BF000104FF0A"),0)
+        }
+        rootview.button12.setOnClickListener {
+            (activity!! as MainPeace).bleServiceControl.WriteCmd(GetXOR("60BF000105FF0A"),0)
         }
         return rootview
     }

@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    >
+    tools:context="com.example.obd.FunctionPage.Show_Read">
 
-    <EditText
-        android:id="@+id/lrt3"
+    <TextView
+        android:id="@+id/lrt"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
@@ -16,7 +15,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="55dp"
-        android:background="@mipmap/icon_input_box_locked"
+        android:background="@mipmap/icon_inputbox_write"
         android:gravity="right|center_vertical"
         android:hint="Original sensor ID"
         android:paddingRight="20dp"
@@ -32,23 +31,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/repr"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="0.5dp"
-            android:layout_weight="1"
-            android:background="@color/buttoncolor"
-            android:text="@string/RE_PROGRAM"
-            android:textColor="@color/white" />
-
-        <Button
             android:id="@+id/program"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="0.5dp"
             android:layout_weight="1"
             android:background="@color/buttoncolor"
-            android:text="@string/START"
+            android:text="@string/Next"
             android:textColor="@color/white"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +46,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/mmy_text"
+        android:id="@+id/mmy_text2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/buttoncolor"
@@ -71,10 +60,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/condition"
+        android:id="@+id/condition2"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_below="@id/mmy_text"
+        android:layout_below="@id/mmy_text2"
         android:layout_alignParentTop="false"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -86,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/lin"
-        android:layout_below="@id/condition"
+        android:layout_below="@id/condition2"
         android:layout_marginBottom="55dp">
 
         <TextView
@@ -94,7 +83,7 @@
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_centerInParent="true"
-            android:background="@mipmap/icon_tire_ok"
+            android:background="@mipmap/icon_tire_normal"
             android:gravity="center"
             android:text="LF"
             android:textColor="@color/white"
@@ -155,13 +144,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <EditText
+                <TextView
                     android:id="@+id/Lft"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="14dp"
-                    android:background="@mipmap/icon_input_box_ok"
+                    android:background="@mipmap/icon_inputbox_write"
                     android:gravity="right|center_vertical"
                     android:hint="Original sensor ID"
                     android:paddingRight="20dp"
@@ -184,13 +173,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <EditText
+                <TextView
                     android:id="@+id/Rft"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="14dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@mipmap/icon_input_box_fail"
+                    android:background="@mipmap/icon_inputbox_write"
                     android:gravity="left|center_vertical"
                     android:hint="Original sensor ID"
                     android:paddingLeft="20dp"
@@ -223,13 +212,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <EditText
+                <TextView
                     android:id="@+id/Lrt"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="14dp"
-                    android:background="@mipmap/icon_input_box_locked"
+                    android:background="@mipmap/icon_inputbox_write"
                     android:gravity="right|center_vertical"
                     android:hint="Original sensor ID"
                     android:paddingRight="20dp"
@@ -252,13 +241,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <EditText
+                <TextView
                     android:id="@+id/Rrt"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="14dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@mipmap/icon_input_box_locked"
+                    android:background="@mipmap/icon_inputbox_write"
                     android:gravity="left|center_vertical"
                     android:hint="Original sensor ID"
                     android:paddingLeft="20dp"
@@ -320,99 +309,5 @@
             android:layout_height="200dp"
             android:layout_centerInParent="true"
             android:src="@mipmap/icon_car" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/Select_Key"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/imageView73"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0.7"
-            android:src="@color/white" />
-
-        <RelativeLayout
-            android:layout_width="284dp"
-            android:layout_height="184dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/cornerbt">
-
-            <TextView
-                android:id="@+id/textView80"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:text="@string/Select"
-                android:textColor="@color/white" />
-
-            <ImageView
-                android:id="@+id/imageView74"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/textView80"
-                android:src="@android:color/white" />
-
-            <RelativeLayout
-                android:id="@+id/scaner"
-                android:layout_width="141dp"
-                android:layout_height="match_parent"
-                android:layout_below="@id/imageView74">
-
-                <TextView
-                    android:id="@+id/textView81"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/imageView77"
-                    android:gravity="center"
-                    android:text="@string/Scan_Code"
-                    android:textColor="@color/white" />
-
-                <ImageView
-                    android:id="@+id/imageView77"
-                    android:layout_width="88dp"
-                    android:layout_height="88dp"
-                    android:layout_marginLeft="29dp"
-                    android:layout_marginTop="2dp"
-                    android:src="@mipmap/scan" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/keyin"
-                android:layout_width="141dp"
-                android:layout_height="match_parent"
-                android:layout_below="@id/imageView74"
-                android:layout_alignParentEnd="true">
-
-                <TextView
-                    android:id="@+id/textView82"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/imageView75"
-                    android:gravity="center"
-                    android:text="@string/Key_in_the_original_sensor_ID_number"
-                    android:textColor="@color/white" />
-
-                <ImageView
-                    android:id="@+id/imageView75"
-                    android:layout_width="88dp"
-                    android:layout_height="88dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="29dp"
-                    android:src="@mipmap/key_in" />
-            </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/imageView78"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_below="@id/imageView74"
-                android:layout_centerHorizontal="true"
-                android:src="@color/white" />
-        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

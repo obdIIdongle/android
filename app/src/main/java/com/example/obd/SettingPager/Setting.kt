@@ -30,32 +30,14 @@ lateinit var rootView:View
         rootView=inflater.inflate(R.layout.fragment_setting, container, false)
         rootView.area.setOnClickListener{
             Set_Languages.place=1
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage,
-                Set_Languages(), "SetArea")
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                .addToBackStack("SetArea")
-                // 提交事務
-                .commit()
+            (activity as MainPeace).ChangePage(Set_Languages(),R.id.frage,"SetArea",true)
         }
         rootView.policy.setOnClickListener{
             PrivaryPolicy.place=1
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage,
-                PrivaryPolicy(), "policy")
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                .addToBackStack("policy")
-                // 提交事務
-                .commit()
+            (activity as MainPeace).ChangePage(PrivaryPolicy(),R.id.frage,"policy",true)
         }
         rootView.version.setOnClickListener{
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage,
-                Update(), "Update")
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                .addToBackStack("Update")
-                // 提交事務
-                .commit()
+            (activity as MainPeace).ChangePage(Update(),R.id.frage,"Update",true)
         }
         return rootView
     }

@@ -80,21 +80,9 @@ class Set_Languages : Fragment() {
                 "Italiano"->{ LanguageUtil.updateLocale(activity, LanguageUtil.LOCALE_ITALIANO);}
             }
             if(place==0){
-                val fragment = PrivaryPolicy()
-                val transaction = fragmentManager!!.beginTransaction()
-                transaction.replace(R.id.frage, fragment, "Policy")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                        .addToBackStack("Policy")
-                        // 提交事務
-                        .commit()
+                (activity as MainPeace).ChangePage(PrivaryPolicy(),R.id.frage,"Policy",true)
             }else{
-                val fragment = HomeFragement()
-                val transaction = fragmentManager!!.beginTransaction()
-                transaction.replace(R.id.frage, fragment, "Home")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                        .addToBackStack("Home")
-                        // 提交事務
-                        .commit()
+                (activity as MainPeace).ChangePage(HomeFragement(),R.id.frage,"Home",true)
             }
         }
         return rootView

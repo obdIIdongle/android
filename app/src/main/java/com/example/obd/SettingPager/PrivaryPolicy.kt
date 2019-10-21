@@ -40,13 +40,9 @@ lateinit  var rootview:View
         }
         (rootview.findViewById(R.id.button6) as Button).setOnClickListener {
             if(place==0){
-                val transaction = fragmentManager!!.beginTransaction()
-                transaction.replace(R.id.frage, Sign_in())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                        .addToBackStack(null)
-                        .commit()
+                (activity as MainPeace).ChangePage(Sign_in(),R.id.frage,"Sign_in",true)
             }else{
-                (activity as MainPeace).goback()
+                (activity as MainPeace).GoBack()
             }
 
         }

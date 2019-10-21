@@ -88,13 +88,13 @@ lateinit var rootview:View
         AreaSpinner.adapter=arrayAdapter
         Store.adapter=arrayAdapter2
 rootview.cancel.setOnClickListener {
-  act.goback()
+  act.GoBack()
 }
         rootview.next.setOnClickListener {
             if(isrunn){
                 return@setOnClickListener
             }
-            act.LoadingUI("Data Loading")
+            act.LoadingUI("Data Loading",0)
             var email=email.text.toString()
             var password=password.text.toString()
             var repeatpassword=repeatpassword.text.toString()
@@ -128,10 +128,7 @@ rootview.cancel.setOnClickListener {
                     }else{
                         val profilePreferences = act.getSharedPreferences("Setting", Context.MODE_PRIVATE)
                         profilePreferences.edit().putString("admin",email).putString("password",password).commit()
-                        val transaction = fragmentManager!!.beginTransaction()
-                        transaction.replace(R.id.frage, HomeFragement(),"Home")
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                                .commit()
+                        (activity as MainPeace).ChangePage(HomeFragement(),R.id.frage,"Home",false)
                     }
                 }
                 isrunn=false

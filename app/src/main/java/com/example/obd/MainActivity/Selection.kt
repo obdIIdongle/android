@@ -27,25 +27,13 @@ lateinit var rootView:View
                               savedInstanceState: Bundle?): View? {
         rootView=inflater.inflate(R.layout.fragment_selection, container, false)
         rootView.imageView24.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, MyFavorite())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            (activity as MainPeace).ChangePage(MyFavorite(),R.id.frage,"MyFavorite",true)
         }
 rootView.imageView17.setOnClickListener {
-                    val transaction = fragmentManager!!.beginTransaction()
-                transaction.replace(R.id.frage, MakeFragement())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                        .addToBackStack(null)
-                        .commit()
+    (activity as MainPeace).ChangePage(MakeFragement(),R.id.frage,"MakeFragement",true)
 }
         rootView.imageView16.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, QrcodeScanner())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            (activity as MainPeace).ChangePage(QrcodeScanner(),R.id.frage,"QrcodeScanner",true)
         }
         return rootView
     }

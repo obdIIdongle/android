@@ -39,12 +39,7 @@ class YearAdapter(private val a:ArrayList<module>,val act: Activity,private val 
             (act as MainPeace).SelectYear=a[position].year
             act.SelectModel=a[position].modele
             act.SelectMake=a[position].make
-            val transaction = fragmentManager.beginTransaction()
-            val fragement= OBDII_relearn()
-            transaction.replace(R.id.frage,fragement )
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+           act.ChangePage(OBDII_relearn(),R.id.frage,"OBDII_relearn",true)
         }
     }
     override fun getItemCount(): Int = a.size

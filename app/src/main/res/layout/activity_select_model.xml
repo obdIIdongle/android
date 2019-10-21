@@ -28,7 +28,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/relative"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="35dp" />
+        android:layout_marginTop="26dp" />
 </RelativeLayout>

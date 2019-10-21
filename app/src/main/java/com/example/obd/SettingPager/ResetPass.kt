@@ -47,7 +47,7 @@ class ResetPass : Fragment() {
             if(run){
                 return@setOnClickListener
             }
-            act.LoadingUI("Data Loading")
+            act.LoadingUI("Data Loading",0)
             var email=edit.text.toString()
             Thread{
                 var isok= ResetPassword(email)
@@ -55,11 +55,7 @@ class ResetPass : Fragment() {
                     run=false
                     act.LoadingSuccessUI()
                     if(isok){
-                        val transaction = fragmentManager!!.beginTransaction()
-                        transaction.replace(R.id.frage, Sign_in())
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                                .addToBackStack(null)
-                                .commit()
+                        (activity as MainPeace).ChangePage(Sign_in(),R.id.frage,"Sign_in",true)
                     }else{
                         Toast.makeText(act,R.string.nointernet, Toast.LENGTH_SHORT).show()
                     }

@@ -37,13 +37,7 @@ class ModelAdapter(private val a:ArrayList<module>,val act: Activity,private val
             val args = Bundle()
             (act as MainPeace).SelectMake=a[position].make
              act.SelectModel= a[position].modele
-            val transaction = fragmentManager.beginTransaction()
-            val fragement=YearFragement()
-            fragement.arguments=args
-            transaction.replace(R.id.frage,fragement )
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            act.ChangePage(YearFragement(),R.id.frage,"YearFragement",true)
         }
     }
 

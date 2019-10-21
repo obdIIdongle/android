@@ -1,6 +1,7 @@
 package com.example.obd.MainActivity
 
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -34,17 +35,10 @@ lateinit var RootView:View
                               savedInstanceState: Bundle?): View? {
         RootView=inflater.inflate(R.layout.fragment_my_favorite, container, false)
         RootView.menu.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, HomeFragement(),"Home")
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .commit()
+            (activity as MainPeace).ChangePage(HomeFragement(),R.id.frage,"Home",false)
         }
         RootView.add.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, AddFavorite())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            (activity as MainPeace).ChangePage(AddFavorite(),R.id.frage,"AddFavorite",true)
         }
 //        SetModel()
         Getmodel()

@@ -34,12 +34,7 @@ class makeadapter(private val a:ArrayList<module>,val act: Activity,private val 
 holder.image.setImageResource(holder.itemView.resources.getIdentifier(a[position].image,"mipmap",holder.itemView.context.packageName))
         holder.image.setOnClickListener {
             (act as MainPeace).SelectMake=a[position].make
-            val transaction = fragmentManager.beginTransaction()
-            val fragement=ModelFragement()
-            transaction.replace(R.id.frage, fragement)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            act.ChangePage(ModelFragement(),R.id.frage,"ModelFragement",true)
         }
     }
 

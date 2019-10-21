@@ -2,13 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.example.obd.TestFragement">
 
     <Button
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ReadId" />
+        android:text="read04" />
 
     <Button
         android:id="@+id/button"
@@ -17,10 +18,17 @@
         android:layout_marginTop="50dp"
         android:text="ReadSn" />
 
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button"
+        android:text="read05" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/button">
+        android:layout_below="@id/button12">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +38,8 @@
             <TextView
                 android:id="@+id/teststring"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 

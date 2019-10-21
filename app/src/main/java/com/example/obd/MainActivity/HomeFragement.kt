@@ -37,34 +37,22 @@ class HomeFragement : Fragment() {
       rootView= inflater.inflate(R.layout.fragment_home_fragement, container, false)
         act=activity!! as MainPeace
         rootView.imageView4.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, MyFavorite())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            act.ChangePage(MyFavorite(),R.id.frage,"MyFavorite",true)
         }
         rootView.imageView5.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, Setting())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            act.ChangePage(Setting(),R.id.frage,"Setting",true)
         }
         rootView.selectmmy.setOnClickListener {
 //            val transaction = fragmentManager!!.beginTransaction()
-//                transaction.replace(R.id.frage, Selection())
+//                transaction.replace(R.ID_Beans.frage, Selection())
 //                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
 //                        .addToBackStack(null)
 //                        .commit()
-          act.GoScanner(TestFragement(),10,R.id.frage,"Test")
+            act.GoScanner(Selection(),10,R.id.frage,"Selection")
           act.back.visibility=View.VISIBLE
         }
         rootView.imageView6.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, UserManual())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+            act.ChangePage(UserManual(),R.id.frage,"UserManual",true)
         }
         act.back.visibility=View.GONE
         return rootView

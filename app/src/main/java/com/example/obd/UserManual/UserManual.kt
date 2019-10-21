@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.obd.MainActivity.HomeFragement
+import com.example.obd.MainActivity.MainPeace
 
 import com.orange.obd.R
 import kotlinx.android.synthetic.main.activity_scan_ble.view.*
@@ -28,11 +29,7 @@ lateinit var rootview:View
                               savedInstanceState: Bundle?): View? {
         rootview=inflater.inflate(R.layout.fragment_user_manual, container, false)
         rootview.button8.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frage, ManualDetail())
-                    .addToBackStack(null)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .commit()
+            (activity as MainPeace).ChangePage(ManualDetail(),R.id.frage,"ManualDetail",true)
         }
         return rootview
     }

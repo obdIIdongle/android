@@ -15,13 +15,5 @@ public class Myapp extends Application {
 //        crashHandler.init(getApplicationContext());
         Fresco.initialize(this);
     }
-    public static byte[] GetCrc(String a){
-        byte command[]=StringHexToByte(a);
-        int xor=0;
-        for (int i=0;i<command.length-2;i++){
-            xor=xor ^ command[i];
-        }
-        command[command.length-2]=(byte)xor;
-        return command;
-    }
+
 }

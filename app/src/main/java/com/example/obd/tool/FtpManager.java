@@ -3,6 +3,7 @@ package com.example.obd.tool;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Log;
 
 import com.example.obd.HttpCommand.SensorRecord;
@@ -23,10 +24,10 @@ import java.nio.charset.StandardCharsets;
 
 public class FtpManager {
     public static boolean Internet=true;
-    public static String ip="35.240.51.141";
+    public static String ip=(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) ? "35.240.51.141:21":"61.221.15.194:21/OrangeTool";
     private static String encoding = System.getProperty("file.encoding");
     public static String username="orangerd";
-    public static String password="orangetpms(~2";
+    public static String password=(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) ? "orangetpms(~2":"orangetpms";
     public static boolean downFile(String url, int port, String username,
                                    String password, String remotePath, String fileName,
                                    String localPath) {
@@ -101,8 +102,8 @@ public class FtpManager {
     public static String GetS19Name(String name){
         try{
             FTPClient ftpClient = new FTPClient();
-            ftpClient.connect(ip,21);
-            ftpClient.login(username, password);
+            ftpClient.connect("35.240.51.141",21);
+            ftpClient.login(username, "orangetpms(~2");
             FTPFile[] files=ftpClient.listFiles("Drive/OBD DONGLE/"+name);
             if(files.length>0){Log.d("filename",files[0].getName());
                 SensorRecord.SensorCode_Version= files[0].getName();
@@ -113,7 +114,7 @@ public class FtpManager {
 
     public static boolean donloads19(String name,Activity activity){
             try{
-                URL url=new URL("ftp://"+username+":"+password+"@"+ip+":21/Drive/OBD DONGLE/"+name+"/"+GetS19Name(name));
+                URL url=new URL("ftp://"+username+":"+password+"@"+ip+"/Drive/OBD DONGLE/"+name+"/"+GetS19Name(name));
                 InputStream is=url.openStream();
                 FileOutputStream fos=new FileOutputStream(activity.getApplicationContext().getFilesDir().getPath()+"/"+name+".s19");
                 int bufferSize = 8192;
@@ -140,15 +141,15 @@ public class FtpManager {
             String mmyname=mmyname();
             if(profilePreferences.getString("mmyname","").equals(mmyname)){return true;}
 //            URL url=new URL("ftp://orangerd:orangetpms@61.221.15.194/OrangeTool/Database/MMY/EU/MMY_EU_list_V0.4_190910.db");
-            URL url=new URL("ftp://"+username+":"+password+"@"+ip+":21/Database/MMY/EU/"+mmyname);
-            Log.d("path","ftp://"+username+":"+password+"@"+ip+":21/Database/MMY/EU/"+mmyname);
+            URL url=new URL("ftp://"+username+":"+password+"@"+ip+"/Database/MMY/EU/"+mmyname);
+            Log.d("path","ftp://"+username+":"+password+"@"+ip+"/Database/MMY/EU/"+mmyname);
 //            url.getContent()
 //            URLConnection a=url.openConnection();
 //            a.setDoOutput(true);
 //            a.setReadTimeout(50000);
 //            a.setDoInput(true);
 //            InputStream is=a.getInputStream();
-            InputStream is=url.openStream();
+             InputStream is=url.openStream();
             FileOutputStream fos=new FileOutputStream(fileanme);
             int bufferSize = 8192;
             byte[] buf = new byte[bufferSize];
@@ -198,68 +199,12 @@ public class FtpManager {
     public static String mmyname(){
         try{
             FTPClient ftpClient = new FTPClient();
-            ftpClient.connect(ip,21);
-            ftpClient.login(username, password);
+            ftpClient.connect("35.240.51.141",21);
+            ftpClient.login(username, "orangetpms(~2");
             FTPFile[] files=ftpClient.listFiles("Database/MMY/EU");
             if(files.length>0){Log.d("filename",files[0].getName());
                 SensorRecord.DB_Version=files[0].getName();
                 return files[0].getName(); }
-            return "nodata";
-        }catch (Exception e){e.printStackTrace(); return "nodata";}
-    }
-    public static String McuName(){
-        try{
-            FTPClient ftpClient = new FTPClient();
-            ftpClient.connect(ip,21);
-            ftpClient.login(username, password);
-            FTPFile[] files=ftpClient.listFiles("Drive/USB PAD/Firmware/MCU");
-            if(files.length>0){Log.d("filename",files[0].getName()); return files[0].getName(); }
-            return "nodata";
-        }catch (Exception e){e.printStackTrace(); return "nodata";}
-    }
-
-    public static boolean DonloadMuc(Context activity){
-        try{
-            URL url=new URL("ftp://"+username+":"+password+"@"+ip+":21/Drive/USB PAD/Firmware/MCU/"+McuName());
-            InputStream is=url.openStream();
-            FileOutputStream fos=new FileOutputStream(activity.getApplicationContext().getFilesDir().getPath()+"/PAD.s2");
-            int bufferSize = 8192;
-            byte[] buf = new byte[bufferSize];
-            while(true){
-                int read=is.read(buf);
-                if(read==-1){  break;}
-                fos.write(buf, 0, read);
-            }
-            is.close();
-            fos.close();
-            return true;
-        }catch (Exception e){e.printStackTrace(); return false;}
-
-    }
-    public static boolean DonloadMucCabel(Context activity){
-        try{
-            URL url=new URL("ftp://"+username+":"+password+"@"+ip+":21/Drive/USB CABLE/Firmware/"+CabelName());
-            InputStream is=url.openStream();
-            FileOutputStream fos=new FileOutputStream(activity.getApplicationContext().getFilesDir().getPath()+"/CABLE.s2");
-            int bufferSize = 8192;
-            byte[] buf = new byte[bufferSize];
-            while(true){
-                int read=is.read(buf);
-                if(read==-1){  break;}
-                fos.write(buf, 0, read);
-            }
-            is.close();
-            fos.close();
-            return true;
-        }catch (Exception e){e.printStackTrace(); return false;}
-    }
-    public static String CabelName(){
-        try{
-            FTPClient ftpClient = new FTPClient();
-            ftpClient.connect(ip,21);
-            ftpClient.login(username, password);
-            FTPFile[] files=ftpClient.listFiles("Drive/USB CABLE/Firmware");
-            if(files.length>0){Log.d("filename",files[0].getName()); return files[0].getName(); }
             return "nodata";
         }catch (Exception e){e.printStackTrace(); return "nodata";}
     }

@@ -34,12 +34,8 @@ class OBDII_relearn : Fragment() {
         text.text=act.itemDAO.GetreLarm(act.SelectMake,act.SelectModel,act.SelectYear,act)
         rootView.toper.text="${act.SelectMake}/${act.SelectModel}/${act.SelectYear}"
         rootView.next.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction()
-            val fragement= Key_ID()
-            transaction.replace(R.id.frage,fragement )
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)//設定動畫
-                    .addToBackStack(null)
-                    .commit()
+//            act.ChangePage(Key_ID(),R.id.frage,"Key_ID",true)
+            act.ChangePage(Show_Read(),R.id.frage,"Show_Read",true)
         }
         return rootView
     }

@@ -23,11 +23,12 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class FtpManager {
-    public static boolean Internet=true;
+    public static boolean Internet=false;
     public static String ip=(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) ? "35.240.51.141:21":"61.221.15.194:21/OrangeTool";
     private static String encoding = System.getProperty("file.encoding");
     public static String username="orangerd";
     public static String password=(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) ? "orangetpms(~2":"orangetpms";
+    public static String donloads19="nodata";
     public static boolean downFile(String url, int port, String username,
                                    String password, String remotePath, String fileName,
                                    String localPath) {
@@ -89,7 +90,6 @@ public class FtpManager {
             if(!file.exists()){ if(!file.mkdirs()){return false;}
             }
             return    doloadmmy(DB_PATH.getPath(),activity);
-
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -114,8 +114,8 @@ public class FtpManager {
 
     public static boolean donloads19(String name,Activity activity){
             try{
-                URL url=new URL("ftp://"+username+":"+password+"@"+ip+"/Drive/OBD DONGLE/"+name+"/"+GetS19Name(name));
-                InputStream is=url.openStream();
+                donloads19=GetS19Name(name);
+                InputStream is=Internet ? new URL("ftp://"+username+":"+password+"@"+ip+"/Drive/OBD DONGLE/"+name+"/"+donloads19).openStream():activity.getAssets().open("TO001.srec");
                 FileOutputStream fos=new FileOutputStream(activity.getApplicationContext().getFilesDir().getPath()+"/"+name+".s19");
                 int bufferSize = 8192;
                 byte[] buf = new byte[bufferSize];
@@ -135,64 +135,37 @@ public class FtpManager {
 
 
 
-    public static boolean doloadmmy(String fileanme,Activity activity){
-        if(Internet){  try{
-            SharedPreferences profilePreferences = activity.getSharedPreferences("Setting", Context.MODE_PRIVATE);
-            String mmyname=mmyname();
-            if(profilePreferences.getString("mmyname","").equals(mmyname)){return true;}
-//            URL url=new URL("ftp://orangerd:orangetpms@61.221.15.194/OrangeTool/Database/MMY/EU/MMY_EU_list_V0.4_190910.db");
-            URL url=new URL("ftp://"+username+":"+password+"@"+ip+"/Database/MMY/EU/"+mmyname);
-            Log.d("path","ftp://"+username+":"+password+"@"+ip+"/Database/MMY/EU/"+mmyname);
-//            url.getContent()
-//            URLConnection a=url.openConnection();
-//            a.setDoOutput(true);
-//            a.setReadTimeout(50000);
-//            a.setDoInput(true);
-//            InputStream is=a.getInputStream();
-             InputStream is=url.openStream();
-            FileOutputStream fos=new FileOutputStream(fileanme);
-            int bufferSize = 8192;
-            byte[] buf = new byte[bufferSize];
-            while(true){
-                int read=is.read(buf);
-                if(read==-1){  break;}
-                fos.write(buf, 0, read);
-            }
-            is.close();
-            fos.close();
-            File f= new File(fileanme);
-
-            if (f.exists() && f.isFile()){
-                Log.d("path",""+f.length());
-            }else{
-                Log.d("path","file doesn't exist or is not a file");
-            }
-            profilePreferences.edit().putString("mmyname",mmyname).commit();
-            return f.length() != 0;
-//            if(downFile(ip, 21, username,
-//                    password, "Database/MMY/EU", mmyname, fileanme)){
-//                profilePreferences.edit().putString("mmyname",mmyname).commit();
-//                return true;
-//            }else{
-//                Log.d("false","下載失敗");
-//                return false;}
-        }catch (Exception e){e.printStackTrace(); return false;}}else{
-            try{
-                InputStream is=activity.getAssets().open("MMY_EU_list_V0.4_190911.db");
-                FileOutputStream fos=new FileOutputStream(fileanme);
-                int bufferSize = 8192;
-                byte[] buf = new byte[bufferSize];
-                while(true){
-                    int read=is.read(buf);
-                    if(read==-1){  break;}
-                    fos.write(buf, 0, read);
-                }
-                is.close();
-                fos.close();
-                return true;
-            }catch (Exception e){e.printStackTrace();return false;}
-
+    public static boolean doloadmmy(String fileanme,Activity activity){try {
+        SharedPreferences profilePreferences = activity.getSharedPreferences("Setting", Context.MODE_PRIVATE);
+        String mmyname =Internet ? mmyname():"mmy.db";
+        if (profilePreferences.getString("mmyname", "").equals(mmyname)) {
+            return true;
         }
+        URL url = new URL("ftp://" + username + ":" + password + "@" + ip + "/Database/MMY/EU/" + mmyname);
+        Log.d("path", "ftp://" + username + ":" + password + "@" + ip + "/Database/MMY/EU/" + mmyname);
+        InputStream is = Internet ? url.openStream() : activity.getAssets().open("mmy.db");
+        FileOutputStream fos = new FileOutputStream(fileanme);
+        int bufferSize = 8192;
+        byte[] buf = new byte[bufferSize];
+        while (true) {
+            int read = is.read(buf);
+            if (read == -1) {
+                break;
+            }
+            fos.write(buf, 0, read);
+        }
+        is.close();
+        fos.close();
+        File f = new File(fileanme);
+
+        if (f.exists() && f.isFile()) {
+            Log.d("path", "" + f.length());
+        } else {
+            Log.d("path", "file doesn't exist or is not a file");
+        }
+        profilePreferences.edit().putString("mmyname", mmyname).commit();
+        return f.length() != 0;
+    }catch (Exception e){e.printStackTrace();return false;}
 
     }
 

@@ -36,7 +36,7 @@ class ReProgram : AppCompatActivity() {
             }
             R.id.textView14->{
                 this.finish()
-                (application as Myapp).act.ChangePage(HomeFragement(),R.id.frage,"Home",false)
+                (application as Myapp).act.GoBack(0)
             }
         }
     }

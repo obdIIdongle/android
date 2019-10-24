@@ -12,6 +12,21 @@
         android:text="read04" />
 
     <Button
+        android:id="@+id/button15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/button9"
+        android:text="versionask" />
+
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button15"
+        android:layout_toEndOf="@id/button9"
+        android:text="writevr" />
+
+    <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +40,23 @@
         android:layout_below="@id/button"
         android:text="read05" />
 
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button16"
+        android:layout_toEndOf="@id/button9"
+        android:text="Goapp" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/button15"
+        android:text="GOBoo" />
+
     <ScrollView
+        android:id="@+id/sc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/button12">
@@ -33,13 +64,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:rotation="180">
 
             <TextView
                 android:id="@+id/teststring"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp" />
+                android:lineSpacingMultiplier="1.2"
+                android:rotation="180"
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 

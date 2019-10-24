@@ -1,6 +1,7 @@
 package com.example.obd.tool;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Handler;
 import android.util.Log;
 
@@ -16,14 +17,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static com.example.obd.tool.FtpManager.Internet;
 import static com.orange.blelibrary.blelibrary.tool.FormatConvert.StringHexToByte;
 
 public class Command {
     public static String WRITE_SUCCESS = "F502000300F40A";
     public static String Program_Flash_Fail = "F502000302F60A";
     public static String VERIFY_FAIL = "F502000303F70A";
-    public BleActivity act;
-
+    public MainPeace act;
     //自動設定checkbyteF5020005000000F20A
     public String addcheckbyte(String com) {
         byte a[] = StringHexToByte(com);
@@ -120,12 +121,68 @@ public class Command {
     }
 
     private static Handler handler = new Handler();
-
+    public boolean WriteVersion(){
+        try{
+            byte [] command=GetXOR("0ACA0015DDFFF5".replace("DD",bytesToHex(FtpManager.donloads19.replace(".srec","").getBytes())));
+            act.getBleServiceControl().WriteCmd(command,14);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+            Date past = sdf.parse(sdf.format(new Date()));
+            int fal = 0;
+            while (true) {
+                Date now = sdf.parse(sdf.format(new Date()));
+                double time = getDatePoor(now, past);
+                if(fal==3){return false;}
+                if (time > 1) {
+                    past = sdf.parse(sdf.format(new Date()));
+                    act.getBleServiceControl().WriteCmd(command,14);
+                    fal++;
+                }
+                if (act.getRXDATA().length()==14) {
+                    Log.d("RX","寫入版本");
+                    return true;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean GoBootloader(){
+        try{
+            act.getBleServiceControl().WriteCmd(GetXOR("0ACD010100FFF5"),14);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+            Date past = sdf.parse(sdf.format(new Date()));
+            int fal = 0;
+            while (true) {
+                Date now = sdf.parse(sdf.format(new Date()));
+                double time = getDatePoor(now, past);
+                if(fal==3){return false;}
+                if (time > 1) {
+                    past = sdf.parse(sdf.format(new Date()));
+                    act.getBleServiceControl().WriteCmd(GetXOR("0ACD010100FFF5"),14);
+                    fal++;
+                }
+                if (act.getRXDATA().length()==14) {
+                    Log.d("RX","進入app");
+                    return true;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
     // 燒寫&amp;驗證Flash
     public boolean WriteFlash(final Context context, final String FileName, final int Ind, final MainPeace act) {
         try {
+            if(act.getAppVersion().equals(bytesToHex(FtpManager.donloads19.replace(".srec","").getBytes()))){
+              return GoApp();
+            }else{
+                if(!GoBootloader()){return false;}
+            }
+            if(!WriteVersion()){return false;}
             FileInputStream fo = new FileInputStream(context.getApplicationContext().getFilesDir().getPath() + "/" + FileName + ".s19");
-            InputStreamReader fr = new InputStreamReader(fo);
+            InputStreamReader fr = new InputStreamReader(Internet ? fo:context.getAssets().open("TO001.srec"));
             BufferedReader br = new BufferedReader(fr);
             StringBuilder sb = new StringBuilder();
             while (br.ready()) {
@@ -263,20 +320,7 @@ public class Command {
 
     public String Convvvert(String data, String length, String line) {
         String command = "0A02LHX00F5";
-        switch (length.length()) {
-            case 1:
-                length = "000" + length;
-                break;
-            case 2:
-                length = "00" + length;
-                break;
-            case 3:
-                length = "0" + length;
-                break;
-            case 4:
-                length = length;
-                break;
-        }
+        while(length.length()<4){length="0"+length;}
         if (line.equals("F5")) {
             line = "00";
         }
@@ -313,51 +357,63 @@ public class Command {
         }
     }
 
-    public static void uploaderror() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        }).start();
-    }
 
     public static double getDatePoor(Date endDate, Date nowDate) {
         long diff = endDate.getTime() - nowDate.getTime();
         long sec = diff / 1000;
         return sec;
     }
-
-    public void OneShot(final Context context, final String FileName) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    InputStreamReader fr = new InputStreamReader(context.getResources().getAssets().open(FileName));
-                    BufferedReader br = new BufferedReader(fr);
-                    StringBuilder sb = new StringBuilder();
-                    while (br.ready()) {
-                        String s = br.readLine();
-                        sb.append(s);
-                    }
-                    StringBuffer result = new StringBuffer(Integer.toHexString(0));
-                    while (result.length() < 2) {
-                        result.insert(0, "0");
-                    }
-                    String cont = result.toString().toUpperCase();
-                    String data = bytesToHex(sb.toString().getBytes());
-                    int length = sb.toString().getBytes().length + 3;
-                    if (!check(Convvvert(data, Integer.toHexString(length), cont))) {
-                        return;
-                    }
-                    fr.close();
-                } catch (Exception e) {
-                    Log.d("CommandError", e.getMessage());
+public  boolean AskVersion(){
+        try{
+            act.getBleServiceControl().WriteCmd(GetXOR("0ACF000100FFF5"),54);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+            Date past = sdf.parse(sdf.format(new Date()));
+            int fal = 0;
+            while (true) {
+                Date now = sdf.parse(sdf.format(new Date()));
+                double time = getDatePoor(now, past);
+                if(fal==3){return false;}
+                if (time > 1) {
+                    past = sdf.parse(sdf.format(new Date()));
+                    act.getBleServiceControl().WriteCmd(GetXOR("0ACF000100FFF5"),54);
+                    fal++;
+                }
+                if (act.getRXDATA().length()==54) {
+                    act.setAppVersion(act.getRXDATA().substring(8,50));
+                    Log.d("RX","版本號:"+act.getAppVersion());
+                    return true;
                 }
             }
-        }).start();
+        }catch (Exception e){
+e.printStackTrace();
+return false;
+        }
+}
+public boolean GoApp(){
+    try{
+        act.getBleServiceControl().WriteCmd(GetXOR("0ACD000100FFF5"),14);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+        Date past = sdf.parse(sdf.format(new Date()));
+        int fal = 0;
+        while (true) {
+            Date now = sdf.parse(sdf.format(new Date()));
+            double time = getDatePoor(now, past);
+            if(fal==3){return false;}
+            if (time > 1) {
+                past = sdf.parse(sdf.format(new Date()));
+                act.getBleServiceControl().WriteCmd(GetXOR("0ACD000100FFF5"),14);
+                fal++;
+            }
+            if (act.getRXDATA().length()==14) {
+                Log.d("RX","進入app");
+                return true;
+            }
+        }
+    }catch (Exception e){
+        e.printStackTrace();
+        return false;
     }
-
+}
     public static byte[] GetXOR(String a) {
         byte command[] = StringHexToByte(a);
         int xor = 0;

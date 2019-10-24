@@ -13,6 +13,16 @@
         android:elevation="5dp">
 
         <Button
+            android:id="@+id/button13"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/circlespot2"
+            android:elevation="5dp"
+            android:onClick="onclick" />
+
+        <Button
             android:id="@+id/button10"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -110,4 +120,5 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="simple-loader2.json"
         app:lottie_loop="true" />
+
 </RelativeLayout>

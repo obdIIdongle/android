@@ -16,7 +16,6 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import static com.example.obd.tool.FtpManager.Internet;
 import static com.orange.blelibrary.blelibrary.tool.FormatConvert.StringHexToByte;
 
@@ -107,7 +106,7 @@ public class Command {
             while (true) {
                 Date now = sdf.parse(sdf.format(new Date()));
                 double time = getDatePoor(now, past);
-                if (time > 3) {
+                if (time > 7) {
                     return false;
                 }
                 if (act.getRXDATA().equals("F501000300F70A")) {
@@ -138,7 +137,7 @@ public class Command {
                     fal++;
                 }
                 if (act.getRXDATA().length()==14) {
-                    Log.d("RX","寫入版本");
+                    Log.d("BLEDATA","寫入版本");
                     return true;
                 }
             }
@@ -162,8 +161,8 @@ public class Command {
                     act.getBleServiceControl().WriteCmd(GetXOR("0ACD010100FFF5"),14);
                     fal++;
                 }
-                if (act.getRXDATA().length()==14) {
-                    Log.d("RX","進入app");
+                if (act.getRXDATA().contains("F5CD010100CD0A")) {
+                    Log.d("BLEDATA","進入燒錄");
                     return true;
                 }
             }
@@ -175,12 +174,7 @@ public class Command {
     // 燒寫&amp;驗證Flash
     public boolean WriteFlash(final Context context, final String FileName, final int Ind, final MainPeace act) {
         try {
-            if(act.getAppVersion().equals(bytesToHex(FtpManager.donloads19.replace(".srec","").getBytes()))){
-              return GoApp();
-            }else{
-                if(!GoBootloader()){return false;}
-            }
-            if(!WriteVersion()){return false;}
+
             FileInputStream fo = new FileInputStream(context.getApplicationContext().getFilesDir().getPath() + "/" + FileName + ".s19");
             InputStreamReader fr = new InputStreamReader(Internet ? fo:context.getAssets().open("TO001.srec"));
             BufferedReader br = new BufferedReader(fr);
@@ -356,8 +350,6 @@ public class Command {
             return false;
         }
     }
-
-
     public static double getDatePoor(Date endDate, Date nowDate) {
         long diff = endDate.getTime() - nowDate.getTime();
         long sec = diff / 1000;
@@ -380,7 +372,7 @@ public  boolean AskVersion(){
                 }
                 if (act.getRXDATA().length()==54) {
                     act.setAppVersion(act.getRXDATA().substring(8,50));
-                    Log.d("RX","版本號:"+act.getAppVersion());
+                    Log.d("BLEDATA","版本號:"+act.getAppVersion());
                     return true;
                 }
             }
@@ -405,7 +397,7 @@ public boolean GoApp(){
                 fal++;
             }
             if (act.getRXDATA().length()==14) {
-                Log.d("RX","進入app");
+                Log.d("BLEDATA","進入app");
                 return true;
             }
         }

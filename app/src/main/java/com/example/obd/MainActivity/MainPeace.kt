@@ -127,7 +127,7 @@ open class MainPeace : BleActivity() {
                 fragment.rootview.sc.scrollTo(0, 0)
             }
         }
-        Log.d("TX", a)
+        Log.d("BLEDATA", "TX:"+a)
     }
 
     override fun RX(a: String) {
@@ -138,7 +138,7 @@ open class MainPeace : BleActivity() {
                 fragment.rootview.sc.scrollTo(0, 0)
             }
         }
-        Log.d("RX", a)
+        Log.d("BLEDATA","RX:"+a)
     }
 
     override fun LoadingUI(a: String, pass: Int) {

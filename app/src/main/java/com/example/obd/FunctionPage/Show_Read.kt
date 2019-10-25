@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.obd.MainActivity.MainPeace
 import com.example.obd.tool.FtpManager
+import com.orange.blelibrary.blelibrary.tool.FormatConvert.bytesToHex
 
 import com.orange.obd.R
 import kotlinx.android.synthetic.main.fragment_key__id.view.*
@@ -64,10 +65,25 @@ class Show_Read : Fragment() {
         Thread{
             val a= FtpManager.DownS19(directfit, act)
             if(a){
-                if(!act.command.HandShake()){
-                    act.command.Reboot()
+                if (act.AppVersion == bytesToHex(FtpManager.donloads19.replace(".srec", "").toByteArray())) {
+                    if(act.command.GoApp()){
+                        handler.post { Key_ID.s19 =directfit
+                            SetId()
+                        }
+                        }
+                } else {
+                    if (!act.command.WriteVersion()||!act.command.GoBootloader()) {
+                        handler.post {     ReProgram.position=0
+                            val intent = Intent(act,ReProgram::class.java)
+                            startActivity(intent) }
+                        return@Thread
+                    }
                 }
-                val Pro=act.command.HandShake()&& act.command.WriteFlash(act,directfit,296,act)
+//                if(!act.command.HandShake()){
+//                    act.command.Reboot()
+//                }
+//                val Pro=act.command.HandShake()&& act.command.WriteFlash(act,directfit,296,act)
+                val Pro=act.command.WriteFlash(act,directfit,296,act)
                 handler.post {
                     act.back.isEnabled=true
                     act.LoadingSuccessUI()

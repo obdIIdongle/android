@@ -14,7 +14,7 @@ class Logout : AppCompatActivity() {
     }
     fun onclick(view: View){
         when(view.id){
-            R.id.textView14->{
+            R.id.ok->{
                 this.finish()}
             R.id.textView15->{
                 val profilePreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE)

@@ -4,30 +4,19 @@ package com.example.obd.SettingPager
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.RelativeLayout
-import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import com.example.obd.HttpCommand.Fuction.ResetPassword
-import com.example.obd.MainActivity.MainPeace
+import com.example.obd.MainPeace
 import com.orange.obd.R
 import kotlinx.android.synthetic.main.activity_reset_pass.view.*
-import kotlinx.android.synthetic.main.activity_sign_in.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- *
- */
 class ResetPass : Fragment() {
     lateinit var rootview:View
     var run=false
@@ -35,7 +24,7 @@ class ResetPass : Fragment() {
     var handler= Handler()
     lateinit var load: RelativeLayout
     lateinit var programAnimator: LottieAnimationView
-    lateinit var act:MainPeace
+    lateinit var act: MainPeace
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootview=inflater.inflate(R.layout.activity_reset_pass, container, false)

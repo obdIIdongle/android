@@ -1,7 +1,6 @@
 package com.example.obd.MainActivity
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,6 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import com.example.obd.MainPeace
 import com.example.obd.tool.LanguageUtil
 import com.orange.obd.R
 import java.util.ArrayList
@@ -55,13 +55,13 @@ class LogoActvivty : AppCompatActivity() {
                 when(a){
                     "繁體中文"->{ LanguageUtil.updateLocale(this, LanguageUtil.LOCALE_TAIWAIN);}
                     "简体中文"->{ LanguageUtil.updateLocale(this, LanguageUtil.LOCALE_CHINESE);}
-                    "Deutsche"->{ LanguageUtil.updateLocale(this, LanguageUtil.LOCALE_DE);}
+                    "Deutsch"->{ LanguageUtil.updateLocale(this, LanguageUtil.LOCALE_DE);}
                     "English"->{ LanguageUtil.updateLocale(this, LanguageUtil.LOCALE_ENGLISH);}
                     "Italiano"->{ LanguageUtil.updateLocale(this, LanguageUtil.LOCALE_ITALIANO);}
                 }
                 val handler = Handler()
                 handler.postDelayed(Runnable {
-                    val intent = Intent(this,MainPeace::class.java)
+                    val intent = Intent(this, MainPeace::class.java)
                     startActivity(intent)
                     finish()
                 },2000)

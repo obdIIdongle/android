@@ -8,18 +8,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AlertDialog
 import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.example.obd.MainActivity.HomeFragement
-import com.example.obd.MainActivity.MainPeace
+import com.example.obd.MainPeace
 import com.example.obd.MainActivity.QrcodeScanner
 import com.example.obd.MainActivity.TakeOut
-import com.example.obd.Myapp
 
 import com.orange.obd.R
 import com.example.obd.tool.CustomTextWatcher
@@ -177,7 +173,7 @@ class Key_ID : Fragment() {
                         TakeOut.DS_OR_CO=1
                         act.GoMenu=true
                         act.back.setImageResource(R.mipmap.btn_menu)
-                        act.startActivity(Intent(act,TakeOut::class.java))
+                        act.ShowDaiLog(R.layout.activity_take_out,true,true)
                     }else{
                         act.GoMenu=true
                         act.back.setImageResource(R.mipmap.btn_menu)
@@ -255,8 +251,8 @@ class Key_ID : Fragment() {
                             s19=directfit
                         }else{
 //                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
-                            val intent = Intent(act,ReProgram::class.java)
-                            startActivity(intent)
+                            act.ShowDaiLog(R.layout.activity_re_program,true,true)
+                            act.bleServiceControl.disconnect()
                             updateui(FAIL)
                         }
                         act.LoadingSuccessUI()
@@ -265,8 +261,9 @@ class Key_ID : Fragment() {
                     handler.post {
                         act.LoadingSuccessUI()
                         act.back.isEnabled=true
-                        val intent = Intent(act,ReProgram::class.java)
-                        startActivity(intent)}
+                        act.ShowDaiLog(R.layout.activity_re_program,true,true)
+                        act.bleServiceControl.disconnect()
+                    }
 
                 }
         }.start()

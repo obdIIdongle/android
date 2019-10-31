@@ -1,15 +1,10 @@
 package com.example.obd.SettingPager
 
 
-import android.app.Instrumentation
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
-import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,22 +12,12 @@ import android.widget.*
 import com.airbnb.lottie.LottieAnimationView
 import com.example.obd.HttpCommand.Fuction
 import com.example.obd.MainActivity.HomeFragement
-import com.example.obd.MainActivity.MainPeace
+import com.example.obd.MainPeace
 
 import com.orange.obd.R
 import kotlinx.android.synthetic.main.activity_enroll.view.*
-import kotlinx.android.synthetic.main.activity_scan_ble.view.*
 import java.util.ArrayList
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class Enroll : Fragment() {
 lateinit var rootview:View
     lateinit var AreaSpinner: Spinner
@@ -52,7 +37,7 @@ lateinit var rootview:View
     lateinit var zpcode: EditText
     lateinit var loadtitle: TextView
     lateinit var load: RelativeLayout
-    lateinit var act:MainPeace
+    lateinit var act: MainPeace
     var Arealist= ArrayList<String>()
     var Arealist2= ArrayList<String>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

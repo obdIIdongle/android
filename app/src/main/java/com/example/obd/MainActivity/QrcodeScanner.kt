@@ -3,7 +3,6 @@ package com.example.obd.MainActivity
 
 import android.Manifest
 import android.app.Instrumentation
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
@@ -18,26 +17,16 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import com.example.obd.FunctionPage.Key_ID
+import com.example.obd.MainPeace
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import com.orange.obd.R
 
-import kotlinx.android.synthetic.main.fragment_qrcode_scanner.*
-import kotlinx.android.synthetic.main.fragment_qrcode_scanner.view.*
-import kotlinx.android.synthetic.main.selectble.view.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- *
- */
 class QrcodeScanner : Fragment(), ZXingScannerView.ResultHandler{
     var S19=0
     var ID=1

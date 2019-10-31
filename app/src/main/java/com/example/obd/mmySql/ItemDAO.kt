@@ -1,18 +1,12 @@
 package com.orango.electronic.orangetxusb.mmySql
 
-import android.app.Activity
-import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
-import com.example.obd.FunctionPage.Key_ID
 import com.example.obd.FunctionPage.OBDII_relearn
-import com.example.obd.MainActivity.HomeFragement
-import com.example.obd.MainActivity.MainPeace
+import com.example.obd.MainPeace
 import com.orange.obd.R
 import com.orange_electronic.orangeobd.mmySql.module
 import java.util.ArrayList

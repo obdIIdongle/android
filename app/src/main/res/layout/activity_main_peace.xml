@@ -55,7 +55,7 @@
             app:srcCompat="@mipmap/btn_back_normal" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/bartitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -64,7 +64,7 @@
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/exit"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"

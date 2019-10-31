@@ -1,13 +1,11 @@
 package com.example.obd.tool;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.os.Handler;
 import android.util.Log;
 
 import com.example.obd.Beans.ID_Beans;
-import com.example.obd.MainActivity.MainPeace;
-import com.orange.blelibrary.blelibrary.BleActivity;
+import com.example.obd.MainPeace;
 import com.orange.obd.R;
 
 import java.io.BufferedReader;

@@ -96,16 +96,6 @@
             android:textColor="@color/white" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="21dp"
-        android:text="Orange Electronic Co., Ltd."
-        android:textSize="12sp" />
     <RelativeLayout
             android:layout_width="200dp"
             android:layout_height="120dp"

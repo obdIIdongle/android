@@ -5,20 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.obd.MainActivity.MainPeace
+import android.widget.TextView
+import com.example.obd.MainPeace
 import com.example.obd.tool.FtpManager
 import com.orange.blelibrary.blelibrary.tool.FormatConvert.bytesToHex
 
 import com.orange.obd.R
-import kotlinx.android.synthetic.main.fragment_key__id.view.*
 import kotlinx.android.synthetic.main.fragment_show__read.view.*
 import kotlinx.android.synthetic.main.fragment_show__read.view.program
-import kotlinx.android.synthetic.main.fragment_key__id.view.Lft as Lft1
-import kotlinx.android.synthetic.main.fragment_key__id.view.Rft as Rft1
 import kotlinx.android.synthetic.main.fragment_show__read.view.Lrt as Lrt1
 import kotlinx.android.synthetic.main.fragment_show__read.view.Rrt as Rrt1
 
@@ -77,9 +74,10 @@ class Show_Read : Fragment() {
                 } else {
 //                    act.command.HandShake()
                     if (!act.command.WriteVersion()||!act.command.GoBootloader()) {
-                        handler.post {     ReProgram.position=0
-                            val intent = Intent(act,ReProgram::class.java)
-                            startActivity(intent) }
+                        handler.post {
+                            act.ShowDaiLog(R.layout.activity_re_program,true,false)
+                            act.bleServiceControl.disconnect()
+                        }
                         handler.post { act.back.isEnabled=true }
                         return@Thread
                     }
@@ -101,9 +99,8 @@ class Show_Read : Fragment() {
                         SetId()
                     }else{
 //                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
-                        ReProgram.position=0
-                        val intent = Intent(act,ReProgram::class.java)
-                        startActivity(intent)
+                        act.ShowDaiLog(R.layout.activity_re_program,true,false)
+                        act.bleServiceControl.disconnect()
 
                     }
                 }
@@ -111,9 +108,9 @@ class Show_Read : Fragment() {
                 handler.post {
                     act.LoadingSuccessUI()
                     act.back.isEnabled=true
-                    ReProgram.position=0
-                    val intent = Intent(act,ReProgram::class.java)
-                    startActivity(intent)}
+                act.ShowDaiLog(R.layout.internet_error,true,false)
+                    act.supportFragmentManager.popBackStack(null,1)
+                }
 
             }
         }.start()
@@ -132,9 +129,8 @@ class Show_Read : Fragment() {
                     rootView.lrt.text = a.SP
                     rootView.program.setOnClickListener {    act.ChangePage(Key_ID(),R.id.frage,"Key_ID",true)}
                 }else{
-                    ReProgram.position=0
-                    val intent = Intent(act,ReProgram::class.java)
-                    startActivity(intent)
+                    act.ShowDaiLog(R.layout.activity_re_program,true,false)
+                    act.bleServiceControl.disconnect()
                 }
                 act.LoadingSuccessUI()
             }

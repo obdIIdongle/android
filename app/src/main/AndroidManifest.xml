@@ -43,7 +43,7 @@
             android:name="com.example.obd.MainActivity.Logout"
             android:theme="@style/SwipTheme" />
         <activity
-            android:name="com.example.obd.MainActivity.MainPeace"
+            android:name="com.example.obd.MainPeace"
             android:screenOrientation="portrait" />
     </application>
 

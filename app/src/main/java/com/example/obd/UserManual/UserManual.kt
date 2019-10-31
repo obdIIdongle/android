@@ -3,15 +3,12 @@ package com.example.obd.UserManual
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.obd.MainActivity.HomeFragement
-import com.example.obd.MainActivity.MainPeace
+import com.example.obd.MainPeace
 
 import com.orange.obd.R
-import kotlinx.android.synthetic.main.activity_scan_ble.view.*
 import kotlinx.android.synthetic.main.fragment_user_manual.view.*
 
 // TODO: Rename parameter arguments, choose names that match

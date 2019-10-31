@@ -2,9 +2,7 @@ package com.orange_electronic.orangeobd.Adapter
 
 
 import android.app.Activity
-import android.os.Bundle
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
 
 import android.view.LayoutInflater
@@ -14,10 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.obd.FunctionPage.Key_ID
 import com.example.obd.FunctionPage.OBDII_relearn
-import com.example.obd.MainActivity.HomeFragement
-import com.example.obd.MainActivity.MainPeace
+import com.example.obd.MainPeace
 import com.orange.obd.R
 import com.orange_electronic.orangeobd.mmySql.module
 import com.orango.electronic.orangetxusb.mmySql.ItemDAO

@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.obd.MainActivity.TakeOut">
 
-    <ImageView
-        android:id="@+id/imageView39"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.6"
-        app:srcCompat="@android:color/black" />
-
     <RelativeLayout
         android:layout_width="307dp"
         android:layout_height="146dp"
@@ -59,12 +52,6 @@
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView14"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/textView15"

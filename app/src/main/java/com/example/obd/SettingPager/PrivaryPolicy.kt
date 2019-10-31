@@ -1,18 +1,13 @@
 package com.orango.electronic.orangetxusb.SettingPagr
 
 
-import android.app.Instrumentation
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
-import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.example.obd.MainActivity.MainPeace
-import com.example.obd.MainActivity.MakeFragement
+import com.example.obd.MainPeace
 import com.example.obd.SettingPager.Sign_in
 import com.orange.obd.R
 

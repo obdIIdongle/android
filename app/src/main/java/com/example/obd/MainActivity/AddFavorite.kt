@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
+import com.example.obd.MainPeace
 
 import com.orange.obd.R
 import kotlinx.android.synthetic.main.fragment_add_favorite.view.*
@@ -17,21 +17,12 @@ import java.util.ArrayList
 
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class AddFavorite : Fragment() {
     var data= ArrayList<String>()
     var MakeList= ArrayList<String>()
     var ModelList= ArrayList<String>()
     var YearList= ArrayList<String>()
-    lateinit var act:MainPeace
+    lateinit var act: MainPeace
     lateinit var rootview:View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

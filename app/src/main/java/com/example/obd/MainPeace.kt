@@ -1,54 +1,54 @@
-package com.example.obd.MainActivity
+package com.example.obd
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Instrumentation
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.IBinder
-import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
-import android.support.v4.content.ContextCompat
 import android.util.Log
-import android.view.KeyEvent
 import android.view.View
 import android.widget.*
 import com.airbnb.lottie.LottieAnimationView
 import com.example.obd.FunctionPage.Key_ID
-import com.example.obd.Myapp
-import com.example.obd.TestFragement
+import com.example.obd.MainActivity.HomeFragement
+import com.example.obd.MainActivity.Logout
+import com.example.obd.MainActivity.TakeOut
 import com.orange.obd.R
 import com.example.obd.tool.Command
 import com.example.obd.tool.FtpManager
-import com.example.obd.tool.LanguageUtil
 import com.orange.blelibrary.blelibrary.BleActivity
 import com.orange.etalkinglibrary.E_talking.TalkingActivity
 import com.orango.electronic.orangetxusb.SettingPagr.PrivaryPolicy
 import com.orango.electronic.orangetxusb.SettingPagr.Set_Languages
 import com.orango.electronic.orangetxusb.mmySql.ItemDAO
-import kotlinx.android.synthetic.main.activity_re_program.view.*
 import kotlinx.android.synthetic.main.fragment_test_fragement.view.*
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
-import java.util.*
-import kotlin.concurrent.schedule
 
 open class MainPeace : BleActivity() {
     val itemDAO: ItemDAO by lazy { ItemDAO(applicationContext) }
 
-    override fun ChangePageListener(tag: String) {
+    override fun ChangePageListener(tag:String,frag:Fragment) {
+        Log.d("switch",tag)
         if (tag == "Home") {
             Log.d("name", tag)
             back.visibility = View.GONE
+            exit.visibility=View.VISIBLE
         } else {
             back.visibility = View.VISIBLE
+            exit.visibility=View.GONE
+        }
+        when(tag){
+            "Selection"->{bartitle.text="OBDII DONGLE"}
+            "MakeFragement"->{}
+            "ModelFragement"->{}
+            "Home"->{bartitle.text="Orange TPMS"}
+            "YearFragement"->{}
+            "OBDII_relearn"->{bartitle.text=getString(R.string.OBDII_relearn)}
+            "Show_Read"->{}
+            "Setting"->{bartitle.text=getString(R.string.Setting)}
+            "SetArea"->{bartitle.text=getString(R.string.AreaLanguage)}
+            "policy"->{bartitle.text=getString(R.string.Privacy_Policy)}
+            "Update"->{bartitle.text=getString(R.string.update)}
+            "UserManual"->{bartitle.text=getString(R.string.Users_manual)}
         }
     }
     var AppVersion=""
@@ -59,7 +59,9 @@ open class MainPeace : BleActivity() {
     lateinit var feage: FrameLayout
     lateinit var textView: TextView
     lateinit var back: ImageView
+    lateinit var bartitle: TextView
     lateinit var load: RelativeLayout
+    lateinit var exit: ImageView
     private var savedState: Bundle? = null
     lateinit var anim: LottieAnimationView
     @SuppressLint("ResourceAsColor")
@@ -67,6 +69,8 @@ open class MainPeace : BleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_peace)
         (application as Myapp).act = this
+        bartitle=findViewById(R.id.bartitle)
+        exit=findViewById(R.id.exit)
         back = findViewById(R.id.imageView13)
         feage = findViewById(R.id.frage)
         load = findViewById(R.id.load)
@@ -85,7 +89,7 @@ open class MainPeace : BleActivity() {
             ChangePage(Set_Languages(), R.id.frage, "Set_Languages", false)
         } else {
             feage.setBackgroundColor(R.color.backgroung)
-            ChangePage(HomeFragement(), R.id.frage, "Home", false)
+            ChangePage(HomeFragement(),R.id.frage,"Home",false)
         }
     }
 
@@ -110,10 +114,10 @@ open class MainPeace : BleActivity() {
                     handler.post {
                         Log.d("連線", "Bluetooth is disconnected")
                         LoadingSuccessUI()
-                        ChangePage(HomeFragement(), R.id.frage, "HomeFragement", false)
+                        supportFragmentManager.popBackStack(null,1)
                         Key_ID.s19 = ""
                         TakeOut.DS_OR_CO = 0
-                        startActivity(Intent(this, TakeOut::class.java))
+                        ShowDaiLog(R.layout.disconnect,true,false)
                     }
                 }.start()
             }
@@ -161,13 +165,13 @@ open class MainPeace : BleActivity() {
     var GoMenu = true;
     fun onclick(view: View) {
         when (view.id) {
-            R.id.imageView3 -> {
+            R.id.exit -> {
                 var intent = Intent(this, Logout::class.java)
                 startActivity(intent)
             }
             R.id.imageView13 -> {
                 if (GoMenu) {
-                    ChangePage(HomeFragement(), R.id.frage, "Home", false)
+                    supportFragmentManager.popBackStack(null,1)
                     GoMenu = false
                     back.setImageResource(R.mipmap.btn_back_normal)
                 } else {

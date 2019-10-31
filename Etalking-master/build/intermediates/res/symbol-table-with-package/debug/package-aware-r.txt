@@ -978,6 +978,7 @@ id notification_main_column
 id notification_main_column_container
 id oiu
 id oiu2
+id ok
 id packed
 id pager
 id parent
@@ -1046,7 +1047,6 @@ id text
 id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
-id textView14
 id textView5
 id time
 id timeme

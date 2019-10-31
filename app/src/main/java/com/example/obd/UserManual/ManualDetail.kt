@@ -12,13 +12,12 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.view.ViewPager
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.example.obd.MainActivity.MainPeace
+import com.example.obd.MainPeace
 import com.example.obd.UserManual.Page.*
 import com.orange.obd.R
 
 import kotlinx.android.synthetic.main.fragment_manual_detail.view.*
 import java.util.*
-import android.support.v4.view.ViewPager.OnPageChangeListener as OnPageChangeListener1
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,7 +34,7 @@ lateinit var rootView:View
    lateinit var fragments: ArrayList<Fragment>
     lateinit var ImageViews: ArrayList<ImageView>
     lateinit var li:LinearLayout
-    lateinit var act:MainPeace
+    lateinit var act: MainPeace
     lateinit var viewpager:ViewPager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

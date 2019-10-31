@@ -55,6 +55,14 @@
         android:layout_toEndOf="@id/button15"
         android:text="GOBoo" />
 
+    <Button
+        android:id="@+id/button19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button9"
+        android:layout_toEndOf="@id/button15"
+        android:text="rebot" />
+
     <ScrollView
         android:id="@+id/sc"
         android:layout_width="match_parent"

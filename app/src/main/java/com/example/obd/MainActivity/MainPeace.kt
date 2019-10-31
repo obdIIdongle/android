@@ -103,23 +103,24 @@ open class MainPeace : BleActivity() {
     }
 
     override fun ConnectSituation(boolean: Boolean) {
-        handler.post {
             if (boolean) {
                 Log.d("連線", "連線ok")
-                Thread{command.AskVersion()}.start()
             } else {
-                Log.d("連線", "Bluetooth is disconnected")
-                LoadingSuccessUI()
-                ChangePage(HomeFragement(), R.id.frage, "HomeFragement", false)
-                Key_ID.s19 = ""
-                TakeOut.DS_OR_CO = 0
-                startActivity(Intent(this, TakeOut::class.java))
+                Thread{
+                    handler.post {
+                        Log.d("連線", "Bluetooth is disconnected")
+                        LoadingSuccessUI()
+                        ChangePage(HomeFragement(), R.id.frage, "HomeFragement", false)
+                        Key_ID.s19 = ""
+                        TakeOut.DS_OR_CO = 0
+                        startActivity(Intent(this, TakeOut::class.java))
+                    }
+                }.start()
             }
-        }
-
     }
 
     override fun TX(a: String) {
+        Log.d("BLEDATA", "TX:"+a)
         handler.post {
             if (supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1).tag != null && supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1).tag == "Test") {
                 var fragment = supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1) as TestFragement
@@ -127,10 +128,10 @@ open class MainPeace : BleActivity() {
                 fragment.rootview.sc.scrollTo(0, 0)
             }
         }
-        Log.d("BLEDATA", "TX:"+a)
     }
 
     override fun RX(a: String) {
+        Log.d("BLEDATA","RX:"+a)
         handler.post {
             if (supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1).tag != null && supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1).tag == "Test") {
                 var fragment = supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1) as TestFragement
@@ -138,7 +139,6 @@ open class MainPeace : BleActivity() {
                 fragment.rootview.sc.scrollTo(0, 0)
             }
         }
-        Log.d("BLEDATA","RX:"+a)
     }
 
     override fun LoadingUI(a: String, pass: Int) {

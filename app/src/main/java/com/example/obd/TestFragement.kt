@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.obd.MainActivity.MainPeace
+import com.example.obd.tool.Command
 import com.example.obd.tool.Command.GetXOR
 import com.orange.blelibrary.blelibrary.BleActivity
 import com.orange.blelibrary.blelibrary.tool.FormatConvert.StringHexToByte
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_scan_ble.view.*
 import kotlinx.android.synthetic.main.fragment_setting.view.*
 import kotlinx.android.synthetic.main.fragment_test_fragement.view.*
 import kotlinx.android.synthetic.main.fragment_test_fragement.view.button
+import java.lang.Compiler.command
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,6 +54,9 @@ lateinit var rootview:View
         }
         rootview.button18.setOnClickListener {
             (activity!! as MainPeace).bleServiceControl.WriteCmd(GetXOR("0ACD010100FFF5"),0)
+        }
+        rootview.button19.setOnClickListener {
+            (activity!! as MainPeace).bleServiceControl.WriteCmd(("0A0D00030000F5"),0)
         }
         return rootview
     }

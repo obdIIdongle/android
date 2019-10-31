@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,11 +54,10 @@ class Show_Read : Fragment() {
         }
         act.LoadingUI(act.getResources().getString(R.string.Programming),0)
         Downs19()
-
         return rootView
     }
     fun Downs19(){
-        if(Key_ID.s19 ==directfit){
+        if(Key_ID.s19 == directfit){
             act.LoadingSuccessUI()
             SetId()
             return}
@@ -65,24 +65,32 @@ class Show_Read : Fragment() {
         Thread{
             val a= FtpManager.DownS19(directfit, act)
             if(a){
+                act.command.AskVersion()
                 if (act.AppVersion == bytesToHex(FtpManager.donloads19.replace(".srec", "").toByteArray())) {
                     if(act.command.GoApp()){
                         handler.post { Key_ID.s19 =directfit
                             SetId()
+                            act.back.isEnabled=true
                         }
+                        return@Thread
                         }
                 } else {
+//                    act.command.HandShake()
                     if (!act.command.WriteVersion()||!act.command.GoBootloader()) {
                         handler.post {     ReProgram.position=0
                             val intent = Intent(act,ReProgram::class.java)
                             startActivity(intent) }
+                        handler.post { act.back.isEnabled=true }
                         return@Thread
                     }
                 }
+//                F5CF0115FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF240A
+//                F5CF0115FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF240A
 //                if(!act.command.HandShake()){
 //                    act.command.Reboot()
 //                }
 //                val Pro=act.command.HandShake()&& act.command.WriteFlash(act,directfit,296,act)
+                Thread.sleep(2000)
                 val Pro=act.command.WriteFlash(act,directfit,296,act)
                 handler.post {
                     act.back.isEnabled=true

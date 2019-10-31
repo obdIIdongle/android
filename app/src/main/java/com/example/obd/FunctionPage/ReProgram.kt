@@ -36,7 +36,8 @@ class ReProgram : AppCompatActivity() {
             }
             R.id.textView14->{
                 this.finish()
-                (application as Myapp).act.GoBack(0)
+                (application as Myapp).act.supportFragmentManager.popBackStack(null,1)
+                (application as Myapp).act.bleServiceControl.disconnect()
             }
         }
     }

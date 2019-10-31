@@ -75,7 +75,7 @@ public class Command {
                     past = sdf.parse(sdf.format(new Date()));
                     act.getBleServiceControl().WriteCmd(GetXOR(a), 52);
                 }
-                if(fal==10){  id.success= false;
+                if(fal==5){  id.success= false;
                     return  id;}
                 if (act.getRXDATA().length() == 52) {
                     id.success=true;
@@ -130,8 +130,8 @@ public class Command {
             while (true) {
                 Date now = sdf.parse(sdf.format(new Date()));
                 double time = getDatePoor(now, past);
-                if(fal==3){return false;}
                 if (time > 1) {
+                    if(fal==1){return false;}
                     past = sdf.parse(sdf.format(new Date()));
                     act.getBleServiceControl().WriteCmd(command,14);
                     fal++;
@@ -146,6 +146,7 @@ public class Command {
             return false;
         }
     }
+
     public boolean GoBootloader(){
         try{
             act.getBleServiceControl().WriteCmd(GetXOR("0ACD010100FFF5"),14);
@@ -155,8 +156,8 @@ public class Command {
             while (true) {
                 Date now = sdf.parse(sdf.format(new Date()));
                 double time = getDatePoor(now, past);
-                if(fal==3){return false;}
                 if (time > 1) {
+                    if(fal==1){return false;}
                     past = sdf.parse(sdf.format(new Date()));
                     act.getBleServiceControl().WriteCmd(GetXOR("0ACD010100FFF5"),14);
                     fal++;
@@ -335,12 +336,13 @@ public class Command {
 //                Thread.currentThread().sleep(20);
                 Date now = sdf.parse(sdf.format(new Date()));
                 double time = getDatePoor(now, past);
-                if (time > 0.3) {
+                if (time > 1) {
                     past = sdf.parse(sdf.format(new Date()));
                     act.getBleServiceControl().WriteCmd(addcheckbyte(data), 16);
                     fal++;
                 }
-                if (act.getRXDATA().length() > 0) {
+                if (act.getRXDATA().length() >= 16) {
+                    Thread.currentThread().sleep(100);
                     return true;
                 }
             }
@@ -364,11 +366,8 @@ public  boolean AskVersion(){
             while (true) {
                 Date now = sdf.parse(sdf.format(new Date()));
                 double time = getDatePoor(now, past);
-                if(fal==3){return false;}
-                if (time > 1) {
-                    past = sdf.parse(sdf.format(new Date()));
-                    act.getBleServiceControl().WriteCmd(GetXOR("0ACF000100FFF5"),54);
-                    fal++;
+                if (time > 2) {
+                    return false;
                 }
                 if (act.getRXDATA().length()==54) {
                     act.setAppVersion(act.getRXDATA().substring(8,50));

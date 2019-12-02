@@ -178,14 +178,12 @@ class Key_ID : Fragment() {
                         ScanLr=Lrt.text.toString()
                         ScanSp=lrt3.text.toString()
                         TakeOut.DS_OR_CO=1
-                        act.GoMenu=true
                         act.rootview.back.setImageResource(R.mipmap.btn_menu)
-                        act.rootview.back.setOnClickListener { act.GoMenu }
+                        act.rootview.back.setOnClickListener { act.GoMenu() }
                         act.ShowDaiLog(R.layout.activity_take_out,true,false, Dailog_SetUp_C())
                     }else{
-                        act.GoMenu=true
                         act.rootview.back.setImageResource(R.mipmap.btn_menu)
-                        act.rootview.back.setOnClickListener { act.GoMenu }
+                        act.rootview.back.setOnClickListener { act.GoMenu() }
                         updateui(FAIL)
                     }
                 }

@@ -1,10 +1,12 @@
 package com.example.obd
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.obd.MainActivity.HomeFragement
 import com.example.obd.MainActivity.Logout
@@ -41,11 +43,14 @@ import kotlinx.android.synthetic.main.fragment_test_fragement.view.*
        var SelectYear = ""
        val itemDAO: ItemDAO by lazy { ItemDAO(applicationContext) }
        var Obd_PAD=0
-       var GoMenu = true;
        override fun ViewInit(rootview: View) {
            (application as Myapp).act = this
            command.act = this
-           ShowDaiLog(R.layout.dataloading,false,false, Dailog_SetUp_C())
+           ShowDaiLog(R.layout.dataloading,false,false,object :Dailog_SetUp_C(){
+               override fun SetUP(root: Dialog, act: RootActivity) {
+                   root.findViewById<TextView>(R.id.tit).text=resources.getString(R.string.Data_Loading)
+               }
+           })
            DonloadMMy()
            val profilePreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE)
            if (profilePreferences.getString("admin", "nodata").equals("nodata")) {

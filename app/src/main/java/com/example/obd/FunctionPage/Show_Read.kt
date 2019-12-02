@@ -44,7 +44,7 @@ class Show_Read : Fragment() {
             rootView.lrt.visibility = View.GONE
             tire = "04"
         }
-        act.ShowDaiLog(R.layout.dataloading,true,true, object :Dailog_SetUp_C(){
+        act.ShowDaiLog(R.layout.dataloading,false,true, object :Dailog_SetUp_C(){
             override fun SetUP(root: Dialog, act: RootActivity) {
                 root.findViewById<TextView>(R.id.tit).text=resources.getString(R.string.Data_Loading)
             }
@@ -71,7 +71,7 @@ class Show_Read : Fragment() {
 //                    act.command.HandShake()
                     if (!act.command.WriteVersion()||!act.command.GoBootloader()) {
                         handler.post {
-                            act.ShowDaiLog(R.layout.activity_re_program,true,false, object :Dailog_SetUp_C(){
+                            act.ShowDaiLog(R.layout.activity_re_program,false,true, object :Dailog_SetUp_C(){
                                 override fun SetUP(root: Dialog, act: RootActivity) {
                                     root.findViewById<TextView>(R.id.tit).text=resources.getString(R.string.Programming)
                                 }
@@ -105,7 +105,7 @@ class Show_Read : Fragment() {
                 handler.post {
                     act.DaiLogDismiss()
                     act.rootview.back.isEnabled=true
-                act.ShowDaiLog(R.layout.internet_error,true,false, Dailog_SetUp_C())
+                act.ShowDaiLog(R.layout.internet_error,false,true, Dailog_SetUp_C())
                     act.supportFragmentManager.popBackStack(null,1)
                 }
 
@@ -114,7 +114,7 @@ class Show_Read : Fragment() {
     }
     var handler = Handler()
     fun SetId() {
-        act.ShowDaiLog(R.layout.dataloading,true,false, object :Dailog_SetUp_C() {
+        act.ShowDaiLog(R.layout.dataloading,false,true, object :Dailog_SetUp_C() {
             override fun SetUP(root: Dialog, act: RootActivity) {
                 root.findViewById<TextView>(R.id.tit).text=resources.getString(R.string.app_data_reading)
             }

@@ -154,6 +154,7 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
 
     var mDialog: Dialog? = null
     var nowDia=-1
+    lateinit var DiaCaller: Dailog_SetUp_C
     fun ShowDaiLog(Layout: Int, touchcancel: Boolean, style: Int,caller: Dailog_SetUp_C) {
         try {
             if (mDialog == null) {
@@ -203,6 +204,7 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
             }
             nowDia=Layout
             caller.SetUP(mDialog!!,this)
+            DiaCaller=caller
         } catch (e: Exception) {
             Thread.sleep(1000)
             e.printStackTrace()
@@ -258,6 +260,7 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
             }
             nowDia=Layout
             caller.SetUP(mDialog!!,this)
+            DiaCaller=caller
         } catch (e: Exception) {
             Thread.sleep(1000)
             e.printStackTrace()
@@ -283,6 +286,7 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
 
     fun DaiLogDismiss() {
         try {
+            DiaCaller.Dismiss()
             mDialog!!.dismiss()
         } catch (e: Exception) {
             e.printStackTrace()

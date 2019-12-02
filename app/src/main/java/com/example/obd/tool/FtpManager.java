@@ -24,7 +24,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class FtpManager {
-    public static boolean Internet = false;
+    public static boolean Internet = true;
     public static String ip = (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) ? "35.240.51.141:21" : "61.221.15.194:21/OrangeTool";
     private static String encoding = System.getProperty("file.encoding");
     public static String username = "orangerd";

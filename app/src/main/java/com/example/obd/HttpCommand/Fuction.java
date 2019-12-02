@@ -12,9 +12,9 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-import static android.support.constraint.Constraints.TAG;
 
 public class Fuction {
+    public static final String  TAG="RetNode";
     public static final int timeout=10000;
     public static final String wsdl = "http://bento2.orange-electronic.com/App_Asmx/ToolApp.asmx";
     private static RetNode _req(String url_String, String data, int timeout) {

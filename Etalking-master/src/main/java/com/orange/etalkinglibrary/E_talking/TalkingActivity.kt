@@ -7,9 +7,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -26,7 +26,7 @@ import java.util.*
 import kotlin.concurrent.schedule
 
 class TalkingActivity : AppCompatActivity() {
-    lateinit var re: RecyclerView
+    lateinit var re: androidx.recyclerview.widget.RecyclerView
     var it= Messageitem()
     lateinit var file: Uri
     var REQUEST_CODE_CHOOSE = 1023
@@ -52,11 +52,11 @@ class TalkingActivity : AppCompatActivity() {
         InternalError=findViewById(R.id.InternetError)
         im=findViewById(R.id.im)
         showimage=findViewById(R.id.showimage)
-        re.layoutManager= LinearLayoutManager(this,RecyclerView.VERTICAL,true)
+        re.layoutManager= androidx.recyclerview.widget.LinearLayoutManager(this, androidx.recyclerview.widget.RecyclerView.VERTICAL, true)
         tit.text=resources.getString(R.string.Online_customer_service)
         re.adapter=cell
-        re.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        re.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 val b = recyclerView.canScrollVertically(-1)
                 Log.d("hey","assa${b}size${it.admin.size}${it.button}")

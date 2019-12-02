@@ -2,11 +2,12 @@ package com.example.obd.OBD_Relearn
 
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.obd.FunctionPage.Show_Read
 import com.example.obd.MainPeace
 
 import com.orange.obd.R

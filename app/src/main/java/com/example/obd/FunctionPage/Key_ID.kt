@@ -1,25 +1,27 @@
-package com.example.obd.OBD_Relearn
+package com.example.obd.FunctionPage
 
 
 import android.Manifest
+import android.app.Dialog
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AlertDialog
 import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.example.obd.MainPeace
-import com.example.obd.FunctionPage.QrcodeScanner
 import com.example.obd.MainActivity.TakeOut
 
 import com.orange.obd.R
 import com.example.obd.tool.CustomTextWatcher
 import com.example.obd.tool.FtpManager.DownS19
 import com.orango.electronic.orangetxusb.mmySql.ItemDAO
+import kotlinx.android.synthetic.main.activity_main_peace.view.*
 import kotlinx.android.synthetic.main.fragment_key__id.*
 import kotlinx.android.synthetic.main.fragment_key__id.view.*
 import kotlinx.android.synthetic.main.fragment_key__id.view.Lf
@@ -31,18 +33,12 @@ import kotlinx.android.synthetic.main.fragment_key__id.view.Rft
 import kotlinx.android.synthetic.main.fragment_key__id.view.Rr
 import kotlinx.android.synthetic.main.fragment_key__id.view.Rrt
 import kotlinx.android.synthetic.main.fragment_key__id.view.program
-import kotlinx.android.synthetic.main.fragment_show__read.view.*
 import java.util.ArrayList
+import com.orange.blelibrary.blelibrary.CallBack.Dailog_SetUp_C
+import com.orange.blelibrary.blelibrary.RootActivity
+import com.orange.blelibrary.blelibrary.RootFragement
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- *
- */
 class Key_ID : Fragment() {
     lateinit var rootView: View
     lateinit var act: MainPeace
@@ -164,11 +160,15 @@ class Key_ID : Fragment() {
             if (rootView.lrt3.getText().length >= 6 && rootView.lrt3.getText().length <= need) {
                 write.add(rootView.lrt3.getText().toString())
             }
-            act.LoadingUI(resources.getString(R.string.Programming),0)
+            act.ShowDaiLog(R.layout.dataloading,false,false, object : Dailog_SetUp_C(){
+                override fun SetUP(root: Dialog, act: RootActivity) {
+                    root.findViewById<TextView>(R.id.tit).text=resources.getString(R.string.Programming)
+                }
+            })
             Thread{
                 val iscuss=act.command.setTireId(write)
                 handler.post {
-                    act.LoadingSuccessUI()
+                    act.DaiLogDismiss()
                     if(iscuss){
                         ProgranFinsh=true
                         updateui(SUCCESS)
@@ -179,11 +179,13 @@ class Key_ID : Fragment() {
                         ScanSp=lrt3.text.toString()
                         TakeOut.DS_OR_CO=1
                         act.GoMenu=true
-                        act.back.setImageResource(R.mipmap.btn_menu)
-                        act.ShowDaiLog(R.layout.activity_take_out,true,false)
+                        act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                        act.rootview.back.setOnClickListener { act.GoMenu }
+                        act.ShowDaiLog(R.layout.activity_take_out,true,false, Dailog_SetUp_C())
                     }else{
                         act.GoMenu=true
-                        act.back.setImageResource(R.mipmap.btn_menu)
+                        act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                        act.rootview.back.setOnClickListener { act.GoMenu }
                         updateui(FAIL)
                     }
                 }
@@ -238,10 +240,10 @@ class Key_ID : Fragment() {
         return rootView
     }
     fun Downs19(){
-        if(s19==directfit){
-            act.LoadingSuccessUI()
+        if(s19 ==directfit){
+            act.DaiLogDismiss()
             return}
-        handler.post { act.back.isEnabled=false }
+        handler.post { act.rootview.back.isEnabled=false }
         Thread{
            val a= DownS19(directfit,act)
                 if(a){
@@ -250,23 +252,21 @@ class Key_ID : Fragment() {
                     }
                     val Pro=act.command.HandShake()&& act.command.WriteFlash(act,directfit,296,act)
                     handler.post {
-                        act.back.isEnabled=true
+                        act.rootview.back.isEnabled=true
                         if(Pro){
-//                            Toast.makeText(activity,"燒錄成功",Toast.LENGTH_SHORT).show();
-                            s19=directfit
+                            s19 =directfit
                         }else{
-//                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
-                            act.ShowDaiLog(R.layout.activity_re_program,true,true)
+                            act.ShowDaiLog(R.layout.activity_re_program,true,true, Dailog_SetUp_C())
                             act.bleServiceControl.disconnect()
                             updateui(FAIL)
                         }
-                        act.LoadingSuccessUI()
+                        act.DaiLogDismiss()
                     }
                 }else{
                     handler.post {
-                        act.LoadingSuccessUI()
-                        act.back.isEnabled=true
-                        act.ShowDaiLog(R.layout.activity_re_program,true,true)
+                        act.DaiLogDismiss()
+                        act.rootview.back.isEnabled=true
+                        act.ShowDaiLog(R.layout.activity_re_program,true,true, Dailog_SetUp_C())
                         act.bleServiceControl.disconnect()
                     }
 
@@ -278,7 +278,7 @@ var handler=Handler()
         rootView.repr.visibility=View.GONE
         rootView.program.visibility=View.GONE
         when(condition){
-            SUCCESS->{
+            SUCCESS ->{
                 rootView.condition.text=resources.getString(R.string.Programming_completed)
                 rootView.condition.setTextColor(resources.getColor(R.color.buttoncolor))
                 rootView.Lft.setBackgroundResource(R.mipmap.icon_input_box_ok)
@@ -291,7 +291,7 @@ var handler=Handler()
                 rootView.Rr.setBackgroundResource(R.mipmap.icon_tire_ok)
                 rootView.program.visibility=View.VISIBLE
             }
-            FAIL->{
+            FAIL ->{
                 rootView.condition.text=resources.getString(R.string.Programming_failed)
                 rootView.condition.setTextColor(resources.getColor(R.color.colorPrimary))
                 rootView.Lft.setBackgroundResource(R.mipmap.icon_input_box_fail)
@@ -304,7 +304,7 @@ var handler=Handler()
                 rootView.Rr.setBackgroundResource(R.mipmap.icon_tire_fail)
                 rootView.program.visibility=View.VISIBLE
             }
-            WAIT->{
+            WAIT ->{
                 rootView.condition.text=resources.getString(R.string.Key_in_the_original_sensor_ID_number)
                 rootView.condition.setTextColor(resources.getColor(R.color.buttoncolor))
                 rootView.Lft.setBackgroundResource(R.mipmap.icon_input_box_locked)

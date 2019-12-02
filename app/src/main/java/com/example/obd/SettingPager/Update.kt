@@ -3,7 +3,7 @@ package com.orango.electronic.orangetxusb.SettingPagr
 
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +28,6 @@ lateinit var rootview:View
 var handler=Handler()
     override fun onResume() {
         super.onResume()
-        (activity as MainPeace).back.visibility=View.VISIBLE
     }
 
 }

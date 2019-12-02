@@ -2,14 +2,14 @@ package com.example.obd.UserManual
 
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.app.FragmentManager
-import android.support.v4.view.ViewPager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentManager
+import androidx.viewpager.widget.ViewPager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.example.obd.MainPeace
@@ -31,11 +31,11 @@ private const val ARG_PARAM2 = "param2"
  */
 class ManualDetail : Fragment() {
 lateinit var rootView:View
-   lateinit var fragments: ArrayList<Fragment>
+   lateinit var fragments: ArrayList<androidx.fragment.app.Fragment>
     lateinit var ImageViews: ArrayList<ImageView>
     lateinit var li:LinearLayout
     lateinit var act: MainPeace
-    lateinit var viewpager:ViewPager
+    lateinit var viewpager: androidx.viewpager.widget.ViewPager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +44,7 @@ lateinit var rootView:View
         rootView=inflater.inflate(R.layout.fragment_manual_detail, container, false)
         viewpager=rootView.findViewById(R.id.viewpager)
         li=rootView.findViewById(R.id.li)
-        fragments=ArrayList<Fragment>()
+        fragments=ArrayList<androidx.fragment.app.Fragment>()
         ImageViews=ArrayList<ImageView>()
         act=activity!! as MainPeace
         rootView.button11.setOnClickListener {
@@ -73,7 +73,7 @@ lateinit var rootView:View
             ImageViews.add(a)
         }
         viewpager.adapter=MyPagerAdapter(fragmentManager!!)
-        viewpager.setOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        viewpager.setOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
 
             }
@@ -89,9 +89,9 @@ lateinit var rootView:View
 
             return rootView
     }
-    private inner class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+    private inner class MyPagerAdapter(fm: androidx.fragment.app.FragmentManager) : FragmentStatePagerAdapter(fm) {
 
-        override fun getItem(i: Int): Fragment {
+        override fun getItem(i: Int): androidx.fragment.app.Fragment {
             return fragments[i]
         }
 

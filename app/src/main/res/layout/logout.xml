@@ -28,7 +28,7 @@
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp" app:srcCompat="@android:color/darker_gray"
-                android:id="@+id/imageView13" android:layout_above="@id/re"/>
+                android:id="@+id/back" android:layout_above="@id/re"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

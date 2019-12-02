@@ -1,7 +1,7 @@
 package com.orange_electronic.languagesetting.widget;
 
-import android.support.annotation.ArrayRes;
-import android.support.annotation.StringRes;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.StringRes;
 
 /**
  * Created by george.yang on 2016-4-27.

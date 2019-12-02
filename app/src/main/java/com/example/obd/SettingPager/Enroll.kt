@@ -4,7 +4,7 @@ package com.example.obd.SettingPager
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +13,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.obd.HttpCommand.Fuction
 import com.example.obd.MainActivity.HomeFragement
 import com.example.obd.MainPeace
+import com.orange.blelibrary.blelibrary.CallBack.Dailog_SetUp_C
 
 import com.orange.obd.R
 import kotlinx.android.synthetic.main.activity_enroll.view.*
@@ -79,7 +80,7 @@ rootview.cancel.setOnClickListener {
             if(isrunn){
                 return@setOnClickListener
             }
-            act.LoadingUI("Data Loading",0)
+            act.ShowDaiLog(R.layout.dataloading,false,false, Dailog_SetUp_C())
             var email=email.text.toString()
             var password=password.text.toString()
             var repeatpassword=repeatpassword.text.toString()
@@ -105,7 +106,7 @@ rootview.cancel.setOnClickListener {
                     a=Fuction.Register(email,password,serialnumber,"Retailer",company,firstname,lastname,phone,state,city,streat,zpcode)
                 }
                 handler.post {
-                    act.LoadingSuccessUI()
+                    act.DaiLogDismiss()
                     if(a==-1){
                         Toast.makeText(act,resources.getString(R.string.error),Toast.LENGTH_SHORT).show()
                     }else if(a==1){

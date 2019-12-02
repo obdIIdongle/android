@@ -4,7 +4,7 @@ package com.example.obd.SettingPager
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +12,7 @@ import android.widget.*
 import com.example.obd.HttpCommand.Fuction
 import com.example.obd.MainActivity.HomeFragement
 import com.example.obd.MainPeace
+import com.orange.blelibrary.blelibrary.CallBack.Dailog_SetUp_C
 import com.orange.obd.R
 
 
@@ -35,12 +36,12 @@ class Sign_in : Fragment() {
             run=true
             val admin=admin.text.toString()
             val password=password.text.toString()
-            act.LoadingUI("Data Loading",0)
+            act.ShowDaiLog(R.layout.dataloading,false,false, Dailog_SetUp_C())
             Thread{
                 val a= Fuction.ValidateUser(admin,password)
                 run=false
                 handler.post {
-                    act.LoadingSuccessUI()
+                    act.DaiLogDismiss()
                     if(a){
                         val profilePreferences = act.getSharedPreferences("Setting", Context.MODE_PRIVATE)
                         profilePreferences.edit().putString("admin",admin).putString("password",password).commit()

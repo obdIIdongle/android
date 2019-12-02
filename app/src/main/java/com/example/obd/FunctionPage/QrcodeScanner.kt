@@ -6,9 +6,9 @@ import android.app.Instrumentation
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AlertDialog
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -16,7 +16,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import com.example.obd.OBD_Relearn.Key_ID
 import com.example.obd.MainPeace
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
@@ -38,7 +37,7 @@ class QrcodeScanner : Fragment(), ZXingScannerView.ResultHandler{
     val Lr=4
     val Sp=5
     var place=0
-    lateinit var Idcopy:Key_ID
+    lateinit var Idcopy: Key_ID
     lateinit var edit:EditText
     override fun handleResult(rawResult: Result?) {
 //        rootView.textView12.text="Contents = " + rawResult!!.getText()

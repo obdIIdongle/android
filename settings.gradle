@@ -1,2 +1,2 @@
-include ':app', ':languagesetting' ,':OrangeOpenLibrary',':Etalking-master'
+include ':app', ':languagesetting' ,':Etalking-master',':Lib'
 

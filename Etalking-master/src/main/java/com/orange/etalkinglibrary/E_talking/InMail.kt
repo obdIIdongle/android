@@ -4,7 +4,7 @@ package com.orange.etalkinglibrary.E_talking;
 
 
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +19,7 @@ import com.orange.etalkinglibrary.R
 
 
 class InMail(private val a: Messageitem)
-    : RecyclerView.Adapter<InMail.ViewHolder>() {
+    : androidx.recyclerview.widget.RecyclerView.Adapter<InMail.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -66,7 +66,7 @@ class InMail(private val a: Messageitem)
 
     override fun getItemCount(): Int = a.admin.size+1
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class ViewHolder(val mView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(mView) {
         val me: RelativeLayout = mView.findViewById(R.id.me)
         val you: RelativeLayout = mView.findViewById(R.id.you)
         val imageme: SimpleDraweeView =mView.findViewById(R.id.imageme);

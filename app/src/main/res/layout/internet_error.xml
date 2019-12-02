@@ -38,7 +38,7 @@
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/imageView13"
+            android:id="@+id/back"
             app:srcCompat="@android:color/darker_gray"
             android:layout_width="match_parent"
             android:layout_height="1dp"

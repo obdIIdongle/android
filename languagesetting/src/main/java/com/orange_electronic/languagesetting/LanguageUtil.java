@@ -3,14 +3,12 @@ package com.orange_electronic.languagesetting;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
-import android.os.LocaleList;
-import android.support.annotation.RequiresApi;
+
+import androidx.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 
 import com.google.gson.Gson;
-import com.orange_electronic.languagesetting.util.ViewUtil;
 
 import java.util.Locale;
 

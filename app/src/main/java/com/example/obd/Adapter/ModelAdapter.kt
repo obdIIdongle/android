@@ -1,10 +1,8 @@
-package com.orange_electronic.orangeobd.Adapter
+package com.example.obd.Adapter
 
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
-import android.support.v7.widget.RecyclerView
 
 import android.view.LayoutInflater
 
@@ -20,8 +18,8 @@ import com.orange_electronic.orangeobd.mmySql.module
 import java.util.ArrayList
 
 
-class ModelAdapter(private val a:ArrayList<module>,val act: Activity,private val fragmentManager: FragmentManager)
-    : RecyclerView.Adapter<ModelAdapter.ViewHolder>() {
+class ModelAdapter(private val a:ArrayList<module>,val act: Activity,private val fragmentManager: androidx.fragment.app.FragmentManager)
+    : androidx.recyclerview.widget.RecyclerView.Adapter<ModelAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -41,7 +39,7 @@ class ModelAdapter(private val a:ArrayList<module>,val act: Activity,private val
 
     override fun getItemCount(): Int = a.size
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class ViewHolder(val mView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(mView) {
         val text: TextView = mView.findViewById(R.id.text_item)
         val selectbutton:ImageView=mView.findViewById(R.id.select_img)
         override fun toString(): String {

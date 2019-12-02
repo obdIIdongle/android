@@ -29,9 +29,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name="com.example.obd.MainActivity.TakeOut"
             android:theme="@style/SwipTheme" />
-        <activity
-            android:name="com.example.obd.OBD_Relearn.ReProgram"
-            android:theme="@style/SwipTheme" />
         <activity android:name="com.example.obd.MainActivity.LogoActvivty">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

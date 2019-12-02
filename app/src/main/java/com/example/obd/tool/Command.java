@@ -1,12 +1,19 @@
 package com.example.obd.tool;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.obd.Beans.ID_Beans;
 import com.example.obd.MainPeace;
+import com.orange.blelibrary.blelibrary.CallBack.Ble_Callback_C;
+import com.orange.blelibrary.blelibrary.CallBack.Dailog_SetUp_C;
+import com.orange.blelibrary.blelibrary.RootActivity;
 import com.orange.obd.R;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -211,7 +218,13 @@ public class Command {
                     act.getHandler().post(new Runnable() {
                         @Override
                         public void run() {
-                            act.LoadingUI(act.getResources().getString(R.string.Programming), 100);
+                            act.ShowDaiLog(R.layout.dataloading,false,true,new Dailog_SetUp_C(){
+                                @Override
+                                public void SetUP(@NotNull Dialog root, @NotNull RootActivity act) {
+                                    TextView text=root.findViewById(R.id.tit);
+                                    text.setText(act.getResources().getString(R.string.Programming)+"..."+100+"%");
+                                }
+                            });
                         }
                     });
                     return true;
@@ -227,7 +240,13 @@ public class Command {
                     act.getHandler().post(new Runnable() {
                         @Override
                         public void run() {
-                            act.LoadingUI(act.getResources().getString(R.string.Programming), (int) (finalI / finalLong * 100));
+                            act.ShowDaiLog(R.layout.dataloading,false,true,new Dailog_SetUp_C(){
+                                @Override
+                                public void SetUP(@NotNull Dialog root, @NotNull RootActivity act) {
+                                    TextView text=root.findViewById(R.id.tit);
+                                    text.setText(act.getResources().getString(R.string.Programming)+"..."+ (int) (finalI / finalLong * 100)+"%");
+                                }
+                            });
                         }
                     });
                 }

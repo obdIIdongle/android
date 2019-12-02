@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,8 @@ import com.example.obd.MainPeace
 import com.example.obd.UserManual.UserManual
 
 import com.orange.obd.R
-import com.orango.electronic.orangetxusb.SettingPagr.Setting
+import com.example.obd.SettingPager.Setting
+import kotlinx.android.synthetic.main.activity_main_peace.view.*
 import kotlinx.android.synthetic.main.fragment_home_fragement.view.*
 
 class HomeFragement : Fragment() {
@@ -51,7 +52,7 @@ class HomeFragement : Fragment() {
         rootView.user_menual.setOnClickListener {
             act.ChangePage(UserManual(),R.id.frage,"UserManual",true)
         }
-        act.back.visibility=View.GONE
+        act.rootview.back.visibility=View.GONE
         rootView.online_shopping_btn.setOnClickListener {
             val profilePreferences = act.getSharedPreferences("Setting", Context.MODE_PRIVATE)
             val a= profilePreferences.getString("Language","English")
@@ -78,7 +79,6 @@ class HomeFragement : Fragment() {
     }
 
     override fun onResume() {
-        act.back.visibility=View.GONE
         super.onResume()
     }
 

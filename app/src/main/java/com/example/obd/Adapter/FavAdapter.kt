@@ -2,8 +2,8 @@ package com.example.obd.Adapter
 
 import android.app.Activity
 import android.content.Context
-import android.support.v4.app.FragmentManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +15,8 @@ import com.example.obd.MainPeace
 import com.orange.obd.R
 import java.util.ArrayList
 
-class FavAdapter(private val name: ArrayList<String>, val act: Activity, private val fragmentManager: FragmentManager)
-    : RecyclerView.Adapter<FavAdapter.ViewHolder>() {
+class FavAdapter(private val name: ArrayList<String>, val act: Activity, private val fragmentManager: androidx.fragment.app.FragmentManager)
+    : androidx.recyclerview.widget.RecyclerView.Adapter<FavAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -46,7 +46,7 @@ class FavAdapter(private val name: ArrayList<String>, val act: Activity, private
 
     override fun getItemCount(): Int = name.size
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class ViewHolder(val mView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(mView) {
         val  name:TextView = mView.findViewById(R.id.textView22)
         val delete:ImageView=mView.findViewById(R.id.imageView2)
         override fun toString(): String {

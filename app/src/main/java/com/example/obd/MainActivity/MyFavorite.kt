@@ -3,9 +3,9 @@ package com.example.obd.MainActivity
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +19,7 @@ import java.util.ArrayList
 
 class MyFavorite : Fragment() {
 lateinit var RootView:View
-    lateinit var re:RecyclerView
+    lateinit var re: androidx.recyclerview.widget.RecyclerView
     lateinit var adapter: FavAdapter
     var data= ArrayList<String>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +35,7 @@ lateinit var RootView:View
         Getmodel()
         adapter=FavAdapter(data,activity!!,fragmentManager!!)
         re=RootView.findViewById(R.id.adapter)
-        re.layoutManager=LinearLayoutManager(activity)
+        re.layoutManager= androidx.recyclerview.widget.LinearLayoutManager(activity)
         re.adapter=adapter
         return RootView
     }
@@ -58,7 +58,6 @@ lateinit var RootView:View
     override fun onResume() {
         super.onResume()
 //        (activity as MainPeace).setActionBarTitle(activity!!.resources.getString(R.string.Users_manual))
-        (activity as MainPeace).back.visibility=View.VISIBLE
 //        (activity as MainPeace).RightTop.visibility=View.GONE
     }
 

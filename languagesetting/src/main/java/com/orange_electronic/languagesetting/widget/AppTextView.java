@@ -1,11 +1,10 @@
 package com.orange_electronic.languagesetting.widget;
 
 import android.content.Context;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.StringRes;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.StringRes;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import com.orange_electronic.languagesetting.util.StringUtil;
 

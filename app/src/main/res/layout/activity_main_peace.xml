@@ -13,7 +13,7 @@
         android:elevation="5dp">
 
         <Button
-            android:id="@+id/button13"
+            android:id="@+id/test"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="50dp"
@@ -34,7 +34,7 @@
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/imageView40"
+            android:id="@+id/customer"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentEnd="true"
@@ -45,7 +45,7 @@
             app:srcCompat="@mipmap/icon_customer" />
 
         <ImageView
-            android:id="@+id/imageView13"
+            android:id="@+id/back"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="start"

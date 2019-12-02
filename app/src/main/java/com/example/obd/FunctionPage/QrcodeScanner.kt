@@ -1,4 +1,4 @@
-package com.example.obd.MainActivity
+package com.example.obd.FunctionPage
 
 
 import android.Manifest
@@ -16,7 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import com.example.obd.FunctionPage.Key_ID
+import com.example.obd.OBD_Relearn.Key_ID
 import com.example.obd.MainPeace
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result

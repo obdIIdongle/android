@@ -73,7 +73,7 @@ public class Command {
                     past = sdf.parse(sdf.format(new Date()));
                     act.getBleServiceControl().WriteCmd(GetXOR(a), 52);
                 }
-                if(fal==5){  id.success= false;
+                if(fal==10){  id.success= false;
                     return  id;}
                 if (act.getRXDATA().length() == 52) {
                     id.success=true;
@@ -87,6 +87,7 @@ public class Command {
                     }
                     return  id;
                 }
+                Thread.currentThread().sleep(100);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,7 +105,7 @@ public class Command {
             while (true) {
                 Date now = sdf.parse(sdf.format(new Date()));
                 double time = getDatePoor(now, past);
-                if (time > 7) {
+                if (time > 3) {
                     return false;
                 }
                 if (act.getRXDATA().equals("F501000300F70A")) {
@@ -147,23 +148,25 @@ public class Command {
 
     public boolean GoBootloader(){
         try{
-            act.getBleServiceControl().WriteCmd(GetXOR("0ACD010100FFF5"),14);
+            act.getBleServiceControl().WriteCmd(GetXOR("0ACD010100FFF5"),26);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
             Date past = sdf.parse(sdf.format(new Date()));
             int fal = 0;
             while (true) {
                 Date now = sdf.parse(sdf.format(new Date()));
                 double time = getDatePoor(now, past);
-                if (time > 1) {
+                if (time > 10) {
+                    Log.d("BLEDATA","錯誤"+act.getRXDATA());
                     if(fal==1){return false;}
                     past = sdf.parse(sdf.format(new Date()));
-                    act.getBleServiceControl().WriteCmd(GetXOR("0ACD010100FFF5"),14);
+                    act.getBleServiceControl().WriteCmd(GetXOR("0ACD010100FFF5"),26);
                     fal++;
                 }
-                if (act.getRXDATA().contains("F5CD010100CD0A")) {
+                if (act.getRXDATA().contains("F5CD010100CD0A01000300F70A")) {
                     Log.d("BLEDATA","進入燒錄");
                     return true;
                 }
+                Thread.currentThread().sleep(100);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -174,8 +177,8 @@ public class Command {
     public boolean WriteFlash(final Context context, final String FileName, final int Ind, final MainPeace act) {
         try {
 
-            FileInputStream fo = new FileInputStream(context.getApplicationContext().getFilesDir().getPath() + "/" + FileName + ".s19");
-            InputStreamReader fr = new InputStreamReader(Internet ? fo:context.getAssets().open("TO001.srec"));
+//            FileInputStream fo = new FileInputStream(context.getApplicationContext().getFilesDir().getPath() + "/" + FileName + ".s19");
+            InputStreamReader fr = new InputStreamReader(Internet ? new FileInputStream(context.getApplicationContext().getFilesDir().getPath() + "/" + FileName + ".s19"):context.getAssets().open("TO001.srec"));
             BufferedReader br = new BufferedReader(fr);
             StringBuilder sb = new StringBuilder();
             while (br.ready()) {
@@ -340,7 +343,7 @@ public class Command {
                     fal++;
                 }
                 if (act.getRXDATA().length() >= 16) {
-                    Thread.currentThread().sleep(100);
+//                    Thread.currentThread().sleep(100);
                     return true;
                 }
             }

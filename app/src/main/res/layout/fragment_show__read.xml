@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.example.obd.FunctionPage.Show_Read">
+    tools:context="com.example.obd.OBD_Relearn.Show_Read">
 
     <TextView
         android:id="@+id/lrt"
@@ -134,7 +134,7 @@
             android:id="@+id/li"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/imageView4"
+            android:layout_above="@id/pad"
             android:layout_marginBottom="10dp"
             android:elevation="1dp"
             android:orientation="horizontal">
@@ -202,7 +202,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageView4"
+            android:layout_below="@id/pad"
             android:layout_marginTop="10dp"
             android:elevation="1dp"
             android:orientation="horizontal">
@@ -268,7 +268,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/user_menual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -304,7 +304,7 @@
             android:translationY="60dp" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/pad"
             android:layout_width="132dp"
             android:layout_height="200dp"
             android:layout_centerInParent="true"

@@ -12,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.obd.FunctionPage.OBDII_relearn
+import com.example.obd.OBD_Relearn.OBDII_relearn
 import com.example.obd.MainPeace
 import com.orange.obd.R
 import com.orange_electronic.orangeobd.mmySql.module

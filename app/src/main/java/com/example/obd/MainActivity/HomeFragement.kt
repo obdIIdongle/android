@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.obd.FunctionPage.Selection
 import com.example.obd.MainPeace
 import com.example.obd.UserManual.UserManual
 
@@ -36,17 +37,18 @@ class HomeFragement : Fragment() {
             rootView.textView68.visibility=View.GONE
             rootView.changer.text=resources.getString(R.string.Setting)
         }
-        rootView.imageView4.setOnClickListener {
-            act.ChangePage(MyFavorite(),R.id.frage,"MyFavorite",true)
+        rootView.pad.setOnClickListener {
+            act.Obd_PAD=1
+            act.GoScanner(Selection(),10,R.id.frage,"Selection")
         }
         rootView.Setim.setOnClickListener {
             act.ChangePage(Setting(),R.id.frage,"Setting",true)
         }
-        rootView.selectmmy.setOnClickListener {
+        rootView.obd.setOnClickListener {
+            act.Obd_PAD=0
             act.GoScanner(Selection(),10,R.id.frage,"Selection")
-          act.back.visibility=View.VISIBLE
         }
-        rootView.imageView6.setOnClickListener {
+        rootView.user_menual.setOnClickListener {
             act.ChangePage(UserManual(),R.id.frage,"UserManual",true)
         }
         act.back.visibility=View.GONE

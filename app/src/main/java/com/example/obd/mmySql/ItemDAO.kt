@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
-import com.example.obd.FunctionPage.OBDII_relearn
+import com.example.obd.OBD_Relearn.OBDII_relearn
 import com.example.obd.MainPeace
 import com.orange.obd.R
 import com.orange_electronic.orangeobd.mmySql.module

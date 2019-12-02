@@ -44,7 +44,7 @@ class ResetPass : Fragment() {
                     run=false
                     act.LoadingSuccessUI()
                     if(isok){
-                        (activity as MainPeace).ChangePage(Sign_in(),R.id.frage,"Sign_in",true)
+                        (activity as MainPeace).ChangePage(Sign_in(),R.id.frage,"Sign_in",false)
                     }else{
                         Toast.makeText(act,R.string.nointernet, Toast.LENGTH_SHORT).show()
                     }

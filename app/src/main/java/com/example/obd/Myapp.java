@@ -13,7 +13,6 @@ public class Myapp extends Application {
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(getApplicationContext());
         Fresco.initialize(this);
-
     }
 
 }

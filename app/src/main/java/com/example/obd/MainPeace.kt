@@ -1,6 +1,5 @@
 package com.example.obd
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +8,8 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.airbnb.lottie.LottieAnimationView
-import com.example.obd.FunctionPage.Key_ID
+import com.example.obd.FunctionPage.Selection
+import com.example.obd.OBD_Relearn.Key_ID
 import com.example.obd.MainActivity.HomeFragement
 import com.example.obd.MainActivity.Logout
 import com.example.obd.MainActivity.TakeOut
@@ -25,33 +25,54 @@ import kotlinx.android.synthetic.main.fragment_test_fragement.view.*
 
 open class MainPeace : BleActivity() {
     val itemDAO: ItemDAO by lazy { ItemDAO(applicationContext) }
-
-    override fun ChangePageListener(tag:String,frag:Fragment) {
-        Log.d("switch",tag)
-        if (tag == "Home") {
+    var Obd_PAD=0
+    override fun ChangePageListener(tag: String, frag: Fragment) {
+        Log.d("switch", tag)
+        if (tag == "Set_Languages"||tag == "Policy"||tag == "Sign_in"||tag == "Home") {
             Log.d("name", tag)
             back.visibility = View.GONE
-            exit.visibility=View.VISIBLE
+            exit.visibility = View.VISIBLE
         } else {
             back.visibility = View.VISIBLE
-            exit.visibility=View.GONE
+            exit.visibility = View.GONE
         }
-        when(tag){
-            "Selection"->{bartitle.text="OBDII DONGLE"}
-            "MakeFragement"->{}
-            "ModelFragement"->{}
-            "Home"->{bartitle.text="Orange TPMS"}
-            "YearFragement"->{}
-            "OBDII_relearn"->{bartitle.text=getString(R.string.OBDII_relearn)}
-            "Show_Read"->{}
-            "Setting"->{bartitle.text=getString(R.string.Setting)}
-            "SetArea"->{bartitle.text=getString(R.string.AreaLanguage)}
-            "policy"->{bartitle.text=getString(R.string.Privacy_Policy)}
-            "Update"->{bartitle.text=getString(R.string.update)}
-            "UserManual"->{bartitle.text=getString(R.string.Users_manual)}
+        when (tag) {
+            "Selection" -> {
+                bartitle.text = "OBDII DONGLE"
+            }
+            "MakeFragement" -> {
+            }
+            "ModelFragement" -> {
+            }
+            "Home" -> {
+                bartitle.text = "Orange TPMS"
+            }
+            "YearFragement" -> {
+            }
+            "OBDII_relearn" -> {
+                bartitle.text = getString(R.string.OBDII_relearn)
+            }
+            "Show_Read" -> {
+            }
+            "Setting" -> {
+                bartitle.text = getString(R.string.Setting)
+            }
+            "SetArea" -> {
+                bartitle.text = getString(R.string.AreaLanguage)
+            }
+            "policy" -> {
+                bartitle.text = getString(R.string.Privacy_Policy)
+            }
+            "Update" -> {
+                bartitle.text = getString(R.string.update)
+            }
+            "UserManual" -> {
+                bartitle.text = getString(R.string.Users_manual)
+            }
         }
     }
-    var AppVersion=""
+
+    var AppVersion = ""
     var command = Command()
     var SelectMake = ""
     var SelectModel = ""
@@ -64,13 +85,12 @@ open class MainPeace : BleActivity() {
     lateinit var exit: ImageView
     private var savedState: Bundle? = null
     lateinit var anim: LottieAnimationView
-    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_peace)
         (application as Myapp).act = this
-        bartitle=findViewById(R.id.bartitle)
-        exit=findViewById(R.id.exit)
+        bartitle = findViewById(R.id.bartitle)
+        exit = findViewById(R.id.exit)
         back = findViewById(R.id.imageView13)
         feage = findViewById(R.id.frage)
         load = findViewById(R.id.load)
@@ -88,8 +108,8 @@ open class MainPeace : BleActivity() {
             feage.setBackgroundColor(resources.getColor(R.color.backgroung))
             ChangePage(Set_Languages(), R.id.frage, "Set_Languages", false)
         } else {
-            feage.setBackgroundColor(R.color.backgroung)
-            ChangePage(HomeFragement(),R.id.frage,"Home",false)
+            feage.setBackgroundColor(resources.getColor(R.color.backgroung))
+            ChangePage(HomeFragement(), R.id.frage, "Home", false)
         }
     }
 
@@ -107,24 +127,24 @@ open class MainPeace : BleActivity() {
     }
 
     override fun ConnectSituation(boolean: Boolean) {
-            if (boolean) {
-                Log.d("連線", "連線ok")
-            } else {
-                Thread{
-                    handler.post {
-                        Log.d("連線", "Bluetooth is disconnected")
-                        LoadingSuccessUI()
-                        supportFragmentManager.popBackStack(null,1)
-                        Key_ID.s19 = ""
-                        TakeOut.DS_OR_CO = 0
-                        ShowDaiLog(R.layout.disconnect,true,false)
-                    }
-                }.start()
-            }
+        if (boolean) {
+            Log.d("連線", "連線ok")
+        } else {
+            Thread {
+                handler.post {
+                    Log.d("連線", "Bluetooth is disconnected")
+                    LoadingSuccessUI()
+                    supportFragmentManager.popBackStack(null, 1)
+                    Key_ID.s19 = ""
+                    TakeOut.DS_OR_CO = 0
+                    ShowDaiLog(R.layout.disconnect, true, false)
+                }
+            }.start()
+        }
     }
 
     override fun TX(a: String) {
-        Log.d("BLEDATA", "TX:"+a)
+        Log.d("BLEDATA", "TX:" + a)
         handler.post {
             if (supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1).tag != null && supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1).tag == "Test") {
                 var fragment = supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1) as TestFragement
@@ -135,7 +155,7 @@ open class MainPeace : BleActivity() {
     }
 
     override fun RX(a: String) {
-        Log.d("BLEDATA","RX:"+a)
+        Log.d("BLEDATA", "RX:" + a)
         handler.post {
             if (supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1).tag != null && supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1).tag == "Test") {
                 var fragment = supportFragmentManager.fragments.get(supportFragmentManager.fragments.size - 1) as TestFragement
@@ -171,7 +191,7 @@ open class MainPeace : BleActivity() {
             }
             R.id.imageView13 -> {
                 if (GoMenu) {
-                    supportFragmentManager.popBackStack(null,1)
+                    supportFragmentManager.popBackStack(null, 1)
                     GoMenu = false
                     back.setImageResource(R.mipmap.btn_back_normal)
                 } else {

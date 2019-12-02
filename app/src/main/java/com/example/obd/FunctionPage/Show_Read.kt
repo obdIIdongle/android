@@ -1,15 +1,14 @@
-package com.example.obd.FunctionPage
+package com.example.obd.OBD_Relearn
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.example.obd.MainPeace
+import com.example.obd.SelectMmyPage.MakeFragement
 import com.example.obd.tool.FtpManager
 import com.orange.blelibrary.blelibrary.tool.FormatConvert.bytesToHex
 
@@ -54,12 +53,9 @@ class Show_Read : Fragment() {
         return rootView
     }
     fun Downs19(){
-        if(Key_ID.s19 == directfit){
-            act.LoadingSuccessUI()
-            SetId()
-            return}
         handler.post { act.back.isEnabled=false }
         Thread{
+            if(!act.command.HandShake()){act.command.Reboot()}
             val a= FtpManager.DownS19(directfit, act)
             if(a){
                 act.command.AskVersion()
@@ -82,8 +78,6 @@ class Show_Read : Fragment() {
                         return@Thread
                     }
                 }
-//                F5CF0115FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF240A
-//                F5CF0115FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF240A
 //                if(!act.command.HandShake()){
 //                    act.command.Reboot()
 //                }
@@ -101,7 +95,6 @@ class Show_Read : Fragment() {
 //                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
                         act.ShowDaiLog(R.layout.activity_re_program,true,false)
                         act.bleServiceControl.disconnect()
-
                     }
                 }
             }else{
@@ -129,8 +122,10 @@ class Show_Read : Fragment() {
                     rootView.lrt.text = a.SP
                     rootView.program.setOnClickListener {    act.ChangePage(Key_ID(),R.id.frage,"Key_ID",true)}
                 }else{
-                    act.ShowDaiLog(R.layout.activity_re_program,true,false)
-                    act.bleServiceControl.disconnect()
+                    act.ChangePage(MakeFragement(),R.id.frage,"MakeFragement",false)
+                    act.Toast("車種選擇錯誤")
+//                    act.ShowDaiLog(R.layout.activity_re_program,true,false)
+//                    act.bleServiceControl.disconnect()
                 }
                 act.LoadingSuccessUI()
             }

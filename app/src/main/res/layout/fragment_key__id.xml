@@ -145,7 +145,7 @@
             android:id="@+id/li"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/imageView4"
+            android:layout_above="@id/pad"
             android:layout_marginBottom="10dp"
             android:elevation="1dp"
             android:orientation="horizontal">
@@ -165,6 +165,7 @@
                     android:gravity="right|center_vertical"
                     android:hint="Original sensor ID"
                     android:paddingRight="20dp"
+                    android:text="12345678"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -194,6 +195,7 @@
                     android:gravity="left|center_vertical"
                     android:hint="Original sensor ID"
                     android:paddingLeft="20dp"
+                    android:text="12345678"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -213,7 +215,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageView4"
+            android:layout_below="@id/pad"
             android:layout_marginTop="10dp"
             android:elevation="1dp"
             android:orientation="horizontal">
@@ -233,6 +235,7 @@
                     android:gravity="right|center_vertical"
                     android:hint="Original sensor ID"
                     android:paddingRight="20dp"
+                    android:text="12345678"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -262,6 +265,7 @@
                     android:gravity="left|center_vertical"
                     android:hint="Original sensor ID"
                     android:paddingLeft="20dp"
+                    android:text="12345678"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -279,7 +283,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/user_menual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -315,7 +319,7 @@
             android:translationY="60dp" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/pad"
             android:layout_width="132dp"
             android:layout_height="200dp"
             android:layout_centerInParent="true"

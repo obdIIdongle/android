@@ -35,7 +35,7 @@ lateinit  var rootview:View
         }
         (rootview.findViewById(R.id.button6) as Button).setOnClickListener {
             if(place==0){
-                (activity as MainPeace).ChangePage(Sign_in(),R.id.frage,"Sign_in",true)
+                (activity as MainPeace).ChangePage(Sign_in(),R.id.frage,"Sign_in",false)
             }else{
                 (activity as MainPeace).GoBack()
             }
@@ -46,7 +46,7 @@ lateinit  var rootview:View
     override fun onResume() {
         super.onResume()
 //        (activity as MainPeace).setActionBarTitle(activity!!.resources.getString(R.string.Privacy_Policy))
-        (activity as MainPeace).back.visibility=View.VISIBLE
+//        (activity as MainPeace).back.visibility=View.VISIBLE
 //        (activity as MainPeace).RightTop.visibility=View.GONE
     }
 

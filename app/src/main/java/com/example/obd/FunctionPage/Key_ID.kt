@@ -1,8 +1,7 @@
-package com.example.obd.FunctionPage
+package com.example.obd.OBD_Relearn
 
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
@@ -14,7 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.obd.MainPeace
-import com.example.obd.MainActivity.QrcodeScanner
+import com.example.obd.FunctionPage.QrcodeScanner
 import com.example.obd.MainActivity.TakeOut
 
 import com.orange.obd.R
@@ -23,7 +22,16 @@ import com.example.obd.tool.FtpManager.DownS19
 import com.orango.electronic.orangetxusb.mmySql.ItemDAO
 import kotlinx.android.synthetic.main.fragment_key__id.*
 import kotlinx.android.synthetic.main.fragment_key__id.view.*
+import kotlinx.android.synthetic.main.fragment_key__id.view.Lf
 import kotlinx.android.synthetic.main.fragment_key__id.view.Lft
+import kotlinx.android.synthetic.main.fragment_key__id.view.Lr
+import kotlinx.android.synthetic.main.fragment_key__id.view.Lrt
+import kotlinx.android.synthetic.main.fragment_key__id.view.Rf
+import kotlinx.android.synthetic.main.fragment_key__id.view.Rft
+import kotlinx.android.synthetic.main.fragment_key__id.view.Rr
+import kotlinx.android.synthetic.main.fragment_key__id.view.Rrt
+import kotlinx.android.synthetic.main.fragment_key__id.view.program
+import kotlinx.android.synthetic.main.fragment_show__read.view.*
 import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
@@ -124,7 +132,6 @@ class Key_ID : Fragment() {
          directfit=itemDAO.getPart(make, model, year).directfit
         rootView.mmy_text.text="$make/$model/$year"
         scanner.Idcopy=this
-
         scanner.need=need
         rootView.Lft.addTextChangedListener(CustomTextWatcher(rootView.Lft,need))
         rootView.Rft.addTextChangedListener(CustomTextWatcher(rootView.Rft,need))
@@ -173,7 +180,7 @@ class Key_ID : Fragment() {
                         TakeOut.DS_OR_CO=1
                         act.GoMenu=true
                         act.back.setImageResource(R.mipmap.btn_menu)
-                        act.ShowDaiLog(R.layout.activity_take_out,true,true)
+                        act.ShowDaiLog(R.layout.activity_take_out,true,false)
                     }else{
                         act.GoMenu=true
                         act.back.setImageResource(R.mipmap.btn_menu)
@@ -183,8 +190,6 @@ class Key_ID : Fragment() {
             }.start()
         }
         rootView.scaner.setOnClickListener{
-            act.LoadingUI(resources.getString(R.string.Data_Loading),0)
-            Downs19()
             rootView.Select_Key.visibility=View.GONE
             scanner.Scan_For=scanner.ID
             rootView.Lft.isFocusable=false
@@ -216,9 +221,13 @@ class Key_ID : Fragment() {
                 RequestPermission() }
             SCAN_OR_KEY=0
         }
-        rootView.keyin.setOnClickListener {     act.LoadingUI(resources.getString(R.string.Data_Loading),0)
-            Downs19()
-            rootView.Select_Key.visibility=View.GONE}
+        rootView.keyin.setOnClickListener {
+            rootView.Select_Key.visibility=View.GONE
+            rootView.Lft.setText("1234567")
+            rootView.Rft.setText("1234567")
+            rootView.Lrt.setText("1234567")
+            rootView.Rrt.setText("1234567")
+        }
         updateui(WAIT)
         rootView.Lft.setText(ScanLf)
         rootView.Rrt.setText(ScanRr)
@@ -226,10 +235,6 @@ class Key_ID : Fragment() {
         rootView.Lrt.setText(ScanLr)
         rootView.lrt3.setText(ScanSp)
         if(act.itemDAO.IsFiveTire(directfit)){rootView.lrt3.visibility=View.VISIBLE}else{rootView.lrt3.visibility=View.GONE}
-        rootView.repr.setOnClickListener {
-           act.GoBack()
-            act.ChangePage(Key_ID(),R.id.frage,"Key_ID",true)
-        }
         return rootView
     }
     fun Downs19(){
@@ -284,8 +289,7 @@ var handler=Handler()
                 rootView.Rf.setBackgroundResource(R.mipmap.icon_tire_ok)
                 rootView.Lr.setBackgroundResource(R.mipmap.icon_tire_ok)
                 rootView.Rr.setBackgroundResource(R.mipmap.icon_tire_ok)
-                rootView.repr.visibility=View.VISIBLE
-
+                rootView.program.visibility=View.VISIBLE
             }
             FAIL->{
                 rootView.condition.text=resources.getString(R.string.Programming_failed)
@@ -298,6 +302,7 @@ var handler=Handler()
                 rootView.Rf.setBackgroundResource(R.mipmap.icon_tire_fail)
                 rootView.Lr.setBackgroundResource(R.mipmap.icon_tire_fail)
                 rootView.Rr.setBackgroundResource(R.mipmap.icon_tire_fail)
+                rootView.program.visibility=View.VISIBLE
             }
             WAIT->{
                 rootView.condition.text=resources.getString(R.string.Key_in_the_original_sensor_ID_number)

@@ -70,9 +70,9 @@ class Set_Languages : Fragment() {
                 "Italiano"->{ LanguageUtil.updateLocale(activity, LanguageUtil.LOCALE_ITALIANO);}
             }
             if(place==0){
-                (activity as MainPeace).ChangePage(PrivaryPolicy(),R.id.frage,"Policy",true)
+                (activity as MainPeace).ChangePage(PrivaryPolicy(),R.id.frage,"Policy",false)
             }else{
-                (activity as MainPeace).ChangePage(HomeFragement(),R.id.frage,"Home",true)
+                (activity as MainPeace).ChangePage(HomeFragement(),R.id.frage,"Home",false)
             }
         }
         return rootView
@@ -81,7 +81,7 @@ class Set_Languages : Fragment() {
     override fun onResume() {
         super.onResume()
 //        (activity as MainPeace).setActionBarTitle(activity!!.resources.getString(R.string.AreaLanguage))
-        (activity as MainPeace).back.visibility=View.VISIBLE
+//        (activity as MainPeace).back.visibility=View.VISIBLE
 //        (activity as MainPeace).RightTop.visibility=View.GONE
     }
 }

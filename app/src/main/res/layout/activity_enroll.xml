@@ -200,7 +200,7 @@
                 android:textColor="@android:color/background_dark" />
 
             <Spinner
-                android:id="@+id/spinner6"
+                android:id="@+id/Store"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="27dp"
@@ -248,7 +248,7 @@
                 android:textColor="@android:color/background_dark" />
 
             <Spinner
-                android:id="@+id/spinner5"
+                android:id="@+id/AreaSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="27dp"

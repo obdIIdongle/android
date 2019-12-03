@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroung"
-    tools:context="com.example.obd.MainActivity.AddFavorite">
+    tools:context="com.example.obd.Frag.Frag_MainActivity_AddFavorite">
 
     <TextView
         android:id="@+id/toper"

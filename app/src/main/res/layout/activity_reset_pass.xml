@@ -18,13 +18,13 @@
             android:layout_height="48dp"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText2" android:layout_below="@id/textView101" android:layout_marginTop="27dp"
+            android:id="@+id/edit" android:layout_below="@id/textView101" android:layout_marginTop="27dp"
             android:layout_centerHorizontal="true" android:layout_marginEnd="27dp" android:layout_marginStart="27dp"
             android:background="@color/white" android:paddingLeft="10dp" android:hint="e-mail"/>
     <Button
             android:text="@string/Submit"
             android:layout_width="168dp"
-            android:layout_height="50dp" android:id="@+id/button14" android:layout_below="@id/editText2"
+            android:layout_height="50dp" android:id="@+id/button14" android:layout_below="@id/edit"
             android:layout_centerHorizontal="true" android:layout_marginTop="29dp" android:background="@mipmap/button"
             android:textColor="@color/white" android:onClick="onclick"/>
     <TextView

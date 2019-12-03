@@ -41,11 +41,11 @@
             android:id="@+id/back"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_above="@id/ok"
+            android:layout_above="@id/cancel"
             app:srcCompat="@android:color/darker_gray" />
 
         <TextView
-            android:id="@+id/ok"
+            android:id="@+id/cancel"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"

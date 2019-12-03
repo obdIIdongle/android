@@ -22,7 +22,7 @@
         <TextView
                 android:text="連線錯誤，點我重新連線！"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/ok"
+                android:layout_height="wrap_content" android:id="@+id/cancel"
                 android:layout_below="@id/imageView27" android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp" android:textColor="@color/colorAccent" android:textSize="16sp"
                 android:translationY="-10dp"/>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.example.obd.FunctionPage.Show_Read">
+    tools:context="com.example.obd.Frag.Frag_Function_Show_Read">
 
     <TextView
         android:id="@+id/lrt"

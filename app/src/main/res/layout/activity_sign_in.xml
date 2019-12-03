@@ -28,7 +28,7 @@
             android:layout_height="56dp"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText3" android:layout_alignBottom="@id/imageView20" android:layout_marginLeft="105dp"
+            android:id="@+id/admin" android:layout_alignBottom="@id/imageView20" android:layout_marginLeft="105dp"
             android:layout_marginRight="50dp" android:hint="E-mail"/>
 
     <ImageView
@@ -44,15 +44,15 @@
             android:layout_height="56dp"
             android:inputType="textPassword"
             android:ems="0"
-            android:id="@+id/editText4" android:layout_alignBottom="@id/imageView21" android:layout_marginLeft="105dp"
+            android:id="@+id/password" android:layout_alignBottom="@id/imageView21" android:layout_marginLeft="105dp"
             android:layout_marginRight="50dp" android:hint="@string/Password"/>
 
     <TextView
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_below="@id/editText4"
-        android:layout_alignEnd="@id/editText4"
+        android:layout_below="@id/password"
+        android:layout_alignEnd="@id/password"
         android:gravity="center"
         android:text="@string/Forgot_password"
         android:textColor="@android:color/black" />
@@ -61,7 +61,7 @@
         android:id="@+id/imageView22"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_below="@id/editText4"
+        android:layout_below="@id/password"
         android:layout_marginTop="5dp"
         android:layout_toStartOf="@id/textView26"
         app:srcCompat="@mipmap/forget_password" />

@@ -6,7 +6,7 @@
     android:background="@color/backgroung"
     tools:context="com.example.obd.UserManual.Page.F9">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Frag_SettingPager_Update blank fragment layout -->
     <TextView
         android:id="@+id/textView40"
         android:layout_width="wrap_content"

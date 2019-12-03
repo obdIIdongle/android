@@ -12,7 +12,7 @@
         app:srcCompat="@mipmap/triangle" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="56dp"
@@ -29,7 +29,7 @@
         app:srcCompat="@color/buttoncolor" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/delete"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_alignParentEnd="true"

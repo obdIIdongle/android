@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroung"
-    tools:context="com.example.obd.UserManual.UserManual">
+    tools:context="com.example.obd.Frag.Frag_UserManual">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Frag_SettingPager_Update blank fragment layout -->
     <ImageView
         android:id="@+id/imageView23"
         android:layout_width="200dp"

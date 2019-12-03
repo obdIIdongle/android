@@ -36,7 +36,7 @@
             <TextView
                     android:text="@string/cancel"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/ok" android:layout_weight="1"
+                    android:layout_height="match_parent" android:id="@+id/cancel" android:layout_weight="1"
                     android:gravity="center" android:textColor="@color/colorPrimary" android:onClick="onclick"/>
             <ImageView
                     android:layout_width="1dp"
@@ -45,7 +45,7 @@
             <TextView
                     android:text="@string/Yes"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/textView15" android:layout_weight="1"
+                    android:layout_height="match_parent" android:id="@+id/yes" android:layout_weight="1"
                     android:gravity="center" android:onClick="onclick"/>
         </LinearLayout>
     </RelativeLayout>

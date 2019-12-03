@@ -27,21 +27,18 @@
         android:supportsRtl="true"
         android:theme="@style/MainAppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.example.obd.MainActivity.TakeOut"
-            android:theme="@style/SwipTheme" />
-        <activity android:name="com.example.obd.MainActivity.LogoActvivty">
+
+
+        <activity
+            android:name="com.example.obd.MainPeace"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>/>
         </activity>
-        <activity
-            android:name="com.example.obd.MainActivity.Logout"
-            android:theme="@style/SwipTheme" />
-        <activity
-            android:name="com.example.obd.MainPeace"
-            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

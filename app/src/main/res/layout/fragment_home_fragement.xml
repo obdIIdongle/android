@@ -92,20 +92,19 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/cloud_information"
+                    android:id="@+id/read_sensor"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerInParent="true"
-                    android:alpha="0.7"
-                    app:srcCompat="@mipmap/cloud" />
+                    app:srcCompat="@mipmap/btn_read_sensor_n" />
 
                 <TextView
                     android:id="@+id/textView45"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cloud_information"
+                    android:layout_below="@id/read_sensor"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/Cloud_information" />
+                    android:text="@string/app_sensor_info_read" />
             </RelativeLayout>
 
             <RelativeLayout

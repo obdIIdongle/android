@@ -59,7 +59,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                 mainPeace.command.AskVersion()
                 if (mainPeace.AppVersion == bytesToHex(Util_FtpManager.donloads19.replace(".srec", "").toByteArray())) {
                     if(mainPeace.command.GoApp()){
-                        handler.post { Frag_Fcnction_Key_ID.s19 =directfit
+                        handler.post { Frag_Function_Key_ID.s19 =directfit
                             SetId()
                             act.rootview.back.isEnabled=true
                         }
@@ -91,7 +91,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                     act.DaiLogDismiss()
                     if(Pro){
 //                            Toast.makeText(activity,"燒錄成功",Toast.LENGTH_SHORT).show();
-                        Frag_Fcnction_Key_ID.s19 =directfit
+                        Frag_Function_Key_ID.s19 =directfit
                         SetId()
                     }else{
 //                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
@@ -126,7 +126,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                     rootview.Lrt.text = a.LR
                     rootview.Rrt.text = a.RR
                     rootview.lrt.text = a.SP
-                    rootview.program.setOnClickListener {    act.ChangePage(Frag_Fcnction_Key_ID(),R.id.frage,"Frag_Fcnction_Key_ID",true)}
+                    rootview.program.setOnClickListener {    act.ChangePage(Frag_Function_Key_ID(),R.id.frage,"Frag_Function_Key_ID",true)}
                 }else{
                     act.ChangePage(Frag_SelectMmyPage_MakeFragement(),R.id.frage,"Frag_SelectMmyPage_MakeFragement",false)
                     act.Toast("車種選擇錯誤")

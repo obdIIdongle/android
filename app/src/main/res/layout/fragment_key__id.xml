@@ -329,7 +329,8 @@
     <RelativeLayout
         android:id="@+id/Select_Key"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageView73"

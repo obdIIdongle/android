@@ -14,7 +14,7 @@ import com.example.obd.MainPeace
 
 import com.orange.obd.R
 import com.example.obd.util.Util_CustomTextWatcher
-import com.example.obd.util.Util_FtpManager.DownS19
+import com.example.obd.util.Util_FtpManager
 import com.orango.electronic.orangetxusb.mmySql.Util_MmySql_ItemDAO
 import kotlinx.android.synthetic.main.activity_main_peace.view.*
 import kotlinx.android.synthetic.main.fragment_key__id.*
@@ -32,9 +32,11 @@ import java.util.ArrayList
 import com.orange.blelibrary.blelibrary.CallBack.Dailog_SetUp_C
 import com.orange.blelibrary.blelibrary.RootActivity
 import com.orange.blelibrary.blelibrary.RootFragement
+import com.orange.blelibrary.blelibrary.tool.FormatConvert
+import kotlinx.android.synthetic.main.dataloading.view.*
 
 
-class Frag_Fcnction_Key_ID : RootFragement(R.layout.fragment_key__id)
+class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 {
     lateinit var mainPeace:MainPeace
     var first=true
@@ -197,11 +199,79 @@ class Frag_Fcnction_Key_ID : RootFragement(R.layout.fragment_key__id)
         rootview.Lrt.setText(ScanLr)
         rootview.lrt3.setText(ScanSp)
         if(mainPeace.utilMmySqlItemDAO.IsFiveTire(directfit)){rootview.lrt3.visibility=View.VISIBLE}else{rootview.lrt3.visibility=View.GONE}
-
+        rootview.program.isEnabled=false
+        act.ShowDaiLog(R.layout.dataloading,false,true, object :Dailog_SetUp_C(){
+            override fun SetUP(root: Dialog, act: RootActivity) {
+                rootview.title.text=resources.getString(R.string.Data_Loading)
+            }
+        })
+        Downs19()
     }
+    fun Downs19(){
+        handler.post { act.rootview.back.isEnabled=false }
+        Thread{
+            if(!mainPeace.command.HandShake()){mainPeace.command.Reboot()}
+            val a= Util_FtpManager.DownS19(directfit, mainPeace)
+            if(a){
+                mainPeace.command.AskVersion()
+                if (mainPeace.AppVersion == FormatConvert.bytesToHex(Util_FtpManager.donloads19.replace(".srec", "").toByteArray())) {
+                    if(mainPeace.command.GoApp()){
+                        handler.post { Frag_Function_Key_ID.s19 =directfit
+                            act.DaiLogDismiss()
+                            rootview.Select_Key.visibility=View.VISIBLE
+                            rootview.program.isEnabled=true
+                            act.rootview.back.isEnabled=true
+                        }
+                        return@Thread
+                    }
+                } else {
+//                    act.command.HandShake()
+                    if (!mainPeace.command.WriteVersion()||!mainPeace.command.GoBootloader()) {
+                        handler.post {
+                            act.ShowDaiLog(R.layout.activity_re_program,false,true, object :Dailog_SetUp_C(){
+                                override fun SetUP(root: Dialog, act: RootActivity) {
+                                    rootview.title.text=resources.getString(R.string.Programming)
+                                }
+                            })
+                            mainPeace.bleServiceControl.disconnect()
+                        }
+                        handler.post { mainPeace.rootview.back.isEnabled=true }
+                        return@Thread
+                    }
+                }
+//                if(!act.command.HandShake()){
+//                    act.command.Reboot()
+//                }
+//                val Pro=act.command.HandShake()&& act.command.WriteFlash(act,directfit,296,act)
+                Thread.sleep(2000)
+                val Pro=mainPeace.command.WriteFlash(act,directfit,296,mainPeace)
+                handler.post {
+                    act.rootview.back.isEnabled=true
+                    act.DaiLogDismiss()
+                    if(Pro){
+//                            Toast.makeText(activity,"燒錄成功",Toast.LENGTH_SHORT).show();
+                        Frag_Function_Key_ID.s19 =directfit
+                        rootview.Select_Key.visibility=View.VISIBLE
+                        rootview.program.isEnabled=true
+                        act.DaiLogDismiss()
+                    }else{
+//                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
+                        act.ShowDaiLog(R.layout.activity_re_program,true,false, Dailog_SetUp_C())
+                        mainPeace.bleServiceControl.disconnect()
+                    }
+                }
+            }else{
+                handler.post {
+                    act.DaiLogDismiss()
+                    act.rootview.back.isEnabled=true
+                    act.ShowDaiLog(R.layout.internet_error,false,true, Dailog_SetUp_C())
+                    act.supportFragmentManager.popBackStack(null,1)
+                }
 
+            }
+        }.start()
+    }
     override fun dispatchKeyEvent(event: KeyEvent?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     companion object {
@@ -233,40 +303,6 @@ class Frag_Fcnction_Key_ID : RootFragement(R.layout.fragment_key__id)
         first=false
     }
 
-    fun Downs19(){
-        if(s19 ==directfit){
-            act.DaiLogDismiss()
-            return}
-        handler.post { act.rootview.back.isEnabled=false }
-        Thread{
-           val a= DownS19(directfit,act)
-                if(a){
-                    if(!mainPeace.command.HandShake()){
-                        mainPeace.command.Reboot()
-                    }
-                    val Pro=mainPeace.command.HandShake()&& mainPeace.command.WriteFlash(act,directfit,296,mainPeace)
-                    handler.post {
-                        act.rootview.back.isEnabled=true
-                        if(Pro){
-                            s19 =directfit
-                        }else{
-                            act.ShowDaiLog(R.layout.activity_re_program,true,true, Dailog_SetUp_C())
-                            mainPeace.bleServiceControl.disconnect()
-                            updateui(FAIL)
-                        }
-                        act.DaiLogDismiss()
-                    }
-                }else{
-                    handler.post {
-                        act.DaiLogDismiss()
-                        act.rootview.back.isEnabled=true
-                        act.ShowDaiLog(R.layout.activity_re_program,true,true, Dailog_SetUp_C())
-                        mainPeace.bleServiceControl.disconnect()
-                    }
-
-                }
-        }.start()
-    }
 
     fun updateui(condition:Int){
         rootview.repr.visibility=View.GONE

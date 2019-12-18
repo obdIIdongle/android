@@ -33,7 +33,7 @@ class Frag_Function_QrcodeScanner : RootFragement(R.layout.fragment_qrcode_scann
     val Lr=4
     val Sp=5
     var place=0
-    lateinit var idcopy: Frag_Fcnction_Key_ID
+    lateinit var idcopy: Frag_Function_Key_ID
     lateinit var edit:EditText
 
     private var mScannerView: ZXingScannerView? = null

@@ -2,6 +2,8 @@ package com.example.obd.OBD_Relearn
 
 
 import android.view.KeyEvent
+import com.example.obd.Beans.Bs_Write_and_Read
+import com.example.obd.Frag.Frag_Function_Key_ID
 import com.example.obd.Frag.Frag_Function_Show_Read
 import com.example.obd.MainPeace
 import com.orange.blelibrary.blelibrary.RootFragement
@@ -18,8 +20,15 @@ class Frag_Function_OBDII_relearn : RootFragement(R.layout.fragment_obdii_relear
         rootview.toper.text="${mainPeace.SelectMake}/${mainPeace.SelectModel}/${mainPeace.SelectYear}"
 
         rootview.next.setOnClickListener {
-            //            act.ChangePage(Frag_Fcnction_Key_ID(),R.id.frage,"Frag_Fcnction_Key_ID",true)
-            act.ChangePage(Frag_Function_Show_Read(),R.id.frage,"Frag_Function_Show_Read",true)
+            //            act.ChangePage(Frag_Function_Key_ID(),R.id.frage,"Frag_Function_Key_ID",true)
+            when(Bs_Write_and_Read.Trun)
+            {
+                Bs_Write_and_Read.讀取 ->
+                {act.ChangePage(Frag_Function_Show_Read(),R.id.frage,"Frag_Function_Show_Read",true)}
+                Bs_Write_and_Read.寫入 ->
+                {act.ChangePage(Frag_Function_Key_ID(),R.id.frage,"Frag_Function_Key_ID",true)}
+            }
+
         }
     }
 

@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import com.example.obd.Beans.Bs_Write_and_Read
 import com.example.obd.MainPeace
 
 import com.orange.obd.R
@@ -37,11 +38,19 @@ class Frag_MainActivity_HomeFragement : RootFragement(R.layout.fragment_home_fra
             mainPeace.Obd_PAD=1
             mainPeace.GoScanner(Frag_Function_Selection(),10,R.id.frage,"Frag_Function_Selection")
         }
+
+        rootview.read_sensor.setOnClickListener {
+            mainPeace.Obd_PAD=0
+            Bs_Write_and_Read.Trun = Bs_Write_and_Read.讀取
+            mainPeace.GoScanner(Frag_Function_Selection(),10,R.id.frage,"Frag_Function_Selection")
+        }
+
         rootview.Setim.setOnClickListener {
             act.ChangePage(Frag_SettingPager_Setting(),R.id.frage,"Frag_SettingPager_Setting",true)
         }
         rootview.obd.setOnClickListener {
             mainPeace.Obd_PAD=0
+            Bs_Write_and_Read.Trun = Bs_Write_and_Read.寫入
             mainPeace.GoScanner(Frag_Function_Selection(),10,R.id.frage,"Frag_Function_Selection")
         }
         rootview.user_menual.setOnClickListener {

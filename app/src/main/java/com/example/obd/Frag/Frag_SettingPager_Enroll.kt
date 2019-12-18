@@ -4,6 +4,7 @@ package com.example.obd.Frag
 import android.content.Context
 import android.view.KeyEvent
 import android.widget.*
+import com.example.obd.Beans.Bs_SensorRecord
 import com.example.obd.util.Util_Http_Command_Function
 import com.example.obd.MainPeace
 import com.orange.blelibrary.blelibrary.CallBack.Dailog_SetUp_C
@@ -24,7 +25,6 @@ class Frag_SettingPager_Enroll : RootFragement(R.layout.activity_enroll) {
     override fun ViewInit() {
 
         mainPeace = activity!! as MainPeace
-
         Arealist.add("Select")
         Arealist.add("EU")
         Arealist.add("North America")
@@ -37,7 +37,7 @@ class Frag_SettingPager_Enroll : RootFragement(R.layout.activity_enroll) {
         val arrayAdapter2 = ArrayAdapter<String>(act, android.R.layout.simple_spinner_item, Arealist2)
 
         rootview.AreaSpinner.adapter = arrayAdapter
-        Store.adapter = arrayAdapter2
+        rootview.Store.adapter = arrayAdapter2
 
         rootview.cancel.setOnClickListener {
             act.GoBack()

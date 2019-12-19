@@ -365,6 +365,6 @@
     <string name="Bluetooth_disconnect">Bluetooth disconnect</string>
     <string name="Connection_error">Connection error</string>
     <string name="Please_check_your_internet_connection">Please check your internet connection</string>
-    <string name="Write_data">Write Data</string>
+    <string name="Write_ID">Write ID</string>
 
 </resources>

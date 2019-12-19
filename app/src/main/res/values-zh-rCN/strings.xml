@@ -298,6 +298,6 @@
     <string name="Bluetooth_disconnect">蓝芽断线</string>
     <string name="Connection_error">连线错误</string>
     <string name="Please_check_your_internet_connection">请检查网路连线</string>
-    <string name="Write_data">写入资料</string>
+    <string name="Write_ID">写入ID</string>
 
 </resources>

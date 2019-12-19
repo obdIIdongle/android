@@ -24,7 +24,7 @@ class Frag_Function_OBDII_relearn : RootFragement(R.layout.fragment_obdii_relear
             Bs_Write_and_Read.讀取 ->
             {rootview.next.text = resources.getString(R.string.Data_reading)}
             Bs_Write_and_Read.寫入 ->
-            {rootview.next.text =resources.getString(R.string.Write_data)}
+            {rootview.next.text =resources.getString(R.string.Write_ID)}
         }
 
         rootview.next.setOnClickListener {

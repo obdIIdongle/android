@@ -245,6 +245,6 @@
     <string name="Bluetooth_disconnect">Bluetooth Verbindung trennen</string>
     <string name="Connection_error">Verbindungsfehler</string>
     <string name="Please_check_your_internet_connection">Bitte überprüfen Sie Ihre Internetverbindung</string>
-    <string name="Write_data">Daten schreiben</string>
+    <string name="Write_ID">ID schreiben</string>
 
 </resources>

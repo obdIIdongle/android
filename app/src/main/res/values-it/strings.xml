@@ -317,6 +317,6 @@
     <string name="Bluetooth_disconnect">Disconnessione Bluetooth</string>
     <string name="Connection_error">Errore di connessione</string>
     <string name="Please_check_your_internet_connection">Controlla la tua connessione Internet</string>
-    <string name="Write_data">Scrivi dati</string>
+    <string name="Write_ID">Scrivi ID</string>
 
 </resources>

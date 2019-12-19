@@ -37,7 +37,7 @@
             android:layout_marginStart="0.5dp"
             android:layout_weight="1"
             android:background="@color/buttoncolor"
-            android:text="@string/Next"
+            android:text="@string/MENU"
             android:textColor="@color/white"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"

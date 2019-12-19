@@ -19,6 +19,14 @@ class Frag_Function_OBDII_relearn : RootFragement(R.layout.fragment_obdii_relear
         rootview.text_content.text=mainPeace.utilMmySqlItemDAO.GetreLarm(mainPeace.SelectMake,mainPeace.SelectModel,mainPeace.SelectYear,mainPeace)
         rootview.toper.text="${mainPeace.SelectMake}/${mainPeace.SelectModel}/${mainPeace.SelectYear}"
 
+        when(Bs_Write_and_Read.Trun)
+        {
+            Bs_Write_and_Read.讀取 ->
+            {rootview.next.text = resources.getString(R.string.Data_reading)}
+            Bs_Write_and_Read.寫入 ->
+            {rootview.next.text =resources.getString(R.string.Write_data)}
+        }
+
         rootview.next.setOnClickListener {
             //            act.ChangePage(Frag_Function_Key_ID(),R.id.frage,"Frag_Function_Key_ID",true)
             when(Bs_Write_and_Read.Trun)

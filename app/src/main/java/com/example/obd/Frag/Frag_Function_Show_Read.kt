@@ -81,6 +81,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
 
                                     root.findViewById<TextView>(R.id.cancel).setOnClickListener {
                                         act.GoBack("Frag_Function_Selection")
+                                        act.DaiLogDismiss()
                                     }
 
                                     //root.cancel.setOnClickListener {
@@ -89,6 +90,9 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
 
                                 }
                             })
+
+                            act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                            act.rootview.back.setOnClickListener { act.GoMenu() }
 
                             rootview.program.text = resources.getString(R.string.MENU)
                             rootview.program.setOnClickListener {
@@ -121,6 +125,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                             override fun SetUP(root: Dialog, act: RootActivity) {
                                 root.findViewById<TextView>(R.id.cancel).setOnClickListener {
                                     act.GoBack("Frag_Function_Selection")
+                                    act.DaiLogDismiss()
                                 }
 
                                 //rootview.cancel.setOnClickListener {
@@ -128,6 +133,9 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                                     //}
                             }
                         })
+
+                        act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                        act.rootview.back.setOnClickListener { act.GoMenu() }
 
                         rootview.program.text = resources.getString(R.string.MENU)
                         rootview.program.setOnClickListener {
@@ -146,6 +154,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
 
                         root.findViewById<TextView>(R.id.cancel).setOnClickListener {
                             act.GoBack("Frag_Function_Selection")
+                            act.DaiLogDismiss()
                         }
 
                         //rootview.cancel.setOnClickListener {
@@ -153,6 +162,9 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                             //}
                     }
                 })
+
+                    act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                    act.rootview.back.setOnClickListener { act.GoMenu() }
 
                     rootview.program.text = resources.getString(R.string.MENU)
                     rootview.program.setOnClickListener {
@@ -187,6 +199,10 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                         act.GoMenu()
                     }
                     rootview.program.text = resources.getString(R.string.MENU)
+
+                    act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                    act.rootview.back.setOnClickListener { act.GoMenu() }
+
                 }else{
                     act.ChangePage(Frag_SelectMmyPage_MakeFragement(),R.id.frage,"Frag_SelectMmyPage_MakeFragement",false)
                     act.Toast("車種選擇錯誤")

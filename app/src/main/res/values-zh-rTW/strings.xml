@@ -240,5 +240,6 @@
     <string name="Bluetooth_disconnect">藍芽斷線</string>
     <string name="Connection_error">連線錯誤</string>
     <string name="Please_check_your_internet_connection">請檢查網路連線</string>
+    <string name="Write_data">寫入資料</string>
 
 </resources>

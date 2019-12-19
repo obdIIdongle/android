@@ -58,20 +58,6 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 
     override fun ViewInit() {
         mainPeace=activity as MainPeace
-
-        Thread{
-            while(true)
-            {
-                if (rootview.Lft.getText().length >= 6 && rootview.Rft.getText().length >= 6 && rootview.Lrt.getText().length >= 6 && rootview.Rrt.getText().length >= 6) {
-                    rootview.condition.text = resources.getString(R.string.Please_press_Sending_data)
-                }
-                else
-                {
-                    rootview.condition.text = resources.getString(R.string.Choose_the_tire_position_and_enter_new_sensor_ID_number)
-                }
-            }
-        }.start()
-
         if(ShowSelect){rootview.Select_Key.visibility=View.VISIBLE}else{rootview.Select_Key.visibility=View.GONE}
         if(SCAN_OR_KEY==0){
             scanner.Scan_For=scanner.ID
@@ -110,11 +96,11 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
         rootview.mmy_text.text="$make/$model/$year"
         scanner.idcopy=this
         scanner.need=need
-        rootview.Lft.addTextChangedListener(Util_CustomTextWatcher(rootview.Lft, need))
-        rootview.Rft.addTextChangedListener(Util_CustomTextWatcher(rootview.Rft, need))
-        rootview.Lrt.addTextChangedListener(Util_CustomTextWatcher(rootview.Lrt, need))
-        rootview.Rrt.addTextChangedListener(Util_CustomTextWatcher(rootview.Rrt, need))
-        rootview.lrt3.addTextChangedListener(Util_CustomTextWatcher(rootview.lrt3, need))
+        rootview.Lft.addTextChangedListener(Util_CustomTextWatcher(rootview.Lft, need,this))
+        rootview.Rft.addTextChangedListener(Util_CustomTextWatcher(rootview.Rft, need,this))
+        rootview.Lrt.addTextChangedListener(Util_CustomTextWatcher(rootview.Lrt, need,this))
+        rootview.Rrt.addTextChangedListener(Util_CustomTextWatcher(rootview.Rrt, need,this))
+        rootview.lrt3.addTextChangedListener(Util_CustomTextWatcher(rootview.lrt3, need,this))
         rootview.Lft.setFilters(arrayOf<InputFilter>(InputFilter.LengthFilter(need)))
         rootview.lrt3.setFilters(arrayOf<InputFilter>(InputFilter.LengthFilter(need)))
         rootview.Rft.setFilters(arrayOf<InputFilter>(InputFilter.LengthFilter(need)))
@@ -142,8 +128,8 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                     return@setOnClickListener
                 }
                 write.add(rootview.Rft.getText().toString())
-                write.add(rootview.Rrt.getText().toString())
                 write.add(rootview.Lrt.getText().toString())
+                write.add(rootview.Rrt.getText().toString())
                 write.add(rootview.Lft.getText().toString())
                 if (rootview.lrt3.getText().length >= 6 && rootview.lrt3.getText().length <= need) {
                     write.add(rootview.lrt3.getText().toString())
@@ -161,13 +147,23 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                             ProgranFinsh = true
                             updateui(SUCCESS)
                             ScanLf = Lft.text.toString()
-                            ScanRr = Rrt.text.toString()
                             ScanRf = Rft.text.toString()
                             ScanLr = Lrt.text.toString()
+                            ScanRr = Rrt.text.toString()
                             ScanSp = lrt3.text.toString()
                             act.rootview.back.setImageResource(R.mipmap.btn_menu)
                             act.rootview.back.setOnClickListener { act.GoMenu() }
-                            act.ShowDaiLog(R.layout.activity_take_out, true, false, Dailog_SetUp_C())
+
+                            act.ShowDaiLog(R.layout.activity_take_out, true, false, object :Dailog_SetUp_C(){
+                                override fun SetUP(root: Dialog, act: RootActivity) {
+
+                                    root.findViewById<TextView>(R.id.cancel).setOnClickListener {
+                                        act.GoMenu()
+                                        act.DaiLogDismiss()
+                                    }
+
+                                }
+                            })
                         } else {
                             act.rootview.back.setImageResource(R.mipmap.btn_menu)
                             act.rootview.back.setOnClickListener { act.GoMenu() }
@@ -257,6 +253,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 
                                     root.findViewById<TextView>(R.id.cancel).setOnClickListener {
                                         act.GoBack("Frag_Function_Selection")
+                                        act.DaiLogDismiss()
                                     }
 
                                     //rootview.cancel.setOnClickListener {
@@ -266,6 +263,9 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                                 }
                             })
                             mainPeace.bleServiceControl.disconnect()
+
+                            act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                            act.rootview.back.setOnClickListener { act.GoMenu() }
 
                             rootview.program.setOnClickListener {
                                 act.GoBack("Frag_Function_Selection")
@@ -300,6 +300,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 
                                 root.findViewById<TextView>(R.id.cancel).setOnClickListener {
                                     act.GoBack("Frag_Function_Selection")
+                                    act.DaiLogDismiss()
                                 }
 
                                 //rootview.cancel.setOnClickListener {
@@ -309,6 +310,9 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                             }
                         })
                         //act.GoBack("Frag_Function_Selection")
+
+                        act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                        act.rootview.back.setOnClickListener { act.GoMenu() }
 
                         rootview.program.setOnClickListener {
                             act.GoBack("Frag_Function_Selection")
@@ -327,6 +331,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                         override fun SetUP(root: Dialog, act: RootActivity) {
                             root.findViewById<TextView>(R.id.cancel).setOnClickListener {
                                 act.GoBack("Frag_Function_Selection")
+                                act.DaiLogDismiss()
                             }
 
                             //rootview.cancel.setOnClickListener {
@@ -335,6 +340,9 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                                 //}
                         }
                     })
+
+                    act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                    act.rootview.back.setOnClickListener { act.GoMenu() }
 
                     rootview.program.text = resources.getString(R.string.MENU)
                     rootview.program.setOnClickListener {

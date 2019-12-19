@@ -8,6 +8,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.obd.Beans.Bs_Write_and_Read
 import com.example.obd.Dialog.Da_LogOut
 import com.example.obd.Frag.Frag_MainActivity_HomeFragement
 import com.orange.obd.R
@@ -118,8 +119,18 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
         when (tag) {
             "Frag_Function_Selection" -> {
                 //rootview.bartitle.text = "OBDII DONGLE"
-                rootview.bartitle.text = getString(R.string.OBDII_relearn)
+                when (Bs_Write_and_Read.Trun) {
+                    Bs_Write_and_Read.讀取 -> {
+                        rootview.bartitle.text = getString(R.string.app_sensor_info_read)
+                    }
+
+                    Bs_Write_and_Read.寫入 ->
+                    {
+                        rootview.bartitle.text = getString(R.string.OBDII_relearn)
+                    }
+                }
             }
+
             "Frag_SelectMmyPage_MakeFragement" -> {
             }
             "Frag_SelectMmyPage_ModelFragement" -> {
@@ -130,7 +141,16 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
             "Frag_SelectMmyPage_YearFragement" -> {
             }
             "Frag_Function_OBDII_relearn" -> {
-                rootview.bartitle.text = getString(R.string.OBDII_relearn)
+                when (Bs_Write_and_Read.Trun) {
+                    Bs_Write_and_Read.讀取 -> {
+                        rootview.bartitle.text = getString(R.string.app_sensor_info_read)
+                    }
+
+                    Bs_Write_and_Read.寫入 ->
+                    {
+                        rootview.bartitle.text = getString(R.string.OBDII_relearn)
+                    }
+                }
             }
             "Frag_Function_Show_Read" -> {
             }

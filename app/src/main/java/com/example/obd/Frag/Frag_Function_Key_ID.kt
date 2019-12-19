@@ -148,7 +148,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                 if (rootview.lrt3.getText().length >= 6 && rootview.lrt3.getText().length <= need) {
                     write.add(rootview.lrt3.getText().toString())
                 }
-                act.ShowDaiLog(R.layout.dataloading, false, false, object : Dailog_SetUp_C() {
+                act.ShowDaiLog(R.layout.data_sending, false, false, object : Dailog_SetUp_C() {
                     override fun SetUP(root: Dialog, act: RootActivity) {
                         root.findViewById<TextView>(R.id.title).text = resources.getString(R.string.Sending_data)
                     }

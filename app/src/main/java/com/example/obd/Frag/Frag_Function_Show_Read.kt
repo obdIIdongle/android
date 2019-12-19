@@ -43,7 +43,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
             rootview.lrt.visibility = View.GONE
             tire = "04"
         }
-        act.ShowDaiLog(R.layout.dataloading,false,true, object :Dailog_SetUp_C(){
+        act.ShowDaiLog(R.layout.data_reading,false,true, object :Dailog_SetUp_C(){
             override fun SetUP(root: Dialog, act: RootActivity) {
                 rootview.title.text=resources.getString(R.string.Data_Loading)
             }
@@ -167,7 +167,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
     }
     //var handler = Handler()
     fun SetId() {
-        act.ShowDaiLog(R.layout.dataloading,false,true, object :Dailog_SetUp_C() {
+        act.ShowDaiLog(R.layout.data_reading,false,true, object :Dailog_SetUp_C() {
             override fun SetUP(root: Dialog, act: RootActivity) {
                 rootview.title.text=resources.getString(R.string.app_data_reading)
             }

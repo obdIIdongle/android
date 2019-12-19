@@ -11,11 +11,11 @@ class Frag_SettingPager_Setting : RootFragement(R.layout.fragment_setting) {
     override fun ViewInit() {
         rootview.area.setOnClickListener{
             Frag_SettingPager_Set_Languages.place =1
-            (activity as MainPeace).ChangePage(Frag_SettingPager_Set_Languages(),R.id.frage,"SetArea",true)
+            (activity as MainPeace).ChangePage(Frag_SettingPager_Set_Languages(),R.id.frage,"Frag_SettingPager_Set_Languages",true)
         }
         rootview.policy.setOnClickListener{
             Frag_SettingPager_PrivaryPolicy.place =1
-            (activity as MainPeace).ChangePage(Frag_SettingPager_PrivaryPolicy(),R.id.frage,"policy",true)
+            (activity as MainPeace).ChangePage(Frag_SettingPager_PrivaryPolicy(),R.id.frage,"Frag_SettingPager_PrivaryPolicy",true)
         }
         rootview.version.setOnClickListener{
             (activity as MainPeace).ChangePage(Frag_SettingPager_Update(),R.id.frage,"Frag_SettingPager_Update",true)

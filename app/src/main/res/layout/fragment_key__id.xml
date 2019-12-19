@@ -48,7 +48,7 @@
             android:layout_marginStart="0.5dp"
             android:layout_weight="1"
             android:background="@color/buttoncolor"
-            android:text="@string/START"
+            android:text="@string/Sending_data"
             android:textColor="@color/white"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +79,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="key in the Original sensor ID number"
+        android:text="@string/Choose_the_tire_position_and_enter_new_sensor_ID_number"
         android:textSize="16dp" />
 
     <RelativeLayout
@@ -163,9 +163,8 @@
                     android:layout_marginEnd="14dp"
                     android:background="@mipmap/icon_input_box_ok"
                     android:gravity="right|center_vertical"
-                    android:hint="Original sensor ID"
+                    android:hint="LF sensor ID"
                     android:paddingRight="20dp"
-                    android:text="12345678"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -193,9 +192,8 @@
                     android:layout_marginEnd="16dp"
                     android:background="@mipmap/icon_input_box_fail"
                     android:gravity="left|center_vertical"
-                    android:hint="Original sensor ID"
+                    android:hint="RF sensor ID"
                     android:paddingLeft="20dp"
-                    android:text="12345678"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -233,9 +231,8 @@
                     android:layout_marginEnd="14dp"
                     android:background="@mipmap/icon_input_box_locked"
                     android:gravity="right|center_vertical"
-                    android:hint="Original sensor ID"
+                    android:hint="LR sensor ID"
                     android:paddingRight="20dp"
-                    android:text="12345678"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -263,9 +260,8 @@
                     android:layout_marginEnd="16dp"
                     android:background="@mipmap/icon_input_box_locked"
                     android:gravity="left|center_vertical"
-                    android:hint="Original sensor ID"
+                    android:hint="RR sensor ID"
                     android:paddingLeft="20dp"
-                    android:text="12345678"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -330,7 +326,7 @@
         android:id="@+id/Select_Key"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/imageView73"
@@ -373,7 +369,7 @@
                     android:layout_height="match_parent"
                     android:layout_below="@id/imageView77"
                     android:gravity="center"
-                    android:text="@string/Scan_Code"
+                    android:text="@string/Scan_Code_For_Orange_Sensor"
                     android:textColor="@color/white" />
 
                 <ImageView
@@ -398,7 +394,7 @@
                     android:layout_height="match_parent"
                     android:layout_below="@id/imageView75"
                     android:gravity="center"
-                    android:text="@string/Key_in_the_original_sensor_ID_number"
+                    android:text="@string/key_in"
                     android:textColor="@color/white" />
 
                 <ImageView

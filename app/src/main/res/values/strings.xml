@@ -321,8 +321,6 @@
     </string>
     <string name="step4_11">Step 10.\n Program fail , please press RE-PROGRAM button to re-execute program.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Set_up">Set up</string>
     <string name="Check_for_updates">Check for updates</string>
     <string name="update">update</string>
@@ -352,4 +350,20 @@
     <string name="OBDII_relearn">OBDII relearn</string>
     <string name="My_favorite">My favorite</string>
     <string name="Three_ways">Three ways to vehicle data selection</string>
+
+    <string name="Read_ID_from_vehicle">Read ID from vehicle</string>
+    <string name="Scan_Code_For_Orange_Sensor">Scan Code (For Orange Sensor)</string>
+    <string name="key_in">Key In</string>
+    <string name="Choose_the_tire_position_and_enter_new_sensor_ID_number">Choose the tire position and enter new sensor ID number</string>
+    <string name="Sending_data">Sending Data</string>
+    <string name="Please_press_Sending_data">Please press "Sending data"</string>
+    <string name="Data_reading">Data Reading</string>
+
+    <string name="Vehicle_replacement">Vehicle replacement</string>
+    <string name="Please_remove_OBD_and_reinsert">Please remove OBD and reinsert</string>
+    <string name="Write_completed">Write completed</string>
+    <string name="Bluetooth_disconnect">Bluetooth disconnect</string>
+    <string name="Connection_error">Connection error</string>
+    <string name="Please_check_your_internet_connection">Please check your internet connection</string>
+
 </resources>

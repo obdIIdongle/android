@@ -20,7 +20,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="請檢察網路連線"
+            android:text="@string/Please_check_your_internet_connection"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
@@ -33,7 +33,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="連線錯誤"
+            android:text="@string/Connection_error"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -58,7 +58,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:onClick="onclick"
-                android:text="確認"
+                android:text="@string/Set_up"
                 android:textColor="@color/colorPrimary" />
 
         </LinearLayout>

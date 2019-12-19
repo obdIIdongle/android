@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.appcompat.app.AlertDialog
 import android.text.InputFilter
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
@@ -33,6 +34,8 @@ import com.orange.blelibrary.blelibrary.CallBack.Dailog_SetUp_C
 import com.orange.blelibrary.blelibrary.RootActivity
 import com.orange.blelibrary.blelibrary.RootFragement
 import com.orange.blelibrary.blelibrary.tool.FormatConvert
+import kotlinx.android.synthetic.main.activity_main_peace.view.back
+import kotlinx.android.synthetic.main.activity_re_program.view.*
 import kotlinx.android.synthetic.main.dataloading.view.*
 
 
@@ -55,6 +58,19 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 
     override fun ViewInit() {
         mainPeace=activity as MainPeace
+
+        Thread{
+            while(true)
+            {
+                if (rootview.Lft.getText().length >= 6 && rootview.Rft.getText().length >= 6 && rootview.Lrt.getText().length >= 6 && rootview.Rrt.getText().length >= 6) {
+                    rootview.condition.text = resources.getString(R.string.Please_press_Sending_data)
+                }
+                else
+                {
+                    rootview.condition.text = resources.getString(R.string.Choose_the_tire_position_and_enter_new_sensor_ID_number)
+                }
+            }
+        }.start()
 
         if(ShowSelect){rootview.Select_Key.visibility=View.VISIBLE}else{rootview.Select_Key.visibility=View.GONE}
         if(SCAN_OR_KEY==0){
@@ -105,53 +121,61 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
         rootview.Lrt.setFilters(arrayOf<InputFilter>(InputFilter.LengthFilter(need)))
         rootview.Rrt.setFilters(arrayOf<InputFilter>(InputFilter.LengthFilter(need)))
         rootview.program.setOnClickListener {
-            val write = ArrayList<String>()
-            if (rootview.Lft.getText().length < 6 || rootview.Lft.getText().length > need) {
-                return@setOnClickListener
+
+            if(rootview.program.text.equals(resources.getString(R.string.MENU)))
+            {
+                act.GoMenu()
             }
-            if (rootview.Rft.getText().length < 6 || rootview.Rft.getText().length > need) {
-                return@setOnClickListener
-            }
-            if (rootview.Lrt.getText().length < 6 || rootview.Lrt.getText().length > need) {
-                return@setOnClickListener
-            }
-            if (rootview.Rrt.getText().length < 6 || rootview.Rrt.getText().length > need) {
-                return@setOnClickListener
-            }
-            write.add(rootview.Rft.getText().toString())
-            write.add(rootview.Rrt.getText().toString())
-            write.add(rootview.Lrt.getText().toString())
-            write.add(rootview.Lft.getText().toString())
-            if (rootview.lrt3.getText().length >= 6 && rootview.lrt3.getText().length <= need) {
-                write.add(rootview.lrt3.getText().toString())
-            }
-            act.ShowDaiLog(R.layout.dataloading,false,false, object : Dailog_SetUp_C(){
-                override fun SetUP(root: Dialog, act: RootActivity) {
-                    root.findViewById<TextView>(R.id.title).text=resources.getString(R.string.Programming)
+            else {
+
+                val write = ArrayList<String>()
+                if (rootview.Lft.getText().length < 6 || rootview.Lft.getText().length > need) {
+                    return@setOnClickListener
                 }
-            })
-            Thread{
-                val iscuss=mainPeace.command.setTireId(write)
-                handler.post {
-                    act.DaiLogDismiss()
-                    if(iscuss){
-                        ProgranFinsh=true
-                        updateui(SUCCESS)
-                        ScanLf=Lft.text.toString()
-                        ScanRr=Rrt.text.toString()
-                        ScanRf=Rft.text.toString()
-                        ScanLr=Lrt.text.toString()
-                        ScanSp=lrt3.text.toString()
-                        act.rootview.back.setImageResource(R.mipmap.btn_menu)
-                        act.rootview.back.setOnClickListener { act.GoMenu() }
-                        act.ShowDaiLog(R.layout.activity_take_out,true,false, Dailog_SetUp_C())
-                    }else{
-                        act.rootview.back.setImageResource(R.mipmap.btn_menu)
-                        act.rootview.back.setOnClickListener { act.GoMenu() }
-                        updateui(FAIL)
+                if (rootview.Rft.getText().length < 6 || rootview.Rft.getText().length > need) {
+                    return@setOnClickListener
+                }
+                if (rootview.Lrt.getText().length < 6 || rootview.Lrt.getText().length > need) {
+                    return@setOnClickListener
+                }
+                if (rootview.Rrt.getText().length < 6 || rootview.Rrt.getText().length > need) {
+                    return@setOnClickListener
+                }
+                write.add(rootview.Rft.getText().toString())
+                write.add(rootview.Rrt.getText().toString())
+                write.add(rootview.Lrt.getText().toString())
+                write.add(rootview.Lft.getText().toString())
+                if (rootview.lrt3.getText().length >= 6 && rootview.lrt3.getText().length <= need) {
+                    write.add(rootview.lrt3.getText().toString())
+                }
+                act.ShowDaiLog(R.layout.dataloading, false, false, object : Dailog_SetUp_C() {
+                    override fun SetUP(root: Dialog, act: RootActivity) {
+                        root.findViewById<TextView>(R.id.title).text = resources.getString(R.string.Sending_data)
                     }
-                }
-            }.start()
+                })
+                Thread {
+                    val iscuss = mainPeace.command.setTireId(write)
+                    handler.post {
+                        act.DaiLogDismiss()
+                        if (iscuss) {
+                            ProgranFinsh = true
+                            updateui(SUCCESS)
+                            ScanLf = Lft.text.toString()
+                            ScanRr = Rrt.text.toString()
+                            ScanRf = Rft.text.toString()
+                            ScanLr = Lrt.text.toString()
+                            ScanSp = lrt3.text.toString()
+                            act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                            act.rootview.back.setOnClickListener { act.GoMenu() }
+                            act.ShowDaiLog(R.layout.activity_take_out, true, false, Dailog_SetUp_C())
+                        } else {
+                            act.rootview.back.setImageResource(R.mipmap.btn_menu)
+                            act.rootview.back.setOnClickListener { act.GoMenu() }
+                            updateui(FAIL)
+                        }
+                    }
+                }.start()
+            }
         }
         rootview.scaner.setOnClickListener{
             rootview.Select_Key.visibility=View.GONE
@@ -187,10 +211,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
         }
         rootview.keyin.setOnClickListener {
             rootview.Select_Key.visibility=View.GONE
-            rootview.Lft.setText("1234567")
-            rootview.Rft.setText("1234567")
-            rootview.Lrt.setText("1234567")
-            rootview.Rrt.setText("1234567")
+
         }
         updateui(WAIT)
         rootview.Lft.setText(ScanLf)
@@ -228,12 +249,28 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 //                    act.command.HandShake()
                     if (!mainPeace.command.WriteVersion()||!mainPeace.command.GoBootloader()) {
                         handler.post {
-                            act.ShowDaiLog(R.layout.activity_re_program,false,true, object :Dailog_SetUp_C(){
+                            rootview.program.text = resources.getString(R.string.MENU)
+
+                            act.ShowDaiLog(R.layout.activity_re_program,false,false, object :Dailog_SetUp_C(){
                                 override fun SetUP(root: Dialog, act: RootActivity) {
-                                    rootview.title.text=resources.getString(R.string.Programming)
+                                    //rootview.title.text=resources.getString(R.string.Programming)
+
+                                    root.findViewById<TextView>(R.id.cancel).setOnClickListener {
+                                        act.GoBack("Frag_Function_Selection")
+                                    }
+
+                                    //rootview.cancel.setOnClickListener {
+                                        //act.DaiLogDismiss()
+                                        //act.GoBack("Frag_Function_Selection")
+                                        //}
                                 }
                             })
                             mainPeace.bleServiceControl.disconnect()
+
+                            rootview.program.setOnClickListener {
+                                act.GoBack("Frag_Function_Selection")
+                                Log.e("Frag_Function_Selection","back")
+                            }
                         }
                         handler.post { mainPeace.rootview.back.isEnabled=true }
                         return@Thread
@@ -256,7 +293,28 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                         act.DaiLogDismiss()
                     }else{
 //                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
-                        act.ShowDaiLog(R.layout.activity_re_program,true,false, Dailog_SetUp_C())
+                        rootview.program.text = resources.getString(R.string.MENU)
+
+                        act.ShowDaiLog(R.layout.activity_re_program,false,false, object :Dailog_SetUp_C(){
+                            override fun SetUP(root: Dialog, act: RootActivity) {
+
+                                root.findViewById<TextView>(R.id.cancel).setOnClickListener {
+                                    act.GoBack("Frag_Function_Selection")
+                                }
+
+                                //rootview.cancel.setOnClickListener {
+                                    //act.DaiLogDismiss()
+                                    //act.GoBack("Frag_Function_Selection")
+                                    //}
+                            }
+                        })
+                        //act.GoBack("Frag_Function_Selection")
+
+                        rootview.program.setOnClickListener {
+                            act.GoBack("Frag_Function_Selection")
+                            Log.e("Frag_Function_Selection","back")
+                        }
+
                         mainPeace.bleServiceControl.disconnect()
                     }
                 }
@@ -264,8 +322,27 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                 handler.post {
                     act.DaiLogDismiss()
                     act.rootview.back.isEnabled=true
-                    act.ShowDaiLog(R.layout.internet_error,false,true, Dailog_SetUp_C())
-                    act.supportFragmentManager.popBackStack(null,1)
+
+                    act.ShowDaiLog(R.layout.internet_error,false,false, object :Dailog_SetUp_C(){
+                        override fun SetUP(root: Dialog, act: RootActivity) {
+                            root.findViewById<TextView>(R.id.cancel).setOnClickListener {
+                                act.GoBack("Frag_Function_Selection")
+                            }
+
+                            //rootview.cancel.setOnClickListener {
+                                //act.DaiLogDismiss()
+                                //act.GoBack("Frag_Function_Selection")
+                                //}
+                        }
+                    })
+
+                    rootview.program.text = resources.getString(R.string.MENU)
+                    rootview.program.setOnClickListener {
+                        act.GoBack("Frag_Function_Selection")
+                        Log.e("Frag_Function_Selection","back")
+                    }
+
+                    //act.supportFragmentManager.popBackStack(null,1)
                 }
 
             }
@@ -305,6 +382,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 
 
     fun updateui(condition:Int){
+
         rootview.repr.visibility=View.GONE
         rootview.program.visibility=View.GONE
         when(condition){
@@ -320,6 +398,8 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                 rootview.Lr.setBackgroundResource(R.mipmap.icon_tire_ok)
                 rootview.Rr.setBackgroundResource(R.mipmap.icon_tire_ok)
                 rootview.program.visibility=View.VISIBLE
+                //rootview.program.text = "MENU"
+                rootview.program.text = resources.getString(R.string.MENU)
             }
             FAIL ->{
                 rootview.condition.text=resources.getString(R.string.Programming_failed)
@@ -333,9 +413,11 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                 rootview.Lr.setBackgroundResource(R.mipmap.icon_tire_fail)
                 rootview.Rr.setBackgroundResource(R.mipmap.icon_tire_fail)
                 rootview.program.visibility=View.VISIBLE
+
+                rootview.program.text = resources.getString(R.string.MENU)
             }
             WAIT ->{
-                rootview.condition.text=resources.getString(R.string.Key_in_the_original_sensor_ID_number)
+                //rootview.condition.text=resources.getString(R.string.Choose_the_tire_position_and_enter_new_sensor_ID_number)
                 rootview.condition.setTextColor(resources.getColor(R.color.buttoncolor))
                 rootview.Lft.setBackgroundResource(R.mipmap.icon_input_box_locked)
                 rootview.Rft.setBackgroundResource(R.mipmap.icon_input_box_locked)
@@ -348,6 +430,8 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                 rootview.program.visibility=View.VISIBLE
             }
         }
+
+
     }
     fun RequestPermission() {
         if (ActivityCompat.checkSelfPermission(activity!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {

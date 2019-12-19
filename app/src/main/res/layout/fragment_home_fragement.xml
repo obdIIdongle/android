@@ -61,7 +61,7 @@
                     android:layout_alignParentStart="false"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
-                    android:alpha="1"
+                    android:alpha="0.5"
                     android:src="@mipmap/btn_pad_idcopy" />
 
                 <TextView
@@ -72,6 +72,7 @@
                     android:layout_alignStart="@id/pad"
                     android:layout_alignEnd="@id/pad"
                     android:layout_alignParentStart="false"
+                    android:alpha="0.5"
                     android:gravity="center"
                     android:text="USB PAD (ID Copy by OBD)"
                     android:textColor="@android:color/background_dark"

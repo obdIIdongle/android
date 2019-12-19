@@ -49,16 +49,26 @@ class Frag_SettingPager_Set_Languages : RootFragement(R.layout.fragment_set__lan
             profileEditor.commit()
             Log.d("Language",LanguagesSpinner.selectedItem.toString())
             when(LanguagesSpinner.selectedItem.toString()){
-                "繁體中文"->{ Util_LanguageUtil.updateLocale(activity, Util_LanguageUtil.LOCALE_TAIWAIN);}
-                "简体中文"->{ Util_LanguageUtil.updateLocale(activity, Util_LanguageUtil.LOCALE_CHINESE);}
-                "Deutsche"->{ Util_LanguageUtil.updateLocale(activity, Util_LanguageUtil.LOCALE_DE);}
-                "English"->{ Util_LanguageUtil.updateLocale(activity, Util_LanguageUtil.LOCALE_ENGLISH);}
-                "Italiano"->{ Util_LanguageUtil.updateLocale(activity, Util_LanguageUtil.LOCALE_ITALIANO);}
+                "繁體中文"->{
+                    SetLan(LOCALE_TAIWAIN)
+                }
+                "简体中文"->{
+                    SetLan(LOCALE_CHINESE)
+                }
+                "Deutsche"->{
+                    SetLan(LOCALE_DE)
+                }
+                "English"->{
+                    SetLan(LOCALE_ENGLISH)
+                }
+                "Italiano"->{
+                    SetLan(LOCALE_ITALIANO)
+                }
             }
             if(place ==0){
-                (activity as MainPeace).ChangePage(Frag_SettingPager_PrivaryPolicy(),R.id.frage,"Policy",false)
+                (activity as MainPeace).ChangePage(Frag_SettingPager_PrivaryPolicy(),R.id.frage,"Frag_SettingPager_PrivaryPolicy",false)
             }else{
-                (activity as MainPeace).ChangePage(Frag_MainActivity_HomeFragement(),R.id.frage,"Home",false)
+                act.SetHome(Frag_MainActivity_HomeFragement(), "Frag_MainActivity_HomeFragement")
             }
         }
     }

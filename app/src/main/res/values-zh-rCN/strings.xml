@@ -283,4 +283,19 @@
     <string name="My_favorite">我的最愛</string>
     <string name="Three_ways">三种方式选取车辆资讯</string>
     <string name="Programming">烧录中</string>
+
+    <string name="Read_ID_from_vehicle">从车辆读取ID</string>
+    <string name="Scan_Code_For_Orange_Sensor">扫描码（请用于Orange传感器）</string>
+    <string name="key_in">键盘输入</string>
+    <string name="Choose_the_tire_position_and_enter_new_sensor_ID_number">选择轮胎位置并输入新的传感器ID号码</string>
+    <string name="Sending_data">传送资料</string>
+    <string name="Please_press_Sending_data">请按"传送资料"</string>
+    <string name="Data_reading">资料读取</string>
+
+    <string name="Vehicle_replacement">车种更换</string>
+    <string name="Please_remove_OBD_and_reinsert">请取下OBD重新插入</string>
+    <string name="Write_completed">写入完成</string>
+    <string name="Bluetooth_disconnect">蓝芽断线</string>
+    <string name="Connection_error">连线错误</string>
+    <string name="Please_check_your_internet_connection">请检查网路连线</string>
 </resources>

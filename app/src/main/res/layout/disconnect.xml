@@ -20,7 +20,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="請取下OBD"
+            android:text="@string/Please_remove_the_sensor"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
@@ -33,7 +33,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="藍芽斷線"
+            android:text="@string/Bluetooth_disconnect"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 

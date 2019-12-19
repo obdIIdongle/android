@@ -44,7 +44,7 @@ public class Util_FtpManager {
 
     public static String GetS19Name(String name) {
         try {
-            URL url = new URL("http://bento2.orange-electronic.com/Orange%20Cloud/Drive/OBD%20DONGLE/" + name + "/");
+            URL url = new URL("https://bento2.orange-electronic.com/Orange%20Cloud/Drive/OBD%20DONGLE/" + name + "/");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
             String line = null;
@@ -69,7 +69,7 @@ public class Util_FtpManager {
         if(!Internet){return true;}
         try {
             donloads19 = GetS19Name(name);
-            InputStream is = Internet ? new URL("http://bento2.orange-electronic.com/Orange%20Cloud/Drive/OBD%20DONGLE/" + name + "/" + donloads19).openStream() : activity.getAssets().open("TO001.srec");
+            InputStream is = Internet ? new URL("https://bento2.orange-electronic.com/Orange%20Cloud/Drive/OBD%20DONGLE/" + name + "/" + donloads19).openStream() : activity.getAssets().open("TO001.srec");
             FileOutputStream fos = new FileOutputStream(activity.getApplicationContext().getFilesDir().getPath() + "/" + name + ".s19");
             int bufferSize = 8192;
             byte[] buf = new byte[bufferSize];
@@ -98,8 +98,8 @@ public class Util_FtpManager {
             if (profilePreferences.getString("mmyname", "").equals(mmyname)) {
                 return true;
             }
-            URL url = new URL("http://bento2.orange-electronic.com/Orange%20Cloud/Database/MMY/EU/" + mmyname);
-            Log.d("path", "http://bento2.orange-electronic.com/Orange%20Cloud/Database/MMY/EU/" + mmyname);
+            URL url = new URL("https://bento2.orange-electronic.com/Orange%20Cloud/Database/MMY/EU/" + mmyname);
+            Log.d("path", "https://bento2.orange-electronic.com/Orange%20Cloud/Database/MMY/EU/" + mmyname);
             InputStream is = Internet ? url.openStream() : activity.getAssets().open("mmy.db");
             FileOutputStream fos = new FileOutputStream(fileanme);
             int bufferSize = 8192;
@@ -131,7 +131,7 @@ public class Util_FtpManager {
 
     public static String mmyname() {
         try {
-            URL url = new URL("http://bento2.orange-electronic.com/Orange%20Cloud/Database/MMY/EU/");
+            URL url = new URL("https://bento2.orange-electronic.com/Orange%20Cloud/Database/MMY/EU/");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
             String line = null;

@@ -302,4 +302,19 @@
     <string name="My_favorite">Preferiti</string>
     <string name="Three_ways">Tre modi per selezionare i dati del veicolo</string>
     <string name="Programming">Programmazione</string>
+
+    <string name="Read_ID_from_vehicle">Leggi ID dal veicolo</string>
+    <string name="Scan_Code_For_Orange_Sensor">Codice di scansione (per sensore Orange)</string>
+    <string name="key_in">Digita</string>
+    <string name="Choose_the_tire_position_and_enter_new_sensor_ID_number">Scegli la posizione del pneumatico e inserisci il nuovo numero ID del sensore</string>
+    <string name="Sending_data">Invio di dati</string>
+    <string name="Please_press_Sending_data">Prego premere "Invio dati"</string>
+    <string name="Data_reading">Lettura dei dati</string>
+
+    <string name="Vehicle_replacement">Sostituzione del veicolo</string>
+    <string name="Please_remove_OBD_and_reinsert">Rimuovere OBD e reinserirlo</string>
+    <string name="Write_completed">Scrivi completata</string>
+    <string name="Bluetooth_disconnect">Disconnessione Bluetooth</string>
+    <string name="Connection_error">Errore di connessione</string>
+    <string name="Please_check_your_internet_connection">Controlla la tua connessione Internet</string>
 </resources>

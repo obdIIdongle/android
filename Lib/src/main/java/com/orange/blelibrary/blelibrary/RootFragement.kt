@@ -32,9 +32,9 @@ abstract class RootFragement(val layout:Int) : Fragment(), DiapathKey {
         savedInstanceState: Bundle?
     ): View? {
         if(::rootview.isInitialized){return rootview}
+        Laninit()
         rootview=inflater.inflate(layout, container, false)
         rootview.setOnClickListener { act.HideKeyBoard() }
-        Laninit()
         ViewInit()
         return rootview
     }

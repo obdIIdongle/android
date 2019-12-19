@@ -24,7 +24,6 @@ class Frag_MainActivity_HomeFragement : RootFragement(R.layout.fragment_home_fra
         retainInstance = true
     }
     override fun ViewInit() {
-
         mainPeace=activity!! as MainPeace
         val profilePreferences = act.getSharedPreferences("Frag_SettingPager_Setting", Context.MODE_PRIVATE)
         val a= profilePreferences.getString("Language","English")
@@ -35,8 +34,8 @@ class Frag_MainActivity_HomeFragement : RootFragement(R.layout.fragment_home_fra
             rootview.changer.text=resources.getString(R.string.Setting)
         }
         rootview.pad.setOnClickListener {
-            mainPeace.Obd_PAD=1
-            mainPeace.GoScanner(Frag_Function_Selection(),10,R.id.frage,"Frag_Function_Selection")
+            //mainPeace.Obd_PAD=1
+            //mainPeace.GoScanner(Frag_Function_Selection(),10,R.id.frage,"Frag_Function_Selection")
         }
 
         rootview.read_sensor.setOnClickListener {

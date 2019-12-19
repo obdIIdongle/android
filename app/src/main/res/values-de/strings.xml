@@ -230,4 +230,19 @@
     <string name="OBDII_relearn">OBDII relearn</string>
     <string name="My_favorite">mein Favorit</string>
     <string name="Three_ways">Drei Wege um Fahrzeugdaten auszuwählen</string>
+
+    <string name="Read_ID_from_vehicle">ID vom Fahrzeug lesen</string>
+    <string name="Scan_Code_For_Orange_Sensor">Scan Code (für "Orange" Sensor)</string>
+    <string name="key_in">Eingabe</string>
+    <string name="Choose_the_tire_position_and_enter_new_sensor_ID_number">Wählen Sie die Reifenposition und geben Sie die neue Sensor-ID ein</string>
+    <string name="Sending_data">Daten senden</string>
+    <string name="Please_press_Sending_data">Bitte drücken Sie Daten senden</string>
+    <string name="Data_reading">Daten lesen</string>
+
+    <string name="Vehicle_replacement">Fahrzeugersatz</string>
+    <string name="Please_remove_OBD_and_reinsert">Bitte entfernen Sie OBD und setzen Sie es erneut ein</string>
+    <string name="Write_completed">Schreiben Sie abgeschlossen</string>
+    <string name="Bluetooth_disconnect">Bluetooth Verbindung trennen</string>
+    <string name="Connection_error">Verbindungsfehler</string>
+    <string name="Please_check_your_internet_connection">Bitte überprüfen Sie Ihre Internetverbindung</string>
 </resources>

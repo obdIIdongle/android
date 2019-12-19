@@ -35,7 +35,7 @@ class Frag_SettingPager_Sign_in : RootFragement(R.layout.activity_sign_in) {
                     if(a){
                         val profilePreferences = act.getSharedPreferences("Frag_SettingPager_Setting", Context.MODE_PRIVATE)
                         profilePreferences.edit().putString("admin",admin).putString("password",password).commit()
-                        (activity as MainPeace).ChangePage(Frag_MainActivity_HomeFragement(),R.id.frage,"Home",false)
+                        act.GoMenu()
                     }else{
                         Toast.makeText(act,R.string.signfall, Toast.LENGTH_SHORT).show()
                     }

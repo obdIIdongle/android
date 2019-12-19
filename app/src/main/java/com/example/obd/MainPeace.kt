@@ -43,6 +43,7 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
        var Obd_PAD=0
        override fun ViewInit(rootview: View) {
            (application as Myapp).act = this
+           rootview.test.visibility = View.GONE
            command.act = this
            ShowDaiLog(R.layout.dataloading,false,false,object :Dailog_SetUp_C(){
                override fun SetUP(root: Dialog, act: RootActivity) {
@@ -58,13 +59,13 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
                ChangePage(Frag_SettingPager_Set_Languages(), R.id.frage, "Frag_SettingPager_Set_Languages", false)
            } else {
                rootview.frage.setBackgroundColor(resources.getColor(R.color.backgroung))
-               ChangePage(Frag_MainActivity_HomeFragement(), R.id.frage, "Home", false)
+               SetHome(Frag_MainActivity_HomeFragement(), "Frag_MainActivity_HomeFragement")
            }
-           rootview.exit.setOnClickListener {
-               ShowDaiLog(R.layout.logout,false,false, Da_LogOut())
-               }
+           //rootview.exit.setOnClickListener {
+                   //ShowDaiLog(R.layout.logout,false,false, Da_LogOut())
+           //}
            rootview.back.setOnClickListener { GoBack() }
-           rootview.test.setOnClickListener { GoScanner(TestFragement(), 10, R.id.frage, "Test") }
+           //rootview.test.setOnClickListener { GoScanner(TestFragement(), 10, R.id.frage, "Test") }
            rootview.customer.setOnClickListener { startActivity(Intent(this, TalkingActivity::class.java)) }
        }
 
@@ -73,23 +74,57 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
        }
     override fun ChangePageListener(tag: String, frag: Fragment) {
         Log.d("switch", tag)
-        if (tag == "Frag_SettingPager_Set_Languages"||tag == "Policy"||tag == "Frag_SettingPager_Sign_in"||tag == "Home") {
+
+        rootview.back.setImageResource(R.mipmap.btn_back_normal)
+        rootview.back.setOnClickListener { GoBack() }
+        //rootview.back.visibility = View.GONE
+
+        rootview.exit.setImageResource(R.drawable.out)
+      //  rootview.exit.visibility = View.GONE
+        rootview.exit.setOnClickListener {
+            ShowDaiLog(R.layout.logout,false,false, Da_LogOut())
+        }
+
+        if (tag == "Frag_SettingPager_Setting" || tag == "Frag_SettingPager_Set_Languages"||tag == "Frag_SettingPager_PrivaryPolicy"
+                || tag == "Frag_UserManual" || tag == "Frag_UserManual_Detail" || tag == "Frag_SettingPager_Update") {
             Log.d("name", tag)
-            rootview.back.visibility = View.GONE
-            rootview.exit.visibility = View.VISIBLE
-        } else {
+
+            //rootview.exit.setImageResource(R.drawable.out)
             rootview.back.visibility = View.VISIBLE
             rootview.exit.visibility = View.GONE
+            //rootview.exit.setOnClickListener {
+                //ShowDaiLog(R.layout.logout,false,false, Da_LogOut())
+            //}
         }
+        else if(tag == "Frag_MainActivity_HomeFragement")
+        {
+            //rootview.exit.setImageResource(R.drawable.out)
+            rootview.back.visibility = View.GONE
+            rootview.exit.visibility = View.VISIBLE
+        }
+        else {
+            rootview.back.visibility = View.VISIBLE
+            rootview.exit.visibility = View.GONE
+            if(bleServiceControl.isconnect)
+            {
+                rootview.exit.visibility = View.VISIBLE
+                rootview.exit.setImageResource(R.mipmap.icon_obdii)
+                rootview.exit.setOnClickListener {
+
+                }
+            }
+        }
+
         when (tag) {
             "Frag_Function_Selection" -> {
-                rootview.bartitle.text = "OBDII DONGLE"
+                //rootview.bartitle.text = "OBDII DONGLE"
+                rootview.bartitle.text = getString(R.string.OBDII_relearn)
             }
             "Frag_SelectMmyPage_MakeFragement" -> {
             }
             "Frag_SelectMmyPage_ModelFragement" -> {
             }
-            "Home" -> {
+            "Frag_MainActivity_HomeFragement" -> {
                 rootview.bartitle.text = "Orange TPMS"
             }
             "Frag_SelectMmyPage_YearFragement" -> {
@@ -102,10 +137,10 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
             "Frag_SettingPager_Setting" -> {
                 rootview.bartitle.text = getString(R.string.Setting)
             }
-            "SetArea" -> {
+            "Frag_SettingPager_Set_Languages" -> {
                 rootview.bartitle.text = getString(R.string.AreaLanguage)
             }
-            "policy" -> {
+            "Frag_SettingPager_PrivaryPolicy" -> {
                 rootview.bartitle.text = getString(R.string.Privacy_Policy)
             }
             "Frag_SettingPager_Update" -> {

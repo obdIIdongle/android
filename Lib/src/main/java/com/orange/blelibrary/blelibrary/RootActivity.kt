@@ -31,7 +31,7 @@ import java.security.Permissions
 import java.util.*
 
 abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActivity(),
-    FragmentManager.OnBackStackChangedListener {
+        FragmentManager.OnBackStackChangedListener {
     var handler = Handler()
     private var permissionRequestCode = 10
     var Fraging: Fragment? = null
@@ -39,7 +39,7 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
     lateinit var PermissionCaller: Permission_C
     lateinit var rootview: View
     lateinit var NavagationRoot: DrawerLayout
-    lateinit var NavaGationFrag:RootFragement
+    lateinit var NavaGationFrag: RootFragement
     override fun onBackStackChanged() {
         Fraging = supportFragmentManager.fragments[supportFragmentManager.fragments.size - 1]
         FragName = Fraging!!.tag!!
@@ -96,14 +96,16 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
 
     open fun SetNavaGation(root: Int, child: Int, frag: RootFragement) {
         NavagationRoot = findViewById(root)
-        NavaGationFrag=frag
+        NavaGationFrag = frag
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(child, frag)
-            .commit()
+                .commit()
     }
-   open fun RefreshNavaGation(){
-       NavaGationFrag.ViewInit()
-   }
+
+    open fun RefreshNavaGation() {
+        NavaGationFrag.ViewInit()
+    }
+
     open fun OpenNavaGation() {
         NavagationRoot.openDrawer(GravityCompat.START)
     }
@@ -111,12 +113,13 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
     open fun OpenNavaGation(int: Int) {
         NavagationRoot.openDrawer(int)
     }
-    open fun ChangePage(Translation: Fragment,id:Int, tag: String, goback: Boolean) {
+
+    open fun ChangePage(Translation: Fragment, id: Int, tag: String, goback: Boolean) {
         if (goback) {
             val transaction = supportFragmentManager!!.beginTransaction()
             transaction.replace(id, Translation, tag)
-                .addToBackStack(FragName)
-                .commit()
+                    .addToBackStack(FragName)
+                    .commit()
         } else {
             Fraging = Translation
             FragName = tag
@@ -124,15 +127,21 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
             ChangePageListener(tag, Translation)
             val transaction = supportFragmentManager!!.beginTransaction()
             transaction.replace(id, Translation, tag)
-                .commit()
+                    .commit()
         }
     }
+
+    open fun SetHome(Translation: Fragment, tag: String) {
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        ChangePage(Translation, tag, false)
+    }
+
     open fun ChangePage(Translation: Fragment, tag: String, goback: Boolean) {
         if (goback) {
             val transaction = supportFragmentManager!!.beginTransaction()
             transaction.replace(FragId, Translation, tag)
-                .addToBackStack(FragName)
-                .commit()
+                    .addToBackStack(FragName)
+                    .commit()
         } else {
             Fraging = Translation
             FragName = tag
@@ -140,7 +149,7 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
             ChangePageListener(tag, Translation)
             val transaction = supportFragmentManager!!.beginTransaction()
             transaction.replace(FragId, Translation, tag)
-                .commit()
+                    .commit()
         }
     }
 
@@ -153,16 +162,16 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
     }
 
     var mDialog: Dialog? = null
-    var nowDia=-1
+    var nowDia = -1
     lateinit var DiaCaller: Dailog_SetUp_C
-    fun ShowDaiLog(Layout: Int, touchcancel: Boolean, style: Int,caller: Dailog_SetUp_C) {
+    fun ShowDaiLog(Layout: Int, touchcancel: Boolean, style: Int, caller: Dailog_SetUp_C) {
         try {
             if (mDialog == null) {
                 mDialog = Dialog(this, style)
                 mDialog!!.setContentView(Layout)
                 mDialog!!.getWindow()!!.setLayout(
-                    WindowManager.LayoutParams.WRAP_CONTENT,
-                    WindowManager.LayoutParams.WRAP_CONTENT
+                        WindowManager.LayoutParams.WRAP_CONTENT,
+                        WindowManager.LayoutParams.WRAP_CONTENT
                 )
                 mDialog!!.setCancelable(true)
                 mDialog!!.setCanceledOnTouchOutside(touchcancel)
@@ -175,8 +184,8 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
                     mDialog = Dialog(this, style)
                     mDialog!!.setContentView(Layout)
                     mDialog!!.getWindow()!!.setLayout(
-                        WindowManager.LayoutParams.WRAP_CONTENT,
-                        WindowManager.LayoutParams.WRAP_CONTENT
+                            WindowManager.LayoutParams.WRAP_CONTENT,
+                            WindowManager.LayoutParams.WRAP_CONTENT
                     )
                     mDialog!!.setCancelable(true)
                     mDialog!!.setCanceledOnTouchOutside(touchcancel)
@@ -184,14 +193,14 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
                     if (touchcancel) {
                         getAllChildViews(mDialog!!.getWindow().getDecorView())
                     }
-                }else{
-                    if(nowDia!=Layout){
+                } else {
+                    if (nowDia != Layout) {
                         DaiLogDismiss()
                         mDialog = Dialog(this, style)
                         mDialog!!.setContentView(Layout)
                         mDialog!!.getWindow()!!.setLayout(
-                            WindowManager.LayoutParams.WRAP_CONTENT,
-                            WindowManager.LayoutParams.WRAP_CONTENT
+                                WindowManager.LayoutParams.WRAP_CONTENT,
+                                WindowManager.LayoutParams.WRAP_CONTENT
                         )
                         mDialog!!.setCancelable(true)
                         mDialog!!.setCanceledOnTouchOutside(touchcancel)
@@ -199,26 +208,26 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
                         if (touchcancel) {
                             getAllChildViews(mDialog!!.getWindow().getDecorView())
                         }
-                    }  
+                    }
                 }
             }
-            nowDia=Layout
-            caller.SetUP(mDialog!!,this)
-            DiaCaller=caller
+            nowDia = Layout
+            caller.SetUP(mDialog!!, this)
+            DiaCaller = caller
         } catch (e: Exception) {
             Thread.sleep(1000)
             e.printStackTrace()
         }
     }
 
-    fun ShowDaiLog(Layout: Int, touchcancel: Boolean, swip: Boolean,caller: Dailog_SetUp_C) {
+    fun ShowDaiLog(Layout: Int, touchcancel: Boolean, swip: Boolean, caller: Dailog_SetUp_C) {
         try {
             if (mDialog == null) {
                 mDialog = Dialog(this, if (swip) R.style.SwipTheme else R.style.MyDialog)
                 mDialog!!.setContentView(Layout)
                 mDialog!!.getWindow()!!.setLayout(
-                    WindowManager.LayoutParams.WRAP_CONTENT,
-                    WindowManager.LayoutParams.WRAP_CONTENT
+                        WindowManager.LayoutParams.WRAP_CONTENT,
+                        WindowManager.LayoutParams.WRAP_CONTENT
                 )
                 mDialog!!.setCancelable(true)
                 mDialog!!.setCanceledOnTouchOutside(touchcancel)
@@ -231,8 +240,8 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
                     mDialog = Dialog(this, if (swip) R.style.SwipTheme else R.style.MyDialog)
                     mDialog!!.setContentView(Layout)
                     mDialog!!.getWindow()!!.setLayout(
-                        WindowManager.LayoutParams.WRAP_CONTENT,
-                        WindowManager.LayoutParams.WRAP_CONTENT
+                            WindowManager.LayoutParams.WRAP_CONTENT,
+                            WindowManager.LayoutParams.WRAP_CONTENT
                     )
                     mDialog!!.setCancelable(true)
                     mDialog!!.setCanceledOnTouchOutside(touchcancel)
@@ -240,27 +249,27 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
                     if (touchcancel) {
                         getAllChildViews(mDialog!!.getWindow().getDecorView())
                     }
-                }else{
-                    if(nowDia!=Layout){
+                } else {
+                    if (nowDia != Layout) {
                         DaiLogDismiss()
                         mDialog = Dialog(this, if (swip) R.style.SwipTheme else R.style.MyDialog)
                         mDialog!!.setContentView(Layout)
                         mDialog!!.getWindow()!!.setLayout(
-                            WindowManager.LayoutParams.WRAP_CONTENT,
-                            WindowManager.LayoutParams.WRAP_CONTENT
+                                WindowManager.LayoutParams.WRAP_CONTENT,
+                                WindowManager.LayoutParams.WRAP_CONTENT
                         )
                         mDialog!!.setCancelable(true)
                         mDialog!!.setCanceledOnTouchOutside(touchcancel)
                         mDialog!!.show()
                         if (touchcancel) {
                             getAllChildViews(mDialog!!.getWindow().getDecorView())
-                        }  
+                        }
                     }
                 }
             }
-            nowDia=Layout
-            caller.SetUP(mDialog!!,this)
-            DiaCaller=caller
+            nowDia = Layout
+            caller.SetUP(mDialog!!, this)
+            DiaCaller = caller
         } catch (e: Exception) {
             Thread.sleep(1000)
             e.printStackTrace()
@@ -342,9 +351,9 @@ abstract class RootActivity(val LayoutId: Int, val FragId: Int) : AppCompatActiv
      * 請求成功
      */
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {

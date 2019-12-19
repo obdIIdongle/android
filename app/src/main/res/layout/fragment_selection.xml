@@ -30,7 +30,7 @@
         android:layout_below="@id/imageView15"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="@string/Three_ways"
+        android:text="@string/Methods_of_vehicle_data_selection"
         android:textSize="20sp" />
 
     <LinearLayout

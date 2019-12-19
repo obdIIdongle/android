@@ -4,6 +4,7 @@ package com.example.obd.Frag
 import android.app.Dialog
 import android.view.KeyEvent
 import android.view.View
+import android.widget.TextView
 import com.example.obd.MainPeace
 import com.example.obd.util.Util_FtpManager
 import com.orange.blelibrary.blelibrary.CallBack.Dailog_SetUp_C
@@ -13,6 +14,10 @@ import com.orange.blelibrary.blelibrary.tool.FormatConvert.bytesToHex
 
 import com.orange.obd.R
 import kotlinx.android.synthetic.main.activity_main_peace.view.*
+import kotlinx.android.synthetic.main.activity_main_peace.view.back
+import kotlinx.android.synthetic.main.activity_re_program.*
+import kotlinx.android.synthetic.main.activity_re_program.view.*
+import kotlinx.android.synthetic.main.activity_re_program.view.cancel
 import kotlinx.android.synthetic.main.dataloading.view.*
 import kotlinx.android.synthetic.main.fragment_show__read.view.*
 
@@ -69,11 +74,27 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
 //                    act.command.HandShake()
                     if (!mainPeace.command.WriteVersion()||!mainPeace.command.GoBootloader()) {
                         handler.post {
-                            act.ShowDaiLog(R.layout.activity_re_program,false,true, object :Dailog_SetUp_C(){
+
+                            act.ShowDaiLog(R.layout.activity_re_program,false,false, object :Dailog_SetUp_C(){
                                 override fun SetUP(root: Dialog, act: RootActivity) {
-                                    rootview.title.text=resources.getString(R.string.Programming)
+                                    //rootview.title.text=resources.getString(R.string.Programming)
+
+                                    root.findViewById<TextView>(R.id.cancel).setOnClickListener {
+                                        act.GoBack("Frag_Function_Selection")
+                                    }
+
+                                    //root.cancel.setOnClickListener {
+                                        //act.DaiLogDismiss()
+                                    //}
+
                                 }
                             })
+
+                            rootview.program.text = resources.getString(R.string.MENU)
+                            rootview.program.setOnClickListener {
+                                act.GoBack("Frag_Function_Selection")
+                            }
+
                             mainPeace.bleServiceControl.disconnect()
                         }
                         handler.post { mainPeace.rootview.back.isEnabled=true }
@@ -95,7 +116,24 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                         SetId()
                     }else{
 //                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
-                        act.ShowDaiLog(R.layout.activity_re_program,true,false, Dailog_SetUp_C())
+
+                        act.ShowDaiLog(R.layout.activity_re_program,false,false, object :Dailog_SetUp_C(){
+                            override fun SetUP(root: Dialog, act: RootActivity) {
+                                root.findViewById<TextView>(R.id.cancel).setOnClickListener {
+                                    act.GoBack("Frag_Function_Selection")
+                                }
+
+                                //rootview.cancel.setOnClickListener {
+                                    //act.DaiLogDismiss()
+                                    //}
+                            }
+                        })
+
+                        rootview.program.text = resources.getString(R.string.MENU)
+                        rootview.program.setOnClickListener {
+                            act.GoBack("Frag_Function_Selection")
+                        }
+
                         mainPeace.bleServiceControl.disconnect()
                     }
                 }
@@ -103,7 +141,24 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                 handler.post {
                     act.DaiLogDismiss()
                     act.rootview.back.isEnabled=true
-                act.ShowDaiLog(R.layout.internet_error,false,true, Dailog_SetUp_C())
+                act.ShowDaiLog(R.layout.internet_error,false,false, object :Dailog_SetUp_C(){
+                    override fun SetUP(root: Dialog, act: RootActivity) {
+
+                        root.findViewById<TextView>(R.id.cancel).setOnClickListener {
+                            act.GoBack("Frag_Function_Selection")
+                        }
+
+                        //rootview.cancel.setOnClickListener {
+                            //act.DaiLogDismiss()
+                            //}
+                    }
+                })
+
+                    rootview.program.text = resources.getString(R.string.MENU)
+                    rootview.program.setOnClickListener {
+                        act.GoBack("Frag_Function_Selection")
+                    }
+
                     act.supportFragmentManager.popBackStack(null,1)
                 }
 
@@ -126,7 +181,12 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                     rootview.Lrt.text = a.LR
                     rootview.Rrt.text = a.RR
                     rootview.lrt.text = a.SP
-                    rootview.program.setOnClickListener {    act.ChangePage(Frag_Function_Key_ID(),R.id.frage,"Frag_Function_Key_ID",true)}
+                    //rootview.program.setOnClickListener {    act.ChangePage(Frag_Function_Key_ID(),R.id.frage,"Frag_Function_Key_ID",true)}
+
+                    rootview.program.setOnClickListener {
+                        act.GoMenu()
+                    }
+                    rootview.program.text = resources.getString(R.string.MENU)
                 }else{
                     act.ChangePage(Frag_SelectMmyPage_MakeFragement(),R.id.frage,"Frag_SelectMmyPage_MakeFragement",false)
                     act.Toast("車種選擇錯誤")

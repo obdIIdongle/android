@@ -241,5 +241,9 @@
     <string name="Connection_error">連線錯誤</string>
     <string name="Please_check_your_internet_connection">請檢查網路連線</string>
     <string name="Write_ID">寫入ID</string>
+    <string name="Please_remove_OBD">請取下OBD</string>
+
+    <string name="Verification_failed">驗證失敗</string>
+    <string name="Verification_completed">驗證完成</string>
 
 </resources>

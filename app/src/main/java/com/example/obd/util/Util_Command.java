@@ -223,7 +223,7 @@ public class Util_Command {
                                 @Override
                                 public void SetUP(@NotNull Dialog root, @NotNull RootActivity act) {
                                     TextView text=root.findViewById(R.id.title);
-                                    text.setText(act.getResources().getString(R.string.Programming)+"..."+100+"%");
+                                    text.setText(act.getResources().getString(R.string.Data_Loading)+"..."+100+"%");
                                 }
                             });
                         }
@@ -245,7 +245,7 @@ public class Util_Command {
                                 @Override
                                 public void SetUP(@NotNull Dialog root, @NotNull RootActivity act) {
                                     TextView text=root.findViewById(R.id.title);
-                                    text.setText(act.getResources().getString(R.string.Programming)+"..."+ (int) (finalI / finalLong * 100)+"%");
+                                    text.setText(act.getResources().getString(R.string.Data_Loading)+"..."+ (int) (finalI / finalLong * 100)+"%");
                                 }
                             });
                         }

@@ -246,5 +246,9 @@
     <string name="Connection_error">Verbindungsfehler</string>
     <string name="Please_check_your_internet_connection">Bitte überprüfen Sie Ihre Internetverbindung</string>
     <string name="Write_ID">ID schreiben</string>
+    <string name="Please_remove_OBD">Bitte entfernen Sie OBD</string>
+
+    <string name="Verification_failed">Verifizierung fehlgeschlagen</string>
+    <string name="Verification_completed">Überprüfung abgeschlossen</string>
 
 </resources>

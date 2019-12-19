@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
 import com.example.obd.MainPeace
+import com.example.obd.OBD_Relearn.Frag_Function_OBDII_relearn_goback
 import com.example.obd.util.Util_FtpManager
 import com.orange.blelibrary.blelibrary.CallBack.Dailog_SetUp_C
 import com.orange.blelibrary.blelibrary.RootActivity
@@ -49,6 +50,10 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
             }
         })
         Downs19()
+        rootview.program.text=resources.getString(R.string.Relearn_Procedure)
+        rootview.program.setOnClickListener {
+            act.ChangePage(Frag_Function_OBDII_relearn_goback(),R.id.frage,"Frag_Function_OBDII_relearn_goback",true)
+        }
     }
 
     override fun dispatchKeyEvent(event: KeyEvent?) {
@@ -80,7 +85,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                                     //rootview.title.text=resources.getString(R.string.Programming)
 
                                     root.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                                        act.GoBack("Frag_Function_Selection")
+                                        //act.GoBack("Frag_Function_Selection")
                                         act.DaiLogDismiss()
                                     }
 
@@ -93,11 +98,6 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
 
                             act.rootview.back.setImageResource(R.mipmap.btn_menu)
                             act.rootview.back.setOnClickListener { act.GoMenu() }
-
-                            rootview.program.text = resources.getString(R.string.MENU)
-                            rootview.program.setOnClickListener {
-                                act.GoBack("Frag_Function_Selection")
-                            }
 
                             mainPeace.bleServiceControl.disconnect()
                         }
@@ -124,7 +124,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                         act.ShowDaiLog(R.layout.activity_re_program,false,false, object :Dailog_SetUp_C(){
                             override fun SetUP(root: Dialog, act: RootActivity) {
                                 root.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                                    act.GoBack("Frag_Function_Selection")
+                                    //act.GoBack("Frag_Function_Selection")
                                     act.DaiLogDismiss()
                                 }
 
@@ -137,11 +137,6 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                         act.rootview.back.setImageResource(R.mipmap.btn_menu)
                         act.rootview.back.setOnClickListener { act.GoMenu() }
 
-                        rootview.program.text = resources.getString(R.string.MENU)
-                        rootview.program.setOnClickListener {
-                            act.GoBack("Frag_Function_Selection")
-                        }
-
                         mainPeace.bleServiceControl.disconnect()
                     }
                 }
@@ -153,7 +148,7 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                     override fun SetUP(root: Dialog, act: RootActivity) {
 
                         root.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                            act.GoBack("Frag_Function_Selection")
+                            //act.GoBack("Frag_Function_Selection")
                             act.DaiLogDismiss()
                         }
 
@@ -165,11 +160,6 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
 
                     act.rootview.back.setImageResource(R.mipmap.btn_menu)
                     act.rootview.back.setOnClickListener { act.GoMenu() }
-
-                    rootview.program.text = resources.getString(R.string.MENU)
-                    rootview.program.setOnClickListener {
-                        act.GoBack("Frag_Function_Selection")
-                    }
 
                     act.supportFragmentManager.popBackStack(null,1)
                 }
@@ -193,13 +183,6 @@ class Frag_Function_Show_Read : RootFragement(R.layout.fragment_show__read) {
                     rootview.Lrt.text = a.LR
                     rootview.Rrt.text = a.RR
                     rootview.lrt.text = a.SP
-                    //rootview.program.setOnClickListener {    act.ChangePage(Frag_Function_Key_ID(),R.id.frage,"Frag_Function_Key_ID",true)}
-
-                    rootview.program.setOnClickListener {
-                        act.GoMenu()
-                    }
-                    rootview.program.text = resources.getString(R.string.MENU)
-
                     act.rootview.back.setImageResource(R.mipmap.btn_menu)
                     act.rootview.back.setOnClickListener { act.GoMenu() }
 

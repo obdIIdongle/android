@@ -12,6 +12,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
 import com.example.obd.MainPeace
+import com.example.obd.OBD_Relearn.Frag_Function_OBDII_relearn_goback
 
 import com.orange.obd.R
 import com.example.obd.util.Util_CustomTextWatcher
@@ -108,9 +109,9 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
         rootview.Rrt.setFilters(arrayOf<InputFilter>(InputFilter.LengthFilter(need)))
         rootview.program.setOnClickListener {
 
-            if(rootview.program.text.equals(resources.getString(R.string.MENU)))
+            if(rootview.program.text.equals(resources.getString(R.string.Relearn_Procedure)))
             {
-                act.GoMenu()
+                act.GoBack("Frag_Function_OBDII_relearn")
             }
             else {
 
@@ -158,7 +159,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                                 override fun SetUP(root: Dialog, act: RootActivity) {
 
                                     root.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                                        act.GoMenu()
+                                        //act.GoMenu()
                                         act.DaiLogDismiss()
                                     }
 
@@ -174,6 +175,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
             }
         }
         rootview.scaner.setOnClickListener{
+            Downs19()
             rootview.Select_Key.visibility=View.GONE
             scanner.Scan_For=scanner.ID
             rootview.Lft.isFocusable=false
@@ -206,6 +208,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
             SCAN_OR_KEY=0
         }
         rootview.keyin.setOnClickListener {
+            Downs19()
             rootview.Select_Key.visibility=View.GONE
 
         }
@@ -217,15 +220,14 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
         rootview.lrt3.setText(ScanSp)
         if(mainPeace.utilMmySqlItemDAO.IsFiveTire(directfit)){rootview.lrt3.visibility=View.VISIBLE}else{rootview.lrt3.visibility=View.GONE}
         rootview.program.isEnabled=false
-        act.ShowDaiLog(R.layout.dataloading,false,true, object :Dailog_SetUp_C(){
-            override fun SetUP(root: Dialog, act: RootActivity) {
-                rootview.title.text=resources.getString(R.string.Data_Loading)
-            }
-        })
-        Downs19()
     }
     fun Downs19(){
-        handler.post { act.rootview.back.isEnabled=false }
+        handler.post { act.rootview.back.isEnabled=false
+            act.ShowDaiLog(R.layout.dataloading,false,true, object :Dailog_SetUp_C(){
+                override fun SetUP(root: Dialog, act: RootActivity) {
+                    rootview.title.text=resources.getString(R.string.Data_Loading)
+                }
+            })}
         Thread{
             if(!mainPeace.command.HandShake()){mainPeace.command.Reboot()}
             val a= Util_FtpManager.DownS19(directfit, mainPeace)
@@ -235,7 +237,6 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                     if(mainPeace.command.GoApp()){
                         handler.post { Frag_Function_Key_ID.s19 =directfit
                             act.DaiLogDismiss()
-                            rootview.Select_Key.visibility=View.VISIBLE
                             rootview.program.isEnabled=true
                             act.rootview.back.isEnabled=true
                         }
@@ -245,14 +246,14 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 //                    act.command.HandShake()
                     if (!mainPeace.command.WriteVersion()||!mainPeace.command.GoBootloader()) {
                         handler.post {
-                            rootview.program.text = resources.getString(R.string.MENU)
+                            rootview.program.text = resources.getString(R.string.RE_PROGRAM)
 
                             act.ShowDaiLog(R.layout.activity_re_program,false,false, object :Dailog_SetUp_C(){
                                 override fun SetUP(root: Dialog, act: RootActivity) {
                                     //rootview.title.text=resources.getString(R.string.Programming)
 
                                     root.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                                        act.GoBack("Frag_Function_Selection")
+                                        //act.GoBack("Frag_Function_OBDII_relearn")
                                         act.DaiLogDismiss()
                                     }
 
@@ -267,10 +268,6 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                             act.rootview.back.setImageResource(R.mipmap.btn_menu)
                             act.rootview.back.setOnClickListener { act.GoMenu() }
 
-                            rootview.program.setOnClickListener {
-                                act.GoBack("Frag_Function_Selection")
-                                Log.e("Frag_Function_Selection","back")
-                            }
                         }
                         handler.post { mainPeace.rootview.back.isEnabled=true }
                         return@Thread
@@ -288,18 +285,17 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                     if(Pro){
 //                            Toast.makeText(activity,"燒錄成功",Toast.LENGTH_SHORT).show();
                         Frag_Function_Key_ID.s19 =directfit
-                        rootview.Select_Key.visibility=View.VISIBLE
                         rootview.program.isEnabled=true
                         act.DaiLogDismiss()
                     }else{
 //                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
-                        rootview.program.text = resources.getString(R.string.MENU)
+                        rootview.program.text = resources.getString(R.string.RE_PROGRAM)
 
                         act.ShowDaiLog(R.layout.activity_re_program,false,false, object :Dailog_SetUp_C(){
                             override fun SetUP(root: Dialog, act: RootActivity) {
 
                                 root.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                                    act.GoBack("Frag_Function_Selection")
+                                    //act.GoBack("Frag_Function_Selection")
                                     act.DaiLogDismiss()
                                 }
 
@@ -314,11 +310,6 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                         act.rootview.back.setImageResource(R.mipmap.btn_menu)
                         act.rootview.back.setOnClickListener { act.GoMenu() }
 
-                        rootview.program.setOnClickListener {
-                            act.GoBack("Frag_Function_Selection")
-                            Log.e("Frag_Function_Selection","back")
-                        }
-
                         mainPeace.bleServiceControl.disconnect()
                     }
                 }
@@ -330,7 +321,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                     act.ShowDaiLog(R.layout.internet_error,false,false, object :Dailog_SetUp_C(){
                         override fun SetUP(root: Dialog, act: RootActivity) {
                             root.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                                act.GoBack("Frag_Function_Selection")
+                                //act.GoBack("Frag_Function_Selection")
                                 act.DaiLogDismiss()
                             }
 
@@ -344,10 +335,9 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                     act.rootview.back.setImageResource(R.mipmap.btn_menu)
                     act.rootview.back.setOnClickListener { act.GoMenu() }
 
-                    rootview.program.text = resources.getString(R.string.MENU)
+                    rootview.program.text = resources.getString(R.string.RE_PROGRAM)
                     rootview.program.setOnClickListener {
-                        act.GoBack("Frag_Function_Selection")
-                        Log.e("Frag_Function_Selection","back")
+                        Downs19()
                     }
 
                     //act.supportFragmentManager.popBackStack(null,1)
@@ -390,12 +380,9 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 
 
     fun updateui(condition:Int){
-
-        rootview.repr.visibility=View.GONE
-        rootview.program.visibility=View.GONE
         when(condition){
             SUCCESS ->{
-                rootview.condition.text=resources.getString(R.string.Programming_completed)
+                rootview.condition.text=resources.getString(R.string.Verification_completed)
                 rootview.condition.setTextColor(resources.getColor(R.color.buttoncolor))
                 rootview.Lft.setBackgroundResource(R.mipmap.icon_input_box_ok)
                 rootview.Rft.setBackgroundResource(R.mipmap.icon_input_box_ok)
@@ -406,11 +393,11 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                 rootview.Lr.setBackgroundResource(R.mipmap.icon_tire_ok)
                 rootview.Rr.setBackgroundResource(R.mipmap.icon_tire_ok)
                 rootview.program.visibility=View.VISIBLE
-                //rootview.program.text = "MENU"
-                rootview.program.text = resources.getString(R.string.MENU)
+                rootview.program.text = resources.getString(R.string.Relearn_Procedure)
+                rootview.program.setOnClickListener { act.ChangePage(Frag_Function_OBDII_relearn_goback(),R.id.frage,"Frag_Function_OBDII_relearn_goback",true) }
             }
             FAIL ->{
-                rootview.condition.text=resources.getString(R.string.Programming_failed)
+                rootview.condition.text=resources.getString(R.string.Verification_failed)
                 rootview.condition.setTextColor(resources.getColor(R.color.colorPrimary))
                 rootview.Lft.setBackgroundResource(R.mipmap.icon_input_box_fail)
                 rootview.Rft.setBackgroundResource(R.mipmap.icon_input_box_fail)
@@ -421,8 +408,7 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                 rootview.Lr.setBackgroundResource(R.mipmap.icon_tire_fail)
                 rootview.Rr.setBackgroundResource(R.mipmap.icon_tire_fail)
                 rootview.program.visibility=View.VISIBLE
-
-                rootview.program.text = resources.getString(R.string.MENU)
+                rootview.program.text = resources.getString(R.string.RE_PROGRAM)
             }
             WAIT ->{
                 //rootview.condition.text=resources.getString(R.string.Choose_the_tire_position_and_enter_new_sensor_ID_number)

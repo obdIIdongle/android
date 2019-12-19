@@ -299,5 +299,9 @@
     <string name="Connection_error">连线错误</string>
     <string name="Please_check_your_internet_connection">请检查网路连线</string>
     <string name="Write_ID">写入ID</string>
+    <string name="Please_remove_OBD">请取下OBD</string>
+
+    <string name="Verification_failed">验证失败</string>
+    <string name="Verification_completed">验证完成</string>
 
 </resources>

@@ -32,16 +32,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/repr"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="0.5dp"
-            android:layout_weight="1"
-            android:background="@color/buttoncolor"
-            android:text="@string/RE_PROGRAM"
-            android:textColor="@color/white" />
-
-        <Button
             android:id="@+id/program"
             android:layout_width="match_parent"
             android:layout_height="50dp"

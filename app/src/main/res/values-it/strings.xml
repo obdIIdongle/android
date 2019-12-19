@@ -318,5 +318,9 @@
     <string name="Connection_error">Errore di connessione</string>
     <string name="Please_check_your_internet_connection">Controlla la tua connessione Internet</string>
     <string name="Write_ID">Scrivi ID</string>
+    <string name="Please_remove_OBD">Rimuovere OBD</string>
+
+    <string name="Verification_failed">Verifica fallita</string>
+    <string name="Verification_completed">Verifica completata</string>
 
 </resources>

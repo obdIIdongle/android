@@ -22,7 +22,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="@string/Please_remove_the_sensor"
+            android:text="@string/Please_remove_OBD"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 

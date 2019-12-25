@@ -246,14 +246,13 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
 //                    act.command.HandShake()
                     if (!mainPeace.command.WriteVersion()||!mainPeace.command.GoBootloader()) {
                         handler.post {
-                            rootview.program.text = resources.getString(R.string.RE_PROGRAM)
 
                             act.ShowDaiLog(R.layout.activity_re_program,false,false, object :Dailog_SetUp_C(){
                                 override fun SetUP(root: Dialog, act: RootActivity) {
                                     //rootview.title.text=resources.getString(R.string.Programming)
 
                                     root.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                                        //act.GoBack("Frag_Function_OBDII_relearn")
+                                        act.GoBack("Frag_Function_Selection")
                                         act.DaiLogDismiss()
                                     }
 
@@ -263,7 +262,10 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                                         //}
                                 }
                             })
-                            mainPeace.bleServiceControl.disconnect()
+                            rootview.program.text = resources.getString(R.string.RE_PROGRAM)
+                            rootview.program.setOnClickListener {
+                                Downs19()
+                            }
 
                             act.rootview.back.setImageResource(R.mipmap.btn_menu)
                             act.rootview.back.setOnClickListener { act.GoMenu() }
@@ -289,20 +291,14 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                         act.DaiLogDismiss()
                     }else{
 //                            Toast.makeText(activity,"燒錄失敗",Toast.LENGTH_SHORT).show();
-                        rootview.program.text = resources.getString(R.string.RE_PROGRAM)
+
 
                         act.ShowDaiLog(R.layout.activity_re_program,false,false, object :Dailog_SetUp_C(){
                             override fun SetUP(root: Dialog, act: RootActivity) {
-
                                 root.findViewById<TextView>(R.id.cancel).setOnClickListener {
-                                    //act.GoBack("Frag_Function_Selection")
+                                    act.GoBack("Frag_Function_Selection")
                                     act.DaiLogDismiss()
                                 }
-
-                                //rootview.cancel.setOnClickListener {
-                                    //act.DaiLogDismiss()
-                                    //act.GoBack("Frag_Function_Selection")
-                                    //}
                             }
                         })
                         //act.GoBack("Frag_Function_Selection")
@@ -310,7 +306,10 @@ class Frag_Function_Key_ID : RootFragement(R.layout.fragment_key__id)
                         act.rootview.back.setImageResource(R.mipmap.btn_menu)
                         act.rootview.back.setOnClickListener { act.GoMenu() }
 
-                        mainPeace.bleServiceControl.disconnect()
+                        rootview.program.text = resources.getString(R.string.RE_PROGRAM)
+                        rootview.program.setOnClickListener {
+                            Downs19()
+                        }
                     }
                 }
             }else{

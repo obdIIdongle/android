@@ -57,7 +57,7 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
                Frag_SettingPager_Set_Languages.place = 0
                Frag_SettingPager_PrivaryPolicy.place = 0
                rootview.frage.setBackgroundColor(resources.getColor(R.color.backgroung))
-               ChangePage(Frag_SettingPager_Set_Languages(), R.id.frage, "Frag_SettingPager_Set_Languages", false)
+               ChangePage(Frag_SettingPager_Set_Languages(), R.id.frage, "Frag_SettingPager_Set_Languages_first", false)
            } else {
                rootview.frage.setBackgroundColor(resources.getColor(R.color.backgroung))
                SetHome(Frag_MainActivity_HomeFragement(), "Frag_MainActivity_HomeFragement")
@@ -87,7 +87,8 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
         }
 
         if (tag == "Frag_SettingPager_Setting" || tag == "Frag_SettingPager_Set_Languages"||tag == "Frag_SettingPager_PrivaryPolicy"
-                || tag == "Frag_UserManual" || tag == "Frag_UserManual_Detail" || tag == "Frag_SettingPager_Update") {
+                || tag == "Frag_UserManual" || tag == "Frag_UserManual_Detail" || tag == "Frag_SettingPager_Update"
+                || tag == "Frag_SettingPager_Enroll" || tag == "Frag_SettingPager_ResetPass") {
             Log.d("name", tag)
 
             //rootview.exit.setImageResource(R.drawable.out)
@@ -96,6 +97,12 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
             //rootview.exit.setOnClickListener {
                 //ShowDaiLog(R.layout.logout,false,false, Da_LogOut())
             //}
+        }
+        else if(tag == "Frag_SettingPager_Sign_in")
+        {
+            //rootview.exit.setImageResource(R.drawable.out)
+            rootview.back.visibility = View.GONE
+            rootview.exit.visibility = View.GONE
         }
         else if(tag == "Frag_MainActivity_HomeFragement")
         {
@@ -117,6 +124,25 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
         }
 
         when (tag) {
+            "Frag_SettingPager_Set_Languages_first"->{
+                rootview.back.visibility=View.GONE
+                rootview.exit.visibility=View.GONE
+            }
+            "Frag_SettingPager_Sign_in" ->
+            {
+                rootview.bartitle.text = "OBDII DONGLE"
+            }
+
+            "Frag_SettingPager_Enroll" ->
+            {
+                rootview.bartitle.text = "OBDII DONGLE"
+            }
+
+            "Frag_SettingPager_ResetPass" ->
+            {
+                rootview.bartitle.text = "OBDII DONGLE"
+            }
+
             "Frag_Function_Selection" -> {
                 //rootview.bartitle.text = "OBDII DONGLE"
                 when (Bs_Write_and_Read.Trun) {
@@ -159,6 +185,10 @@ class MainPeace : RootActivity(R.layout.activity_main_peace,R.id.frage),Ble_Call
             }
             "Frag_SettingPager_Set_Languages" -> {
                 rootview.bartitle.text = getString(R.string.AreaLanguage)
+            }
+            "Frag_SettingPager_PrivaryPolicy_first"->{
+                rootview.back.visibility=View.GONE
+                rootview.exit.visibility=View.GONE
             }
             "Frag_SettingPager_PrivaryPolicy" -> {
                 rootview.bartitle.text = getString(R.string.Privacy_Policy)

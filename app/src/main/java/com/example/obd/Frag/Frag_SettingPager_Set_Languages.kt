@@ -66,7 +66,7 @@ class Frag_SettingPager_Set_Languages : RootFragement(R.layout.fragment_set__lan
                 }
             }
             if(place ==0){
-                (activity as MainPeace).ChangePage(Frag_SettingPager_PrivaryPolicy(),R.id.frage,"Frag_SettingPager_PrivaryPolicy",false)
+                (activity as MainPeace).ChangePage(Frag_SettingPager_PrivaryPolicy(),R.id.frage,"Frag_SettingPager_PrivaryPolicy_first",false)
             }else{
                 act.SetHome(Frag_MainActivity_HomeFragement(), "Frag_MainActivity_HomeFragement")
             }
